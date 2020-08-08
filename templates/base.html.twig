@@ -1,12 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+        <header>
+            <div class="d-flex justify-content-between p-3 bg-info">
+                <!-- burger nav -->
+                <div>
+                    <div class="topnav">
+
+                        <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
+                        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                            <i class="fa fa-bars fa-4x"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- logo -->
+                <div>
+                    <a href=""><img class="logo" src="{{ asset('images/logo.jpg') }}" alt=""></a>
+                </div>
+
+                <!-- icone user -->
+                <div>
+                    <i class="fa fa-user fa-4x"></i>
+                </div>
+            </div>
+
+            <div id="myLinks">
+                <div><a href="#news">News</a></div>
+                <div><a href="#contact">Contact</a></div>
+                <div><a href="#about">About</a></div>
+            </div>
+        </header>
         {% block body %}{% endblock %}
+        <footer></footer>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <script src="{{ asset('js/main.js') }}"></script>
         {% block javascripts %}{% endblock %}
+
     </body>
 </html>

@@ -1,0 +1,29 @@
+user        -> connexion - inscription
+catégorie   -> crud
+article     -> crud
+tri article -> categorie - auteur
+
+
+CATEGORIE
+	désignation
+	date
+	user****
+
+
+ARTICLE
+	TITRE
+	TITRE_SECONDAIRE
+	CONTENU
+	IMAGE_PRINCIPALE
+	DATE_CREA
+	categorie****
+	user****
+
+
+
+MEDIA
+	NOM
+	LEGENDE
+	TYPE
+	DATE_AJOUT
+	article****

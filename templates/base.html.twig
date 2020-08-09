@@ -22,10 +22,6 @@
                         </a>
                     </div>
                 </div>
-<!--
-<p>blablabla des bidules</p>
--->
-<p>blabla</p>
                 <!-- logo -->
                 <div>
                     <a href="{{ path('accueil') }}"><img class="logo" src="{{ asset('images/logo.jpg') }}" alt=""></a>
@@ -33,7 +29,7 @@
 
                 <!-- icone user -->
                 <div>
-                    <i class="fa fa-user fa-4x"></i>
+                    <a href="{{ path("inscription") }}"><i class="fa fa-user fa-4x"></i></a>
                 </div>
             </div>
 
@@ -49,7 +45,16 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="{{ asset('js/main.js') }}"></script>
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            <script>
+                $(document).ready(function(){
+                    $(document).on('change', '.custom-file-input', function () {
+                        let fileName = $(this).val().replace(/\\/g, '/').replace(/.*\//, '');
+                        $(this).parent('.custom-file').find('.custom-file-label').text(fileName);
+                    });
+                })
+            </script>
+        {% endblock %}
 
     </body>
 </html>

@@ -64,3 +64,8 @@
 .logo {
     width: 10em;
 }
+
+footer img{
+    width: 50%;
+    height: auto;
+}

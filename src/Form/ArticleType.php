@@ -41,7 +41,8 @@ class ArticleType extends AbstractType
             ])
             ->add('main_image', FileType::class, [
                 "label" => "Image principale",
-                'required' => true
+                'data_class' => null,
+                'required' => false
             ])
             ->add("Ajouter", SubmitType::class)    
         ;

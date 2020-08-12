@@ -83,12 +83,12 @@ class Article
         return $this;
     }
 
-    public function getMainImage()
+    public function getMainImage(): ?string
     {
         return $this->main_image;
     }
 
-    public function setMainImage($main_image)
+    public function setMainImage(string $main_image)
     {
         $this->main_image = $main_image;
 

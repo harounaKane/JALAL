@@ -6,15 +6,22 @@ use App\Entity\Categorie;
 use App\Form\CategorieType;
 use App\Repository\CategorieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * @Route("/categorie")
  */
 class CategorieController extends AbstractController
 {
+    private $manager;
+    public function __construct(EntityManagerInterface $manager){
+        $this->manager = $manager;
+    }  
+
     /**
      * @Route("/", name="categorie_index", methods={"GET"})
      */
@@ -35,9 +42,13 @@ class CategorieController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($categorie);
-            $entityManager->flush();
+            $categorie->setCreatedAt(new \DateTime());
+            try {
+                $this->manager->persist($categorie);
+                $this->manager->flush();
+            }catch (UniqueConstraintViolationException $e){
+
+            }
 
             return $this->redirectToRoute('categorie_index');
         }
@@ -67,7 +78,12 @@ class CategorieController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            try {
+                $this->manager->persist($categorie);
+                $this->manager->flush();
+            }catch (UniqueConstraintViolationException $e){
+
+            }
 
             return $this->redirectToRoute('categorie_index');
         }

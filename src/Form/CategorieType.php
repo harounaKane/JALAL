@@ -20,7 +20,7 @@ class CategorieType extends AbstractType
                     'placeholder' => 'Désignation',
                     'minlength' => 2,
                     'maxlength' => 50
-                ])
+                ]])
             ->add('Enregistrer', SubmitType::class)
         ;
     }

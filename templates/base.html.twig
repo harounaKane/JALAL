@@ -4,9 +4,9 @@
         <meta charset="UTF-8">
         <link rel="shortcut icon" href="#">
         <title>{% block title %}Fulbe Info ! {% endblock %}</title>
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
@@ -24,7 +24,8 @@
                 </div>
                 <!-- logo -->
                 <div>
-                    <a href="{{ path('accueil') }}"><img class="logo" src="{{ asset('images/logo/logo.jpeg') }}" alt=""></a>
+                    <a href="{{ path('accueil') }}"><img class="logo" src="{{ asset('images/logo/logo.png') }}" alt=""></a>
+                    <a href="{{ path('accueil') }}"><img class="logo" src="{{ asset('images/logo/logo2.png') }}" alt=""></a>
                 </div>
 
                 <!-- icone user -->
@@ -56,14 +57,7 @@
                 <figcaption class="figure-caption text-center">Mantcha Diawara <p>Profession</p></figcaption>
             </figure>
         </footer>
-        <article>
-            <h3>Proposition de logo</h3>
-            <div>
-                <img class="logo" src="{{ asset('images/logo/logo.jpeg') }}" alt="">
-                <img class="logo" src="{{ asset('images/logo/logo2.jpeg') }}" alt="">
-                <img class="logo" src="{{ asset('images/logo/logo3.jpeg') }}" alt="">
-            </div>
-        </article>
+
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

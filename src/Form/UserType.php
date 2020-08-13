@@ -67,9 +67,16 @@ class UserType extends AbstractType
                 "second_options" => ['label' => "Confirmation",
                     'attr' => ['minlength' => 6, 'maxlength' => 10]]
             ])
-            ->add('country', CountryType::class, [
-                "label" => "Pays"
+            ->add('country', TextType::class, [
+                "label" => "Pays résidence",
+                'attr'      => [
+                    'list'        => 'pays',
+                    'value' => "Sénégal"
+                    ]
             ])
+//            ->add('country', CountryType::class, [
+//                "label" => "Pays résidence"
+//            ])
             ->add('avatar', FileType::class, [
                 "label" => "Image profil",
                 'required' => false

@@ -7,7 +7,7 @@ tri article -> categorie - auteur
 CATEGORIE
 	désignation
 	date
-	user****
+	user
 
 
 ARTICLE
@@ -16,15 +16,17 @@ ARTICLE
 	CONTENU
 	IMAGE_PRINCIPALE
 	DATE_CREA
-	categorie****
-	user****
+	CATEGORIE_ID
+	USER_ID
 
 
 
 MEDIA
 	NOM
 	LEGENDE
+	TEXTE
 	TYPE
+	ORDRE
 	DATE_AJOUT
 	article****
 

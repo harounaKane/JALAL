@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,9 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 
-/**
- * @Route("/article")
- */
+
 class ArticleController extends AbstractController
 {
     private $manager;
@@ -23,7 +22,7 @@ class ArticleController extends AbstractController
     }    
     
     /**
-     * @Route("/", name="article_index", methods={"GET"})
+     * @Route("/", name="accueil", methods={"GET"})
      */
     public function index(ArticleRepository $articleRepository): Response
     {
@@ -33,9 +32,9 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="article_new", methods={"GET","POST"})
+     * @Route("/article/new", name="article_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, UserRepository $repo): Response
     {
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
@@ -43,6 +42,7 @@ class ArticleController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $article->setArtCreatedAt(new \DateTime());
+            $article->setUser($repo->idUser($request->getSession()->get('id')) );
             try {
                 $this->manager->persist($article);
                 $this->manager->flush();
@@ -50,7 +50,7 @@ class ArticleController extends AbstractController
 
             }
 
-            return $this->redirectToRoute('article_index');
+            return $this->redirectToRoute('accueil');
         }
 
         return $this->render('article/new.html.twig', [
@@ -60,7 +60,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="article_show", methods={"GET"})
+     * @Route("/article/{id}", name="article_show", methods={"GET"})
      */
     public function show(Article $article): Response
     {
@@ -70,7 +70,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="article_edit", methods={"GET","POST"})
+     * @Route("/article/{id}/edit", name="article_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Article $article): Response
     {
@@ -95,7 +95,7 @@ class ArticleController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="article_delete", methods={"DELETE"})
+     * @Route("/article/{id}", name="article_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Article $article): Response
     {

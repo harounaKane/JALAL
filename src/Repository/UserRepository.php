@@ -19,6 +19,27 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
+    public function connexionUser($login, $mdp)
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.login = :login')
+            ->andWhere('u.password = :mdp')
+            ->setParameter('login', $login)
+            ->setParameter('mdp', password_verify($mdp, 'u.password'))
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
+    public function idUser($idUser){
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.id = :idUser')
+            ->setParameter('idUser', $idUser)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

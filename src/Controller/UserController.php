@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Form\UserType;
+use App\Form\ConnexionUserType;
+use App\Repository\UserRepository;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -53,5 +55,49 @@ class UserController extends AbstractController
         }
 
         return $this->render('user/inscription.html.twig', ['form' => $form->createView()]);
+    }
+
+    /**
+     * @Route("/user_connexion", name="connexion")
+     */
+    public function connexion(Request $request, UserRepository $userRepository){
+
+        $user = new User();
+        $form = $this->createForm(ConnexionUserType::class, $user);
+
+        $form->handleRequest($request);
+
+        if( $form->isSubmitted() && $form->isValid() ){
+            $login = $user->getLogin();
+            $mdp = $user->getPassword();
+
+            $userInfo = $userRepository->connexionUser($login, $mdp);
+            if($userInfo){
+                $session = $request->getSession();
+                $session->set('id', $userInfo->getId());
+                $session->set('civility', $userInfo->getCivility());
+                $session->set('first_name', $userInfo->getFirstName());
+                $session->set('last_name', $userInfo->getLastName());
+                $session->set('mail', $userInfo->getMail());
+                $session->set('login', $userInfo->getLogin());
+                $session->set('country', $userInfo->getCountry());
+                $session->set('avatar', $userInfo->getAvatar());
+                $session->set('status', $userInfo->getStatus());
+                
+                return $this->redirectToRoute("accueil");
+            }
+        }
+
+        return $this->render('user/connexion.html.twig', ['form' => $form->createView()]);
+    }
+
+    /**
+     * @Route("/user_deconnexion", name="deconnexion")
+     */
+    public function deconnexionUser(Request $request){
+        $session = $request->getSession();
+        $session->clear();
+
+        return $this->redirectToRoute("accueil");
     }
 }

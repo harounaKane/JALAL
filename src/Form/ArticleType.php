@@ -55,7 +55,7 @@ class ArticleType extends AbstractType
                 'data_class' => null,
                 'required' => false
             ])
-            ->add("Ajouter", SubmitType::class)    
+          //  ->add("Ajouter", SubmitType::class)
         ;
     }
 

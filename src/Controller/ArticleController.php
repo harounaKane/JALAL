@@ -4,8 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\Commentaire;
+use App\Entity\Media;
 use App\Form\ArticleType;
 use App\Form\CommentaireType;
+use App\Form\MediaType;
+use App\Form\MembreType;
 use App\Repository\ArticleRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -39,7 +42,9 @@ class ArticleController extends AbstractController
     public function new(Request $request, UserRepository $repo): Response
     {
         $article = new Article();
+        $media = new Media();
         $form = $this->createForm(ArticleType::class, $article);
+        $formMedia = $this->createForm(MediaType::class, $media);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -58,6 +63,7 @@ class ArticleController extends AbstractController
         return $this->render('article/new.html.twig', [
             'article' => $article,
             'form' => $form->createView(),
+            'formMedia' => $formMedia->createView()
         ]);
     }
 

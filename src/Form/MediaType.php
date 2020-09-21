@@ -59,7 +59,7 @@ class MediaType extends AbstractType
                     "Audio" => "audio"
                 ]
             ])
-            ->add("Ajouter", SubmitType::class)
+        //    ->add("Ajouter", SubmitType::class)
         ;
     }
 

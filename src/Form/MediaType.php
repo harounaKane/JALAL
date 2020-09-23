@@ -8,6 +8,8 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,13 +18,10 @@ class MediaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom', TextType::class, [
-                "label" => "Nom du fichier",
-                "attr" => [
-                    "placeholder" => "nom du fichier",
-                    "minlength" => 5,
-                    "maxlength" => 50
-                ]
+            ->add('nom', FileType::class, [
+                "label" => "Votre fichier",
+                'data_class' => null,
+                'required' => false
             ])
             ->add('legende', TextType::class, [
                 "label" => "Légende",

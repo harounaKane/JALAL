@@ -2,7 +2,7 @@
     {{ form_widget(form) }}
     <hr class="">
     <div class="row">
-	    <button class="btn border border-secondary col-12 my-1" data-toggle="collapse" data-target="#formMedia" aria-expanded="false" aria-controls="formMedia">
+	    <button id="btn_image" class="btn border border-secondary col-12 my-1" data-toggle="collapse" data-target="#formMedia" aria-expanded="false" aria-controls="formMedia">
 	    	Ajouter une image <i class="fa fa-plus"></i>
 	    </button>
 	    <button class="btn border border-secondary col-12 my-1" data-toggle="collapse" data-target="#formMedia" aria-expanded="false" aria-controls="formMedia">
@@ -15,6 +15,10 @@
     </div>
     <section id="formMedia" class="collapse">
     	{{ form_widget(formMedia) }}
+		<p> Ordre à la fin </p>
+		<div class="uploaded_image"></div>
+		<button id="new_image" class="btn border border-secondary my-1">Ajouter une autre photo</button>
+		<button id="image_done" class="btn border border-secondary my-1">J'ai fini</button>
     </section>
     <button class="btn btn-primary">{{ button_label|default('Ajouter') }}</button>
 {{ form_end(form) }}

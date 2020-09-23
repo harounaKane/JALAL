@@ -1,6 +1,20 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
     <hr class="">
-    {{ form_widget(formMedia) }}
+    <div class="row">
+	    <button class="btn border border-secondary col-12 my-1" data-toggle="collapse" data-target="#formMedia" aria-expanded="false" aria-controls="formMedia">
+	    	Ajouter une image <i class="fa fa-plus"></i>
+	    </button>
+	    <button class="btn border border-secondary col-12 my-1" data-toggle="collapse" data-target="#formMedia" aria-expanded="false" aria-controls="formMedia">
+	    	Ajouter une vidéo <i class="fa fa-plus"></i>
+	    </button>
+	    <button class="btn border border-secondary col-12 my-1" data-toggle="collapse" data-target="#formMedia" aria-expanded="false" aria-controls="formMedia">
+	    	Ajouter de l'audio <i class="fa fa-plus"></i>
+	    </button>
+
+    </div>
+    <section id="formMedia" class="collapse">
+    	{{ form_widget(formMedia) }}
+    </section>
     <button class="btn btn-primary">{{ button_label|default('Ajouter') }}</button>
 {{ form_end(form) }}

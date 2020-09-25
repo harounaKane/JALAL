@@ -5,19 +5,23 @@
 	    <button id="btn_image" class="btn border border-secondary col-12 my-1" data-toggle="collapse" data-target="#formMedia" aria-expanded="false" aria-controls="formMedia">
 	    	Ajouter une image <i class="fa fa-plus"></i>
 	    </button>
-	    <button class="btn border border-secondary col-12 my-1" data-toggle="collapse" data-target="#formMedia" aria-expanded="false" aria-controls="formMedia">
+	    <button id="btn_video" class="btn border border-secondary col-12 my-1" data-toggle="collapse" data-target="#formMedia" aria-expanded="false" aria-controls="formMedia">
 	    	Ajouter une vidéo <i class="fa fa-plus"></i>
 	    </button>
-	    <button class="btn border border-secondary col-12 my-1" data-toggle="collapse" data-target="#formMedia" aria-expanded="false" aria-controls="formMedia">
+	    <button id="btn_audio" class="btn border border-secondary col-12 my-1" data-toggle="collapse" data-target="#formMedia" aria-expanded="false" aria-controls="formMedia">
 	    	Ajouter de l'audio <i class="fa fa-plus"></i>
 	    </button>
+	</div>
 
-    </div>
     <section id="formMedia" class="collapse">
     	{{ form_widget(formMedia) }}
 		<p> Ordre à la fin </p>
-		<div class="uploaded_image"></div>
+		<div class="uploaded_image bg-success"></div>
+		<div class="uploaded_video bg-danger"></div>
+		<div class="uploaded_audio bg-warning"></div>
 		<button id="new_image" class="btn border border-secondary my-1">Ajouter une autre photo</button>
+		<button id="new_video" class="btn border border-secondary my-1">Ajouter une autre vidéo</button>
+		<button id="new_audio" class="btn border border-secondary my-1">Ajouter un autre audio</button>
 		<button id="image_done" class="btn border border-secondary my-1">J'ai fini</button>
     </section>
     <button class="btn btn-primary">{{ button_label|default('Ajouter') }}</button>

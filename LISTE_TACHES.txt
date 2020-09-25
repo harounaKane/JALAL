@@ -1,34 +1,19 @@
-user        -> connexion - inscription
-catégorie   -> crud
-article     -> crud
-tri article -> categorie - auteur
+FORMULAIRE MEDIA
+
+reste à faire :
+	- vider le <input type="file"> à chaque nouvel ajout
+	- lors du clic sur une autre section, réinitialiser le formulaire "media" et les boutons en toggle "d-none"
+	- cibler le formulaire quand on le déroule
+	- ordre : ajouter une colonne "ordre" au tableau de stockage des media et la faire s'incrémenter au fur et à mesure. Masquer l'input dédié
+	-
+
+fait :
+	- le formulaire s'ouvre dans sa section
+	- seul le bon bouton d'ajout s'affiche (avec un toggle d-none/d-block)
+	- remplacement du <select> par un <input type="hidden"> pour le type, dont la value change en fonction
+	- vidange des <input type="text"> lors d'un nouvel ajout
 
 
-CATEGORIE
-	désignation
-	date
-	user
-
-
-ARTICLE
-	TITRE
-	TITRE_SECONDAIRE
-	CONTENU
-	IMAGE_PRINCIPALE
-	DATE_CREA
-	CATEGORIE_ID
-	USER_ID
-
-
-
-MEDIA
-	NOM
-	LEGENDE
-	TEXTE
-	TYPE
-	ORDRE
-	DATE_AJOUT
-	article****
-
+--------------------------------
 DATABASE_URL=mysql://root:@127.0.0.1:3306/testtest?serverVersion=mariadb-10.4.1
 

@@ -50,14 +50,15 @@ class MediaType extends AbstractType
                     "5" => 5
                 ]
             ])
-            ->add('type',  ChoiceType::class, [
-                "label" => "Type du média",
-                "choices" => [
-                    "Vidéo" => "video",
-                    "Image" => "image",
-                    "Audio" => "audio"
-                ]
-            ])
+            ->add('type',  HiddenType::class)
+            // ->add('type',  ChoiceType::class, [
+            //     "label" => "Type du média",
+            //     "choices" => [
+            //         "Vidéo" => "video",
+            //         "Image" => "image",
+            //         "Audio" => "audio"
+            //     ]
+            // ])
         //    ->add("Ajouter", SubmitType::class)
         ;
     }

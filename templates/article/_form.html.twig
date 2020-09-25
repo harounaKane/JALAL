@@ -1,28 +1,34 @@
 {{ form_start(form) }}
     {{ form_widget(form) }}
     <hr class="">
-    <div class="row">
-	    <button id="btn_image" class="btn border border-secondary col-12 my-1" data-toggle="collapse" data-target="#formMedia" aria-expanded="false" aria-controls="formMedia">
-	    	Ajouter une image <i class="fa fa-plus"></i>
-	    </button>
-	    <button id="btn_video" class="btn border border-secondary col-12 my-1" data-toggle="collapse" data-target="#formMedia" aria-expanded="false" aria-controls="formMedia">
-	    	Ajouter une vidéo <i class="fa fa-plus"></i>
-	    </button>
-	    <button id="btn_audio" class="btn border border-secondary col-12 my-1" data-toggle="collapse" data-target="#formMedia" aria-expanded="false" aria-controls="formMedia">
-	    	Ajouter de l'audio <i class="fa fa-plus"></i>
-	    </button>
+    <div class="">
+	    <section class="form_img row">
+		    <button id="btn_image" class="btn border border-secondary col-12 my-1" data-toggle="collapse" data-target="#formMedia" aria-expanded="false" aria-controls="formMedia">
+		    	Ajouter une image <i class="fa fa-plus"></i>
+		    </button>
+		</section>
+	    <section class="form_video row">
+		    <button id="btn_video" class="btn border border-secondary col-12 my-1" data-toggle="collapse" data-target="#formMedia" aria-expanded="false" aria-controls="formMedia">
+		    	Ajouter une vidéo <i class="fa fa-plus"></i>
+		    </button>
+		</section>
+	    <section class="form_audio row">
+		    <button id="btn_audio" class="btn border border-secondary col-12 my-1" data-toggle="collapse" data-target="#formMedia" aria-expanded="false" aria-controls="formMedia">
+		    	Ajouter de l'audio <i class="fa fa-plus"></i>
+		    </button>
+		</section>
 	</div>
 
-    <section id="formMedia" class="collapse">
+    <section id="formMedia" class="collapse m-auto">
     	{{ form_widget(formMedia) }}
 		<p> Ordre à la fin </p>
-		<div class="uploaded_image bg-success"></div>
+		<div class="uploaded_image bg-success row"></div>
 		<div class="uploaded_video bg-danger"></div>
 		<div class="uploaded_audio bg-warning"></div>
-		<button id="new_image" class="btn border border-secondary my-1">Ajouter une autre photo</button>
-		<button id="new_video" class="btn border border-secondary my-1">Ajouter une autre vidéo</button>
-		<button id="new_audio" class="btn border border-secondary my-1">Ajouter un autre audio</button>
-		<button id="image_done" class="btn border border-secondary my-1">J'ai fini</button>
+		<button id="new_image" class="btn border border-secondary my-1 m-auto d-none">Ajouter une autre photo</button>
+		<button id="new_video" class="btn border border-secondary my-1 m-auto d-none">Ajouter une autre vidéo</button>
+		<button id="new_audio" class="btn border border-secondary my-1 m-auto d-none">Ajouter un autre audio</button>
+		<button id="image_done" class="btn border border-secondary my-1 m-auto d-block">J'ai fini</button>
     </section>
     <button class="btn btn-primary">{{ button_label|default('Ajouter') }}</button>
 {{ form_end(form) }}

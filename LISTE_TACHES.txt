@@ -12,6 +12,8 @@ fait :
 	- seul le bon bouton d'ajout s'affiche (avec un toggle d-none/d-block)
 	- remplacement du <select> par un <input type="hidden"> pour le type, dont la value change en fonction
 	- vidange des <input type="text"> lors d'un nouvel ajout
+	
+	-fonction qui affiche l'image que l'on vient de charger (à améliorer elle n'affiche que l'image d'avant elle ne garde pas les autres)
 
 
 --------------------------------

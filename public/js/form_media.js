@@ -44,6 +44,7 @@ btn_image.addEventListener("click", function(){
             console.log(tableau["nom"][0]["name"]);
             console.log(tableau["legende"]);
             resetFields();
+            previewImage();
             i--;
         }else{
             console.log("Nombre maximal d'images atteint");
@@ -118,3 +119,16 @@ function resetFields(){
     texte.value = "";
 }
 
+/*function previewImage() {
+    var prev = nom.files;
+    if (prev.length > 0) {
+        var fileReader = new FileReader();
+
+        fileReader.onload = function (event) {
+            document.getElementById("preview").setAttribute("src", event.target.result);
+            document.getElementById("preview").setAttribute("height", event.target.result);
+        };
+
+        fileReader.readAsDataURL(prev[0]);
+    }
+}*/

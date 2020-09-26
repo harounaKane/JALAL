@@ -5,7 +5,7 @@ reste à faire :
 	- lors du clic sur une autre section, réinitialiser le formulaire "media" et les boutons en toggle "d-none"
 	- cibler le formulaire quand on le déroule
 
-/!\	- tableau multidimensionnel "media" : la valeur de la colonne "file" (tableau[0]) est écrasée à chaque boucle (le reste marche, ainsi que leur preview)
+/!\	- tableau multidimensionnel "media" : la valeur de la colonne "file" (tableau[x][0]) est écrasée à chaque boucle (le reste marche, ainsi que leur preview)
 
 fait :
 	- fonction qui affiche l'image que l'on vient de charger
@@ -14,10 +14,11 @@ fait :
 
 ----- NOTES -----
 (Ida)
-Dans l'array "tableau", la nomination des colonnes "nom" etc... n'avait pas marché ; c'était interprèté comme la 1ère entrée.
-Chaque fichier+légende+texte+etc... est inséré comme un tableau dans le tableau (plus logique pour ensuite faire l'insertion dans la base, qu'on est cons...).
+Dans l'array "tableau", la nomination des indices de colonne "nom" etc... n'avait pas marché ; c'était interprèté comme une valeur.
+Donc ce que j'ai fait : chaque fichier+légende+texte+etc... est inséré comme un tableau dans le tableau (plus logique pour ensuite faire l'insertion dans la base, qu'on est cons...).
+En gros, chaque ligne du tableau initial est un media complet.
 Pas réussi à nommer les index, du coup en attendant c'est [0] = "nom", [1] = légende etc... (mais j'pense qu'on s'en fout, c'est bien comme ça).
-J'ai également rajouté des input pour "ordre" et "type", ainsi que leur colonnes dans le tableau, partant du principe que pour l'insertion des medias, on récupèrera tout direct dans le tableau (une ligne = un media complet).
+J'ai également rajouté des input pour "ordre" et "type", ainsi que leur colonnes dans le tableau, partant du principe que pour l'insertion des medias, on récupèrera tout direct dans le tableau (1 ligne = 1 insertion).
 
 
 --------------------------------

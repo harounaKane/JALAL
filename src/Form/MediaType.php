@@ -40,16 +40,17 @@ class MediaType extends AbstractType
                     "rows" => 5
                 ]
             ])
-            ->add('ordre', ChoiceType::class, [
-                "label" => "Ordre",
-                "choices" => [
-                    "1" => 1,
-                    "2" => 2,
-                    "3" => 3,
-                    "4" => 4,
-                    "5" => 5
-                ]
-            ])
+            ->add('ordre',  HiddenType::class)
+            // ->add('ordre', ChoiceType::class, [
+            //     "label" => "Ordre",
+            //     "choices" => [
+            //         "1" => 1,
+            //         "2" => 2,
+            //         "3" => 3,
+            //         "4" => 4,
+            //         "5" => 5
+            //     ]
+            // ])
             ->add('type',  HiddenType::class)
             // ->add('type',  ChoiceType::class, [
             //     "label" => "Type du média",

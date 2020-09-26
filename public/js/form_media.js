@@ -3,11 +3,11 @@ var new_image = document.getElementById("new_image");
 var btn_video  = document.getElementById("btn_video");
 var new_video = document.getElementById("new_video");
 var btn_audio  = document.getElementById("btn_audio");
-var new_audio = document.getElementById("new_audio");
-var nom = document.getElementById("media_nom");
-var legende = document.getElementById("media_legende");
-var texte = document.getElementById("media_texte");
-var type = document.getElementById("media_type");
+var new_audio = document.getElementById("btn_audio");
+var nom_input = document.getElementById("media_nom");
+var legende_input = document.getElementById("media_legende");
+var texte_input = document.getElementById("media_texte");
+var type_input = document.getElementById("media_type");
 
 var div_img = document.getElementsByClassName("uploaded_image");
 var div_vid = document.getElementsByClassName("uploaded_video");
@@ -22,36 +22,85 @@ var div_img = document.querySelector(".uploaded_image");
 var i = 10;
 var j = 2;
 var k = 2;
-var tableau = [["nom"], ["legende"], ["texte"]];
+var x = 0;
+var ordre_input = 0;
+
+//var tableau = [["nom"], ["legende"], ["texte"], ["ordre"], ["type"]];
+var tableau = new Array();
 
 //IMAGES
 btn_image.addEventListener("click", function(){
+
     console.log("Vous pouvez ajouter une image !");
     form_img.appendChild(form_media);
-    type.value = "image";
-    console.log("type = "+type.value);
-    new_image.classList.toggle("d-block");
-    new_image.addEventListener("click", function(){    
+    type_input.value = "image";
+    new_image.classList.toggle("d-inline-block");
+
+    new_image.addEventListener("click", function(){ //si les champs "file" et "légende" ne sont pas vides   
         if( i > 0){
-            tableau["nom"]= nom.files;
-            tableau["legende"]= legende.value;
-            tableau["texte"]= texte.value;
-            var btn_test = document.createElement("button");
-            btn_test.classList.add("border", "rounded", "border-dark", "bg-muted");
-            var test = document.createTextNode(tableau["nom"][0]["name"]);
-            btn_test.appendChild(test);
-            div_img.appendChild(btn_test);
-            console.log(tableau["nom"][0]["name"]);
-            console.log(tableau["legende"]);
+            tableau.push([nom_input.files, legende_input.value, texte_input.value, ++ordre_input, type_input.value]);
+            console.log(nom_input.files[0].name);
+            var btn_file = document.createElement("button");
+            btn_file.classList.add("border", "border-light", "bg-muted", "p-1");
+            var prev_img = document.createElement("img");
+            prev_img.setAttribute("id", "preview"+x);
+            prev_img.setAttribute("height", "80");
+            //var new_nom = document.createTextNode(nom_input.files[0].name);
+            btn_file.appendChild(prev_img);
+            //btn_file.appendChild(new_nom);
+            div_img.appendChild(btn_file);
+            console.log([tableau]);
+            previewImage(x);
             resetFields();
-            previewImage();
+            x++;
             i--;
         }else{
+            new_image.disabled = true;
             console.log("Nombre maximal d'images atteint");
         }
-    console.log(i);
+    console.log(i+" fichiers restants");
     });
 });
+
+//-----------------------
+
+function resetFields(){
+    //nom_input.value = null; // réinitialiser le champ "file"
+    legende_input.value = "";
+    texte_input.value = "";
+}
+
+function previewImage(x) {
+    var prev = nom_input.files;
+    var fileReader = new FileReader();
+
+    fileReader.onload = function (event) {
+        document.getElementById("preview"+x).setAttribute("src", event.target.result);
+        //document.getElementById("preview"+x).setAttribute("height", event.target.result);
+    };
+    console.log("x = "+x);
+    fileReader.readAsDataURL(prev[0]);
+    
+}
+
+// function previewImage() {
+//     var prev = nom.files;
+//     if (prev.length > 0) {
+//         var fileReader = new FileReader();
+
+//         fileReader.onload = function (event) {
+//             document.getElementById("preview").setAttribute("src", event.target.result);
+//             document.getElementById("preview").setAttribute("height", event.target.result);
+//         };
+
+//         fileReader.readAsDataURL(prev[0]);
+//     }
+// }
+
+
+
+
+
 
 //VIDEOS
 
@@ -71,7 +120,7 @@ btn_video.addEventListener("click", function(){
             btn_test.appendChild(test);
             div_vid.appendChild(btn_test);
             console.log(tableau["nom"][0]["name"]);
-            console.log(tableau["legende"]);
+            console.log([tableau]);
             resetFields();
             j--;
         }else{
@@ -110,25 +159,3 @@ btn_audio.addEventListener("click", function(){
 
 });
 
-
-//-----------------------
-
-function resetFields(){
-    //nom.value = "";
-    legende.value = "";
-    texte.value = "";
-}
-
-/*function previewImage() {
-    var prev = nom.files;
-    if (prev.length > 0) {
-        var fileReader = new FileReader();
-
-        fileReader.onload = function (event) {
-            document.getElementById("preview").setAttribute("src", event.target.result);
-            document.getElementById("preview").setAttribute("height", event.target.result);
-        };
-
-        fileReader.readAsDataURL(prev[0]);
-    }
-}*/

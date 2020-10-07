@@ -18,8 +18,34 @@
 		    </button>
 		</section>
 	</div>
+{#
+	<ul id="media-fields-list"
+        data-prototype="{{ form_widget(form.media.vars.prototype)|e }}"
+        data-widget-tags="{{ '<li></li>'|e }}"
+        data-widget-counter="{{ form.media|length }}">
+    {% for formulaireMedia in form.media %}
+        <li>
+            {{ form_errors(formulaireMedia) }}
+            {{ form_widget(formulaireMedia) }}
+        </li>
+    {% endfor %}
+    </ul>
 
-    <section id="formMedia" class="collapse m-auto">
+	<button type="button"
+        class="add-another-collection-widget"
+        data-list-selector="#media-fields-list">Add another image</button>
+#}		
+    <button class="btn btn-primary">{{ button_label|default('Ajouter') }}</button>		
+{{ form_end(form) }}
+
+
+
+
+
+
+
+{#  
+	<section id="formMedia" class="collapse m-auto">
     	{{ form_widget(formMedia) }}
 		<p class="bg-white text-center p-1">Une fois tous vos fichiers sélectionnés, cliquez sur "<span class="text-success font-weight-bold">J'ai fini</span>" pour choisir l'ordre d'affichage</p>
 		<div class="uploaded_image row"></div>
@@ -33,5 +59,4 @@
 			<button id="image_done" class="btn border border-white text-white bg-success font-weight-bold mx-2 d-inline-block"><i class="fa fa-check-circle"></i> J'ai fini</button>
 		</div>
     </section>
-    <button class="btn btn-primary">{{ button_label|default('Ajouter') }}</button>
-{{ form_end(form) }}
+#}

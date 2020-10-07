@@ -1,11 +1,20 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_row(form.categorie) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.secondary_title) }}
+    {{ form_row(form.content) }}
+    {{ form_row(form.main_image) }}
     <hr class="">
     <div class="">
 	    <section class="form_img row">
-		    <button id="btn_image" class="btn border border-secondary col-12 my-1" data-toggle="collapse" data-target="#formMedia" aria-expanded="false" aria-controls="formMedia">
+		    <div id="btn_image" class="btn border border-secondary col-12 my-1" data-toggle="collapse" data-target="#formMedia" aria-expanded="false" aria-controls="formMedia">
 		    	Ajouter une image <i class="fa fa-plus"></i>
-		    </button>
+		    </div>
+			<div id="image_holder" data-img-count="0">
+				{% for medium in form.media %}
+					{{ form_widget(medium) }}
+				{% endfor %}
+			</div>
 		</section>
 	    <section class="form_video row">
 		    <button id="btn_video" class="btn border border-secondary col-12 my-1" data-toggle="collapse" data-target="#formMedia" aria-expanded="false" aria-controls="formMedia">
@@ -18,20 +27,9 @@
 		    </button>
 		</section>
 	</div>
+</div>
 
-    <section id="formMedia" class="collapse m-auto">
-    	{{ form_widget(formMedia) }}
-		<p class="bg-white text-center p-1">Une fois tous vos fichiers sélectionnés, cliquez sur "<span class="text-success font-weight-bold">J'ai fini</span>" pour choisir l'ordre d'affichage</p>
-		<div class="uploaded_image row"></div>
-		<div class="uploaded_video bg-danger"></div>
-		<div class="uploaded_audio bg-warning"></div>
-		<div class="m-auto d-flex justify-content-center">
-			<p id="nb_max" class="bg-warning d-none">Nombre max atteint</p>
-			<button id="new_image" class="btn border border-success bg-white text-success font-weight-bold mx-2 d-none">Ajouter une autre image <i class="fa fa-plus"></i></button>
-			<button id="new_video" class="btn border border-secondary my-1 d-none">Ajouter une autre vidéo</button>
-			<button id="new_audio" class="btn border border-secondary my-1 d-none">Ajouter un autre audio</button>
-			<button id="image_done" class="btn border border-white text-white bg-success font-weight-bold mx-2 d-inline-block"><i class="fa fa-check-circle"></i> J'ai fini</button>
-		</div>
-    </section>
+	<span id="media_prototype" data-prototype="{{ form_widget(form.media.vars.prototype)|e('html_attr') }} <button id='pour valider le media en cours'>Ajouter</button>"></span>
     <button class="btn btn-primary">{{ button_label|default('Ajouter') }}</button>
-{{ form_end(form) }}
+{{ form_row(form._token) }}
+{{ form_end(form, {'render_rest': false}) }}

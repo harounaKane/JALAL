@@ -159,3 +159,56 @@ btn_audio.addEventListener("click", function(){
 
 });
 
+let imageHolder;
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Get the ul that holds the collection of tags
+    var addImgButton = document.querySelector('#btn_image');
+    imageHolder = document.querySelector('#image_holder');
+
+
+    // count the current form inputs we have (e.g. 2), use that as the new
+    // index when inserting a new item (e.g. 2)
+
+    // remplir le imgCount en js avec document.queryselectorall et compter les éléments
+    // imageHolder.dataset.imgCount = imageHolder.find('fieldset').length;
+
+    addImgButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        // add a new tag form (see next code block)
+        addMediaForm(imageHolder, 5);
+    });
+    // addVideoButton.addEventListener('click', function(e) {
+    // 	e.preventDefault();
+    // 	// add a new tag form (see next code block)
+    // 	addMediaForm(imageHolder, 2);
+    // });
+});
+
+/*function addMediaForm(mediaHolder, maxItem) {
+    // Get the data-prototype explained earlier
+    var prototype = document.querySelector('#media_prototype').dataset.prototype;
+
+    // get the new index
+    var index = mediaHolder.dataset.imgCount;
+
+    var newForm = prototype;
+    // You need this only if you didn't set 'label' => false in your tags field in TaskType
+    // Replace '__name__label__' in the prototype's HTML to
+    // instead be a number based on how many items we have
+    // newForm = newForm.replace(/__name__label__/g, index);
+
+    // Replace '__name__' in the prototype's HTML to
+    // instead be a number based on how many items we have
+    newForm = newForm.replace(/__name__/g, index);
+
+    // increase the index with one for the next item
+    mediaHolder.dataset.imgCount ++;
+    
+    console.log('newForm : ', newForm);
+    console.log('index : ', index);
+    console.log('mediaHolder : ', mediaHolder);
+
+    // Display the form in the page in an li, before the "Add a tag" link li
+    mediaHolder.innerHTML = mediaHolder.innerHTML + newForm;*/
+}

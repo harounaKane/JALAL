@@ -32,7 +32,8 @@ class ArticleController extends AbstractController
     public function index(ArticleRepository $articleRepository): Response
     {
         return $this->render('article/index.html.twig', [
-            'articles' => $articleRepository->findAll(),
+            'articles' => $articleRepository->findBy([], ['art_created_at' => 'DESC']),
+            'lastArticle' => $articleRepository->findOneBy([], ['art_created_at' => 'DESC']),
         ]);
     }
 

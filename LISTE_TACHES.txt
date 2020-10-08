@@ -1,24 +1,28 @@
-FORMULAIRE MEDIA
 
-reste à faire :
-	- vider le <input type="file"> à chaque nouvel ajout
-	- lors du clic sur une autre section, réinitialiser le formulaire "media" et les boutons en toggle "d-none"
-	- cibler le formulaire quand on le déroule
+TRUCS A FAIRE --------------
+	- redirection et affichage d'un article sur sa page dédiée
+	- faire l'ajout de commentaires (formulaire, insertion, récupération, affichage)
 
-/!\	- tableau multidimensionnel "media" : la valeur de la colonne "file" (tableau[x][0]) est écrasée à chaque boucle (le reste marche, ainsi que leur preview)
 
-fait :
-	- fonction qui affiche l'image que l'on vient de charger
-	- désactivation du clic sur bouton "ajouter autre image" quand maximum atteint
+TRUCS A CORRIGER -------------
+	- espacement des articles de l'accueil : le fichier CSS marche à moitié (il n'est pas toujours écouté)
 
 
 ----- NOTES -----
-(Ida)
-Dans l'array "tableau", la nomination des indices de colonne "nom" etc... n'avait pas marché ; c'était interprèté comme une valeur.
-Donc ce que j'ai fait : chaque fichier+légende+texte+etc... est inséré comme un tableau dans le tableau (plus logique pour ensuite faire l'insertion dans la base, qu'on est cons...).
-En gros, chaque ligne du tableau initial est un media complet.
-Pas réussi à nommer les index, du coup en attendant c'est [0] = "nom", [1] = légende etc... (mais j'pense qu'on s'en fout, c'est bien comme ça).
-J'ai également rajouté des input pour "ordre" et "type", ainsi que leur colonnes dans le tableau, partant du principe que pour l'insertion des medias, on récupèrera tout direct dans le tableau (1 ligne = 1 insertion).
+***( Harouna )***
+
+
+
+
+***( Mantcha )***
+
+
+
+
+***( Ida )***
+08/10/20 : Concernant le "aside" où figureront les articles les plus lus (entre-autre), penser à un compteur de vues (fonctionnement, mise en place ?)
+On peut aussi faire "les plus commentés"
+Dans le "aside" de la page "article", affichage des derniers ou de ceux de la même catégorie ?
 
 
 --------------------------------

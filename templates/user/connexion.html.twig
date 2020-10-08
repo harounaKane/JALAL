@@ -8,5 +8,8 @@
     <section class="d-block mx-5 p-3 bg-info">
         {{ form_start(form) }}
         {{ form_end(form) }}
+        <div>
+            <p>Pas encore inscrit ? <a href="{{ path('inscription') }}" class="font-weight-bold text-warning"><u>Créer un compte</u></a></p>
+        </div>
     </section>
 {% endblock %}

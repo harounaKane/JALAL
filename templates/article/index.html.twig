@@ -10,7 +10,7 @@
                 <p class="border-bottom border-dark col-12 p-0 h3">Derniers articles publiés</p>
                 <div class="mainArticle col-12 mb-3">
                     <article class="row">
-                            <img class="col-12 p-0" src="{{ asset('images/berger.jpg') }}" alt="">
+                            <img class="col-12 p-0" src="{{ asset('images/'~lastArticle.mainImage) }}" alt="{{ lastArticle.mainImage }}">
                             <h1 class="mainTitle">{{ lastArticle.title }}</h1>
                             <h2>{{ lastArticle.secondaryTitle }}</h2>
                     </article>
@@ -19,7 +19,7 @@
                 {% for article in articles %}
                     <div class="otherArticles col-6 mb-3 {{ article.id == lastArticle.id ? 'd-none' }}">
                         <article class="row">
-                            <img class="col-12 p-0" src="{{ asset('images/poulo2.jpg') }}" alt="">
+                            <img class="col-12 p-0" src="{{ asset('images/'~article.mainImage) }}" alt="{{ article.mainImage }}">
                             <h3 class="col-12 p-0">{{ article.title }}</h3>
                             <h4>{{ article.secondaryTitle }}</h4>
                         </article>

@@ -1,3 +1,33 @@
+console.log("qsrfer");
+// add-collection-widget.js
+jQuery(document).ready(function () {
+    jQuery('.add-another-collection-widget').click(function (e) {
+        var list = jQuery(jQuery(this).attr('data-list-selector'));
+        // Try to find the counter of the list or use the length of the list
+        var counter = list.data('widget-counter') || list.children().length;
+        if(!counter){
+            counter = 1;
+        }
+        // grab the prototype template
+        var newWidget = list.attr('data-prototype');
+        // replace the "__name__" used in the id and name of the prototype
+        // with a number that's unique to your emails
+        // end name attribute looks like name="contact[emails][2]"
+        newWidget = newWidget.replace(/__name__/g, counter);
+        // Increase the counter
+        counter++;
+        // And store it, the length cannot be used if deleting widgets is allowed
+        list.data('widget-counter', counter);
+
+        // create a new list element and add it to the list
+        var newElem = jQuery(list.attr('data-widget-tags')).html(newWidget);
+        newElem.appendTo(list);
+    });
+    console.log("script exécuté");
+});
+
+
+/*
 var btn_image  = document.getElementById("btn_image");
 var new_image = document.getElementById("new_image");
 var btn_video  = document.getElementById("btn_video");
@@ -8,34 +38,27 @@ var nom_input = document.getElementById("media_nom");
 var legende_input = document.getElementById("media_legende");
 var texte_input = document.getElementById("media_texte");
 var type_input = document.getElementById("media_type");
-
 var div_img = document.getElementsByClassName("uploaded_image");
 var div_vid = document.getElementsByClassName("uploaded_video");
 var div_aud = document.getElementsByClassName("uploaded_audio");
-
 var form_media = document.querySelector("#formMedia");
 var form_img = document.querySelector(".form_img");
 var form_video = document.querySelector(".form_video");
 var form_audio = document.querySelector(".form_audio");
 var div_img = document.querySelector(".uploaded_image");
-
 var i = 10;
 var j = 2;
 var k = 2;
 var x = 0;
 var ordre_input = 0;
-
 //var tableau = [["nom"], ["legende"], ["texte"], ["ordre"], ["type"]];
 var tableau = new Array();
-
 //IMAGES
 btn_image.addEventListener("click", function(){
-
     console.log("Vous pouvez ajouter une image !");
     form_img.appendChild(form_media);
     type_input.value = "image";
     new_image.classList.toggle("d-inline-block");
-
     new_image.addEventListener("click", function(){ //si les champs "file" et "légende" ne sont pas vides   
         if( i > 0){
             tableau.push([nom_input.files, legende_input.value, texte_input.value, ++ordre_input, type_input.value]);
@@ -61,19 +84,15 @@ btn_image.addEventListener("click", function(){
     console.log(i+" fichiers restants");
     });
 });
-
 //-----------------------
-
 function resetFields(){
     //nom_input.value = null; // réinitialiser le champ "file"
     legende_input.value = "";
     texte_input.value = "";
 }
-
 function previewImage(x) {
     var prev = nom_input.files;
     var fileReader = new FileReader();
-
     fileReader.onload = function (event) {
         document.getElementById("preview"+x).setAttribute("src", event.target.result);
         //document.getElementById("preview"+x).setAttribute("height", event.target.result);
@@ -82,28 +101,18 @@ function previewImage(x) {
     fileReader.readAsDataURL(prev[0]);
     
 }
-
 // function previewImage() {
 //     var prev = nom.files;
 //     if (prev.length > 0) {
 //         var fileReader = new FileReader();
-
 //         fileReader.onload = function (event) {
 //             document.getElementById("preview").setAttribute("src", event.target.result);
 //             document.getElementById("preview").setAttribute("height", event.target.result);
 //         };
-
 //         fileReader.readAsDataURL(prev[0]);
 //     }
 // }
-
-
-
-
-
-
 //VIDEOS
-
 btn_video.addEventListener("click", function(){
     console.log("Vous pouvez ajouter une vidéo !");
     form_video.appendChild(form_media);
@@ -129,9 +138,7 @@ btn_video.addEventListener("click", function(){
     console.log(j);
     });
 });
-
 //AUDIOS
-
 btn_audio.addEventListener("click", function(){
     console.log("Vous pouvez ajouter un audio !");
     form_audio.appendChild(form_media);
@@ -156,59 +163,5 @@ btn_audio.addEventListener("click", function(){
         }
     console.log(k);
     });
-
 });
-
-let imageHolder;
-
-document.addEventListener("DOMContentLoaded", function() {
-    // Get the ul that holds the collection of tags
-    var addImgButton = document.querySelector('#btn_image');
-    imageHolder = document.querySelector('#image_holder');
-
-
-    // count the current form inputs we have (e.g. 2), use that as the new
-    // index when inserting a new item (e.g. 2)
-
-    // remplir le imgCount en js avec document.queryselectorall et compter les éléments
-    // imageHolder.dataset.imgCount = imageHolder.find('fieldset').length;
-
-    addImgButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        // add a new tag form (see next code block)
-        addMediaForm(imageHolder, 5);
-    });
-    // addVideoButton.addEventListener('click', function(e) {
-    // 	e.preventDefault();
-    // 	// add a new tag form (see next code block)
-    // 	addMediaForm(imageHolder, 2);
-    // });
-});
-
-/*function addMediaForm(mediaHolder, maxItem) {
-    // Get the data-prototype explained earlier
-    var prototype = document.querySelector('#media_prototype').dataset.prototype;
-
-    // get the new index
-    var index = mediaHolder.dataset.imgCount;
-
-    var newForm = prototype;
-    // You need this only if you didn't set 'label' => false in your tags field in TaskType
-    // Replace '__name__label__' in the prototype's HTML to
-    // instead be a number based on how many items we have
-    // newForm = newForm.replace(/__name__label__/g, index);
-
-    // Replace '__name__' in the prototype's HTML to
-    // instead be a number based on how many items we have
-    newForm = newForm.replace(/__name__/g, index);
-
-    // increase the index with one for the next item
-    mediaHolder.dataset.imgCount ++;
-    
-    console.log('newForm : ', newForm);
-    console.log('index : ', index);
-    console.log('mediaHolder : ', mediaHolder);
-
-    // Display the form in the page in an li, before the "Add a tag" link li
-    mediaHolder.innerHTML = mediaHolder.innerHTML + newForm;*/
-}
+*/

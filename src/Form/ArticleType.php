@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -56,7 +57,25 @@ class ArticleType extends AbstractType
                 'data_class' => null,
                 'required' => false
             ])
+<<<<<<< HEAD
             ->add('media', CollectionType::class)
+=======
+            ->add('media', CollectionType::class, [
+                "label" => "Liste des medias",
+                'entry_type' => MediaType::class,
+                'entry_options' => [
+                    'attr' => [
+                        'class' => 'media'
+                    ]
+                ],
+                // 'data_class' => null,
+                'required' => false,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'prototype' => true,
+                'by_reference' => false
+            ])
+>>>>>>> 623206a5bde020c522508d086e67e7c2ce954dfb
           //  ->add("Ajouter", SubmitType::class)
         ;
     }

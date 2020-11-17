@@ -1,4 +1,29 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+{% block stylesheets %}{% endblock %}
+<div class="container-fluid">
+    <div class="formMediaTest">
+        {{ form_start(form) }}
+        {# {{ dump() }} #}
+        
+            {{ form_label(form.type) }}
+            {{ form_widget(form.type, {'attr': {'class': 'test'}}) }}
+            {{ form_errors(form.type) }}
+
+            {{ form_label(form.nom) }}
+            {{ form_widget(form.nom, {'attr': {'class': 'test'}}) }}
+            {{ form_errors(form.nom) }}
+         
+        
+            {{ form_label(form.legende) }}
+            {{ form_widget(form.legende, {'attr': {'class': 'test'}})}}
+            {{ form_errors(form.legende) }}
+      
+        
+            {{ form_label(form.texte) }}
+            {{ form_widget(form.texte, {'attr': {'class': 'test'}})}}
+            {{ form_errors(form.texte) }}
+            
+            <button class="btn">{{ button_label|default('Save') }}</button>
+            
+        {{ form_end(form) }}
+    </div>
+</div>

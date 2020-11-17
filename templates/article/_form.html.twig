@@ -1,7 +1,9 @@
 {{ form_start(form) }}
+{{ dump() }}
     {{ form_widget(form) }}
     <hr class="">
-    <div class="">
+<div><a href="{{ path("media_new") }}">Voulez vous ajouter des médias</a></div>
+    {# <div class="">
 	    <section class="form_img row">
 		    <button id="btn_image" class="btn border border-secondary col-12 my-1" data-toggle="collapse" data-target="#formMedia" aria-expanded="false" aria-controls="formMedia">
 		    	Ajouter une image <i class="fa fa-plus"></i>
@@ -17,7 +19,7 @@
 		    	Ajouter de l'audio <i class="fa fa-plus"></i>
 		    </button>
 		</section>
-	</div>
+	</div> #}
 {#
 	<ul id="media-fields-list"
         data-prototype="{{ form_widget(form.media.vars.prototype)|e }}"

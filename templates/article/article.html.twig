@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block body %}
+    <div class="row m-0 container-lg m-lg-auto">
+        <main class=" col-12 col-md-9">
+            <article>
+            <!-- BLOCK ARTICLE -->
+                <section>
+                    <img class="col-12 p-0" src="{{ asset('images/'~article.mainImage) }}" alt="{{ article.mainImage }}">
+                    <h1 class="mainTitle">{{ article.title }}</h1>
+                    <h2>{{ article.secondaryTitle }}</h2>
+                <!-- RECUPERER LES RETOURS A LA LIGNE DES PARAGRAPHES --> 
+                    <p>{{ article.content }}</p>
+                </section>
+
+            <!-- BLOCK GALERIE -->
+                <section class="bg-secondary my-2">
+                    Galerie des médias
+                </section>
+
+            <!-- BLOCK AUTEUR -->
+                <section class="banner-author bg-info">
+                    <p class="text-white border-bottom m-0 pl-2 d-block"><em>
+                    Cet article a été rédigé par
+                    </em></p>
+                    <div class="d-flex">
+                        <div class="">
+                            <img id="avatar-author" class="rounded-circle p-2" src="{{ asset('images/Barro.jpg') }}" alt="">
+                        </div>
+                        <div class="pl-1">
+                            <p class="pt-2 mb-0"><strong>Nom Auteur</strong></p>
+                            <p>Maître de conférences en Marketing, Université de Haute Alsace</p>
+                        </div>
+                    </div>
+                </section>
+            </article>
+        </main>
+
+        <aside class="col-3 p-2 border-left">
+        <!-- AFFICHER ARTICLES DE LA MEME CATEGORIE ? -->
+            <p class="border-bottom border-dark col-12 p-0">Les plus lus</p>
+            <div class="asideArticles row mx-0">
+                <img class="col-12 p-0" src="{{ asset('images/Barro.jpg') }}" alt="">
+                <p class="h5">Titre de l'article</p>
+            </div>
+        </aside>
+    </div>
+
+{% endblock %}

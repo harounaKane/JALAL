@@ -105,25 +105,23 @@ class ArticleController extends AbstractController
         }
         return $this->redirectToRoute('article_index');
     }
+    /**
+     * @Route("/article/{id}/article", name="this_article", methods={"GET","POST"})
+     */
+    public function show_thisArticle(Request $request, Article $article, UserRepository $repo): Response
+    {
+        //sélection nom+prénom+avatar de la table "user" via '$user' de Article
+        
+        $commentaire = new Commentaire();
+        $form = $this->createForm(CommentaireType::class, $commentaire);
+
+        return $this->render('article/article.html.twig', [
+            'article' => $article,
+            'form' => $form->createView()
+        ]);
+    }
+
+    public function getAuteur(int $user){
+        
+    }
 }
-
-//     /**
-//      * @Route("/article/{id}/article", name="this_article", methods={"GET","POST"})
-//      */
-//     public function show_thisArticle(Request $request, Article $article, UserRepository $repo): Response
-//     {
-//         //sélection nom+prénom+avatar de la table "user" via '$user' de Article
-        
-//         $commentaire = new Commentaire();
-//         $form = $this->createForm(CommentaireType::class, $commentaire);
-
-//         return $this->render('article/article.html.twig', [
-//             'article' => $article,
-//             'form' => $form->createView()
-//         ]);
-//     }
-
-//     public function getAuteur(int $user){
-        
-//     }
-// }

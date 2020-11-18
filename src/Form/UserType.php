@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -80,6 +81,14 @@ class UserType extends AbstractType
             ->add('avatar', FileType::class, [
                 "label" => "Image profil",
                 'required' => false
+            ])
+            ->add('description', TextareaType::class, [
+                "label" => "Contenu",
+                "attr" => [
+                    "placeholder" => "Courte description",
+                    "rows" => 2,
+                    "maxlength" => 255
+                ]
             ])
             ->add("Enregistrer", SubmitType::class)
         ;

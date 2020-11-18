@@ -30,7 +30,9 @@
                             <img id="avatar-author" class="rounded-circle p-2" src="{{ asset('images/Barro.jpg') }}" alt="">
                         </div>
                         <div class="pl-1">
-                            <p class="pt-2 mb-0"><strong>Nom Auteur</strong></p>
+                            <p class="pt-2 mb-0">
+                                <strong> {{ article.user.firstName ~ ' ' ~  article.user.lastName }}
+                                </strong></p>
                             <p>Maître de conférences en Marketing, Université de Haute Alsace</p>
                         </div>
                     </div>

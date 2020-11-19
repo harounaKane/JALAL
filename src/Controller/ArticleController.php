@@ -110,8 +110,6 @@ class ArticleController extends AbstractController
      */
     public function show_thisArticle(Request $request, Article $article, UserRepository $repo): Response
     {
-        //sélection nom+prénom+avatar de la table "user" via '$user' de Article
-        
         $commentaire = new Commentaire();
         $form = $this->createForm(CommentaireType::class, $commentaire);
 
@@ -122,6 +120,8 @@ class ArticleController extends AbstractController
     }
 
     public function getAuteur(int $user){
+        //sélection nom+prénom+avatar+description de la table "user" via '$user' de Article
+
         
     }
 }

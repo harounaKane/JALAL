@@ -1,4 +1,8 @@
 
+.block-article img {
+    max-height: 40em;
+}
+
 .banner-author {
     font-size: 0.8em;
 }
@@ -6,3 +10,4 @@
 #avatar-author {
     width: 6em;
 }
+

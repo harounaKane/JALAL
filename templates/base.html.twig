@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="{{ asset('css/accueil.css') }}">
         <link rel="stylesheet" href="{{ asset('css/article.css') }}">
         <link rel="stylesheet" href="{{ asset('css/formMedia.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/test_colors.css') }}">
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -17,7 +18,7 @@
     </head>
     <body>
         <header>
-            <div class="d-flex justify-content-between p-3 bg-info">
+            <div class="d-flex justify-content-between p-3">
                 <!-- burger nav -->
                 <div>
                     <div class="topnav">
@@ -49,6 +50,18 @@
                 <div><a href="#about">About</a></div>
             </div>
         </header>
+
+    <!-- BANDEAU CATEGORIES -->
+        <section class="cat-ribbon d-flex flex-wrap justify-content-around py-2">
+            <a href="" class="my-0 text-white font-weight-bold">Culture</a>
+            <a href="" class="my-0 text-white font-weight-bold">Economie</a>
+            <a href="" class="my-0 text-white font-weight-bold">Société</a>
+            <a href="" class="my-0 text-white font-weight-bold">Environnement</a>
+            <a href="" class="my-0 text-white font-weight-bold">Education</a>
+            <a href="" class="my-0 text-white font-weight-bold">Politique</a>
+            <a href="" class="my-0 text-white font-weight-bold">Science</a>
+        </section>
+
         <p class="display-4">
             {% if app.session.get('login') %}
                 Bienvenue {{ app.session.get('first_name') }} !

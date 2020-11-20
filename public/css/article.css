@@ -1,6 +1,7 @@
 
 .block-article img {
-    max-height: 40em;
+    height: 35em;
+    width: auto;
 }
 
 .banner-author {

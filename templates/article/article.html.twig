@@ -5,33 +5,46 @@
 {% block body %}
     <div class="row m-0 container-lg m-lg-auto">
         <main class=" col-12 col-md-9">
+        <main class="col-12 col-md-9">
             <article>
             <!-- BLOCK ARTICLE -->
                 <section>
                     <img class="col-12 p-0" src="{{ asset('images/'~article.mainImage) }}" alt="{{ article.mainImage }}">
+                <section class="block-article row">
                     <h1 class="mainTitle">{{ article.title }}</h1>
+                    <small class="mt-0 col-12 pl-0">{{ 'Publié le '~ article.artCreatedAt|date('d-m-Y') }}</small>
+                    <img class="p-0 mt-2 col-12" src="{{ asset('images/'~ article.mainImage) }}" alt="{{ article.mainImage }}">
                     <h2>{{ article.secondaryTitle }}</h2>
                 <!-- RECUPERER LES RETOURS A LA LIGNE DES PARAGRAPHES --> 
                     <p>{{ article.content }}</p>
+                    <p class="mt-3">{{ article.content|nl2br }}</p>
                 </section>
 
             <!-- BLOCK GALERIE -->
                 <section class="bg-secondary my-2">
+                <section class="block-galerie bg-secondary my-2 row">
                     Galerie des médias
                 </section>
 
             <!-- BLOCK AUTEUR -->
                 <section class="banner-author bg-info">
                     <p class="text-white border-bottom m-0 pl-2 d-block"><em>
+                <section class="banner-author bg-info row">
+                    <p class="text-white border-bottom m-0 pl-2 col-12"><em>
                     Cet article a été rédigé par
                     </em></p>
                     <div class="d-flex">
                         <div class="">
                             <img id="avatar-author" class="rounded-circle p-2" src="{{ asset('images/Barro.jpg') }}" alt="">
+                            <img id="avatar-author" class="rounded-circle p-2" src="{{ asset('images/avatars/'~ article.user.avatar) }}" alt="">
                         </div>
                         <div class="pl-1">
-                            <p class="pt-2 mb-0"><strong>Nom Auteur</strong></p>
+                        <div>
+                            <p class="pt-2 mb-0">
+                                <strong> {{ article.user.firstName ~ ' ' ~  article.user.lastName }}
+                                </strong></p>
                             <p>Maître de conférences en Marketing, Université de Haute Alsace</p>
+                            <p>{{ article.user.description }}</p>
                         </div>
                     </div>
                 </section>

@@ -10,6 +10,9 @@
             <!-- BLOCK ARTICLE -->
                 <section>
                     <img class="col-12 p-0" src="{{ asset('images/'~article.mainImage) }}" alt="{{ article.mainImage }}">
+        <main class="col-12 col-md-9">
+            <article>
+            <!-- BLOCK ARTICLE -->
                 <section class="block-article row">
                     <h1 class="mainTitle">{{ article.title }}</h1>
                     <small class="mt-0 col-12 pl-0">{{ 'Publié le '~ article.artCreatedAt|date('d-m-Y') }}</small>
@@ -39,6 +42,8 @@
                             <img id="avatar-author" class="rounded-circle p-2" src="{{ asset('images/avatars/'~ article.user.avatar) }}" alt="">
                         </div>
                         <div class="pl-1">
+                            <img id="avatar-author" class="rounded-circle p-2" src="{{ asset('images/avatars/'~ article.user.avatar) }}" alt="">
+                        </div>
                         <div>
                             <p class="pt-2 mb-0">
                                 <strong> {{ article.user.firstName ~ ' ' ~  article.user.lastName }}

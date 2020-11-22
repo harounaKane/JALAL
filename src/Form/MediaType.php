@@ -18,21 +18,20 @@ class MediaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('type',  ChoiceType::class, [
-                "label" => "Quel type de média voulez-vous ajouter ?",
-                "choices" => [
-                    "Vidéo" => "video",
-                    "Image" => "image",
-                    "Audio" => "audio"
-                ]
-            ])
+            // ->add('type',  ChoiceType::class, [
+            //     "label" => "Quel type de média voulez-vous ajouter ?",
+            //     "choices" => [
+            //         "Vidéo" => "video",
+            //         "Image" => "image",
+            //         "Audio" => "audio"
+            //     ]
+            // ])
             ->add('nom', FileType::class, [
                 "label" => "Votre fichier",                
                 'data_class' => null,
                 'required' => false,
                 //--------------------
-                'multiple' => true,
-                'mapped' => false
+                // 'multiple' => true
             ])
             ->add('legende', TextType::class, [
                 "label" => "Légende",
@@ -64,7 +63,7 @@ class MediaType extends AbstractType
             // ])
             //->add('type',  HiddenType::class)
 
-        //    ->add("Ajouter", SubmitType::class)
+           ->add("Ajouter", SubmitType::class)
         ;
     }
 

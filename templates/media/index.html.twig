@@ -3,6 +3,7 @@
 {% block title %}Media index{% endblock %}
 
 {% block body %}
+{{ dump(lastArticle) }}
     <h1>Media index</h1>
 
     <table class="table">
@@ -41,5 +42,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('media_new') }}">Create new</a>
 {% endblock %}

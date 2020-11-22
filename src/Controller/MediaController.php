@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Entity\Media;
+use App\Entity\Article;
 use App\Form\MediaType;
 use App\Repository\MediaRepository;
+use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,35 +20,94 @@ class MediaController extends AbstractController
     /**
      * @Route("/", name="media_index", methods={"GET"})
      */
-    public function index(MediaRepository $mediaRepository): Response
+    public function index(MediaRepository $mediaRepository, ArticleRepository $articleRepository): Response
     {
         return $this->render('media/index.html.twig', [
             'media' => $mediaRepository->findAll(),
+            'lastArticle' => $articleRepository->findOneBy([], ['art_created_at' => 'DESC']),
         ]);
     }
 
     /**
-     * @Route("/new", name="media_new", methods={"GET","POST"})
+     * @Route("/new_image/{id}", name="media_new_image", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new_image(Request $request, Article $article): Response
     {
         $medium = new Media();
         $form = $this->createForm(MediaType::class, $medium);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $medium->setCreatedAt(new \DateTime());
+            $medium->setType('image');
+            $medium->setArticle($article);
+            $medium->setOrdre('0');
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($medium);
             $entityManager->flush();
-
-            return $this->redirectToRoute('media_index');
+            return $this->redirectToRoute('media_new_video', ['id' => $article->getId()]);
         }
 
-        return $this->render('media/new.html.twig', [
+        return $this->render('media/new_image.html.twig', [
             'medium' => $medium,
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/new_video/{id}", name="media_new_video", methods={"GET","POST"})
+     */
+    public function new_video(Request $request, Article $article): Response
+    {
+        $medium = new Media();
+        $form = $this->createForm(MediaType::class, $medium);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $medium->setCreatedAt(new \DateTime());
+            $medium->setType('video');
+            $medium->setArticle($article);
+            $medium->setOrdre('0');
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($medium);
+            $entityManager->flush();
+            return $this->redirectToRoute('media_new_audio', ['id' => $article->getId()]);
+        }
+
+        return $this->render('media/new_video.html.twig', [
+            'medium' => $medium,
+            'form' => $form->createView(),
+        ]);
+    }  
+    
+    /**
+     * @Route("/new_audio/{id}", name="media_new_audio", methods={"GET","POST"})
+     */
+    public function new_audio(Request $request, Article $article): Response
+    {
+        $medium = new Media();
+        $form = $this->createForm(MediaType::class, $medium);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $medium->setCreatedAt(new \DateTime());
+            $medium->setType('audio');
+            $medium->setArticle($article);
+            $medium->setOrdre('0');
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($medium);
+            $entityManager->flush();
+            return $this->redirectToRoute('media_index');
+        }
+
+        return $this->render('media/new_audio.html.twig', [
+            'medium' => $medium,
+            'form' => $form->createView(),
+        ]);
+    }   
 
     /**
      * @Route("/{id}", name="media_show", methods={"GET"})

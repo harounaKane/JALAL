@@ -51,9 +51,10 @@ class ArticleController extends AbstractController
             try {
                 $this->manager->persist($article);
                 $this->manager->flush();
+                
             }catch (UniqueConstraintViolationException $e){
             }
-            return $this->redirectToRoute('accueil');
+            return $this->redirectToRoute('media_new_image', ['id' => $article->getId()]);
         }
         return $this->render('article/new.html.twig', [
             'article' => $article,
@@ -125,5 +126,6 @@ class ArticleController extends AbstractController
         //sélection nom+prénom+avatar+description de la table "user" via '$user' de Article
 
 
+        
     }
 }

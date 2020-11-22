@@ -109,16 +109,31 @@ class ArticleController extends AbstractController
     /**
      * @Route("/article/{id}/article", name="this_article", methods={"GET","POST"})
      */
-    public function show_thisArticle(Request $request, Article $article, UserRepository $repo): Response
+    public function show_thisArticle(Request $request, Article $article, ArticleRepository $repo): Response
     {
         //sélection nom+prénom+avatar de la table "user" via '$user' de Article
 
         $commentaire = new Commentaire();
         $form = $this->createForm(CommentaireType::class, $commentaire);
 
+        //TRAITEMENT DES COMMENTAIRES
+        $form->handleRequest($request);
+        if($form->isSubmitted()){
+            $commentaire->setCommentAt(new \DateTime());
+            $commentaire->setArticle($repo->find($article->getId()));
+            $this->manager->persist($commentaire);
+            $this->manager->flush();
+            //REDIRECTION POUR EVITER LA DOUBLE SOUMISSION DU FORMULAIRE
+            return $this->redirectToRoute('this_article', ['id' => $article->getId()]);
+        }
+
+        //RECUPRATION DES COMMENTAIRE DE L'ARTICLE
+        $commentaires = null;
+
         return $this->render('article/article.html.twig', [
             'article' => $article,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'commentaires' => $commentaires
         ]);
     }
 

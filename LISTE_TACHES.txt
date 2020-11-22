@@ -38,7 +38,10 @@ Pas réussi à nommer les index, du coup en attendant c'est [0] = "nom", [1] = l
 J'ai également rajouté des input pour "ordre" et "type", ainsi que leur colonnes dans le tableau, partant du principe que pour l'insertion des medias, on récupèrera tout direct dans le tableau (1 ligne = 1 insertion).
 
 ***( Harouna )***
+On aurait pu prendre la méthode show pour la description d'un article.
+Quand on met en place un CRUD toutes les méthodes sont générées. Il ne reste plus qu'à modifier l'affichage au niveau template!
 
+-- Maintenant on peut ajouter des commentaires. Il reste juste à les récuprer pour les afficher par apport à l'article clické !!!!
 
 
 

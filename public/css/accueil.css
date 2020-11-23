@@ -1,6 +1,3 @@
-aside {
-	display: none;
-}
 
 .mainArticle img, .otherArticles img, .asideArticles img {
 	object-fit: cover;
@@ -12,10 +9,6 @@ aside {
 
 .otherArticles img {
 	max-height: 20em;
-}
-
-.asideArticles img {
-	max-height: 10em;
 }
 
 .otherArticles:nth-of-type(2n+1) {
@@ -33,9 +26,7 @@ aside {
 
 
 @media screen and (min-width:768px){
-	aside {
-		display: block;
-	}
+	
 }
 
 @media screen and (min-width:1024px){

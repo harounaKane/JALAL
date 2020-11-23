@@ -111,8 +111,6 @@ class ArticleController extends AbstractController
      */
     public function show_thisArticle(Request $request, Article $article, ArticleRepository $repo): Response
     {
-        //sélection nom+prénom+avatar de la table "user" via '$user' de Article
-
         $commentaire = new Commentaire();
         $form = $this->createForm(CommentaireType::class, $commentaire);
 
@@ -133,7 +131,8 @@ class ArticleController extends AbstractController
         return $this->render('article/article.html.twig', [
             'article' => $article,
             'form' => $form->createView(),
-            'commentaires' => $commentaires
+            'commentaires' => $commentaires,
+            'aside' => $repo->findBy(['categorie' => $article->getCategorie()])
         ]);
     }
 

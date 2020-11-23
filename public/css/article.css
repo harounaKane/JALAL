@@ -3,8 +3,7 @@
 }
 
 .block-article img {
-    height: 35em;
-    width: auto;
+    max-height: 35em;
 }
 
 .banner-author {

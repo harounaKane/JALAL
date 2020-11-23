@@ -67,11 +67,10 @@ class ArticleController extends AbstractController
      */
     public function show(Article $article): Response
     {
-        $commentaire = new Commentaire();
-        $form = $this->createForm(CommentaireType::class, $commentaire);
+//        $commentaire = new Commentaire();
+//        $form = $this->createForm(CommentaireType::class, $commentaire);
         return $this->render('article/show.html.twig', [
-            'article' => $article,
-            'form' => $form->createView()
+            'article' => $article
         ]);
     }
     /**

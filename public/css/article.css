@@ -1,9 +1,8 @@
-.block-article img {
-    max-height: 40em;
-}
 
 .block-article img {
-    max-height: 35em;
+	height: 35em;
+	width: 100%;
+	object-fit: cover;
 }
 
 .banner-author {

@@ -1,6 +1,9 @@
 
+DIVERS ------------
+	- quand on est connecté, l'icône est rouge
+
+
 TRUCS A FAIRE --------------
-	- redimmension image principale
 	- ajout de commentaires (formulaire, insertion, récupération, affichage)
 	- ajout des médias (...)
 	- ruban des catégories
@@ -9,8 +12,7 @@ TRUCS A FAIRE --------------
 
 
 TRUCS A CORRIGER (AKA "j'y arrive pas") -------------
-	- redimmension de l'image principale de l'article (page accueil & article)
-		> le fichier CSS marche à moitié (il n'est pas toujours écouté)
+	- le (else) du "aside" de la page article, dans le cas où il est seul dans sa catégorie, ne marche pas
 	- 
 
 
@@ -29,3 +31,4 @@ Quand on met en place un CRUD toutes les méthodes sont générées. Il ne reste
 
 
 ***( Ida )***
+	/!\ J'ai bien peur qu'il nous faille faire un module Javascript pour que l'utilisateur puisse recadrer l'image principale à l'ajout d'article...

@@ -7,23 +7,24 @@
         <main class=" col-12 col-md-9">
             <section class="row p-2">
                 <p class="border-bottom border-dark col-12 p-0 h3">Derniers articles publiés</p>
+
                 <div class="mainArticle col-12 mb-3">
-                    <article class="row">
-                        <a href="{{ path('this_article', {'id': lastArticle.id}) }}" class="text-decoration-none text-dark">
+                    <article class="">
+                        <a href="{{ path('this_article', {'id': lastArticle.id}) }}" class="text-decoration-none text-dark row">
                             <img class="col-12 p-0" src="{{ asset('images/'~lastArticle.mainImage) }}" alt="{{ lastArticle.mainImage }}">
                             <h1 class="mainTitle">{{ lastArticle.title }}</h1>
-                            <h2>{{ lastArticle.secondaryTitle }}</h2>
+                            <h2 class="h3">{{ lastArticle.secondaryTitle }}</h2>
                         </a>
                     </article>
                 </div>
 
                 {% for article in articles %}
                     <div class="otherArticles col-6 mb-3 {{ article.id == lastArticle.id ? 'd-none' }}">
-                        <article class="row">
-                            <a href="{{ path('this_article', {'id': article.id}) }}" class="text-decoration-none text-dark">
+                        <article class="">
+                            <a href="{{ path('this_article', {'id': article.id}) }}" class="text-decoration-none text-dark row">
                                 <img class="col-12 p-0" src="{{ asset('images/'~article.mainImage) }}" alt="{{ article.mainImage }}">
                                 <h3 class="col-12 p-0">{{ article.title }}</h3>
-                                <h4>{{ article.secondaryTitle }}</h4>
+                                <h4 class="h5">{{ article.secondaryTitle }}</h4>
                             </a>
                         </article>
                     </div>
@@ -31,12 +32,16 @@
             </section>
 
         </main>
+
+        <!-- ASIDE -->
         <aside class="col-3 p-2 border-left">
-            <p class="border-bottom border-dark col-12 p-0">Les plus lus</p>
-            <div class="asideArticles row mx-0">
-                <a href="" class="text-decoration-none text-dark">
-                    <img class="col-12 p-0" src="{{ asset('images/Barro.jpg')}}" alt="">
-                    <p class="h5">Titre de l'article</p>
+            <p class="border-bottom border-dark p-0">Les plus lus</p>
+            <div class="asideArticles mx-0">
+                <a href="" class="text-decoration-none text-dark mb-2">
+                    <img class="p-0" src="{{ asset('images/Barro.jpg')}}" alt="">
+                    <div class="aside-title">
+                        <p class="h5">Titre de l'article</p>
+                    </div>
                 </a>
             </div>
         </aside>

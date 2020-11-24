@@ -1,28 +1,26 @@
 
-.mainArticle img, .otherArticles img, .asideArticles img {
+.mainArticle img, .otherArticles img {
 	object-fit: cover;
 }
 
 .mainArticle img {
-    max-height: 40em;
+	height: 35em;
+	width: 100%;
 }
 
 .otherArticles img {
-	max-height: 20em;
+	height: 20em;
+	width: 100%;
 }
 
 .otherArticles:nth-of-type(2n+1) {
-	border-right: 1em solid transparent;
+	border-right: 0.5em solid transparent;
 }
 
 .otherArticles:nth-of-type(2n) {
-	border-left: 1em solid transparent;
+	border-left: 0.5em solid transparent;
 }
 
-.mainTitle {
-	z-index: 1;
-	padding-top: -5em;
-}
 
 
 @media screen and (min-width:768px){

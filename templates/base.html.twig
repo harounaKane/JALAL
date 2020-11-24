@@ -35,9 +35,9 @@
                     <a href="{{ path('accueil') }}"><img class="logo" src="{{ asset('images/logo/logo2.png') }}" alt=""></a>
                 </div>
 
-                <!-- icone user -->
+                <!-- icone login -->
                 <div>
-                    <a href="{{ app.session.get('login') ? path("deconnexion") : path("connexion") }}"><i class="fa fa-power-off fa-4x"></i></a>
+                    <a href="{{ app.session.get('login') ? path("deconnexion") : path("connexion") }}"><i class="fa fa-power-off fa-4x {{  app.session.get('login') ? "text-danger" : "" }}"></i></a>
                 </div>
             </div>
 

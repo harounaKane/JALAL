@@ -131,14 +131,9 @@ class ArticleController extends AbstractController
             'article' => $article,
             'form' => $form->createView(),
             'commentaires' => $commentaires,
-            'aside' => $repo->findBy(['categorie' => $article->getCategorie()])
+            'aside' => $repo->findBy(['categorie' => $article->getCategorie()]),
+            'last' => $repo->findBy([], ['art_created_at' => 'DESC'], 10)
         ]);
     }
 
-    public function getAuteur(int $user){
-        //sélection nom+prénom+avatar+description de la table "user" via '$user' de Article
-
-
-        
-    }
 }

@@ -3,27 +3,30 @@ aside {
 }
 
 .asideArticles a {
-	margin-bottom: 2em;
+	height: 10em;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
-.asideArticles img {
+/* .asideArticles img {
 	height: 10em;
 	width: 100%;
 	object-fit: cover;
-}
+} */
 
 .aside-title {
-	height: 3.2em;
+	/* height: 3.2em;
     margin-top: -3.6em;
 	position: relative;
-    z-index: 1;
+    z-index: 1; */
     background-color: rgba(255, 255, 255, 0.6);
+	padding: 0 0.5em;
 }
 
-.asideArticles p {
+/* .asideArticles span {
 	padding: 0 0.5em;
-	vertical-align: bottom;
-}
+} */
 
 
 

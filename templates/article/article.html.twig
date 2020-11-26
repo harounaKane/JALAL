@@ -61,11 +61,9 @@
             {% if aside > 1 %}
                 {% for a in aside %}
                     {% if (article.categorie is same as(a.categorie)) and (article.id is not same as(a.id)) %}
-                        <a href="{{ path('this_article', {'id': a.id}) }}" class="text-decoration-none text-dark mb-2">
-                            <img class="col-12 p-0" src="{{ asset('images/'~ a.mainImage) }}" alt="">
-                            <div class="aside-title">
-                                <p class="h5">{{ a.title }}</p>
-                            </div>
+                        <a href="{{ path('this_article', {'id': a.id}) }}" class="text-decoration-none text-dark d-flex flex-column justify-content-end mb-2" 
+                         style="background-image: url( {{ asset('images/'~ a.mainImage) }} )">
+                            <span class="aside-title h5">{{ a.title }}</span>
                         </a>
                     {% endif %}
                 {% endfor %}
@@ -76,7 +74,7 @@
                         <a href="{{ path('this_article', {'id': l.id}) }}" class="text-decoration-none text-dark mb-2">
                             <img class="p-0" src="{{ asset('images/'~ l.mainImage) }}" alt="">
                             <div class="aside-title">
-                                <p class="h5">{{ l.title }}</p>
+                                <span class="h5">{{ l.title }}</span>
                             </div>
                         </a>
                     {% endif %}

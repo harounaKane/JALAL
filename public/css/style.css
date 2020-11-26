@@ -55,14 +55,60 @@
     background: #3f4e5e;
 }
 
-#myLinks div:nth-of-type(odd) {
+/* #myLinks div:nth-of-type(odd) {
     background-color: #3f8e7e;
-}
+} */
 
 #myLinks a {
     padding: 0em 0.1em 0em 1.5em;
     display: block;
     font-size: 2em;
+}
+
+.menu-admin a, .menu-author a {
+    padding-left: 2.5em !important;
+}
+
+.menu-admin {
+    background-color: #DA7F24;
+}
+
+.menu-author {
+    background-color:#4ED717;
+}
+
+.menu-admin p, .menu-author p {
+    padding-left: 0.5em;
+    display: block;
+    font-size: 2em;
+}
+
+.menu-admin div:nth-of-type(odd) {
+    background-color:#E5AF7A;
+}
+
+.menu-admin div:nth-of-type(even) {
+    background-color:#F1D3B5;
+}
+
+.menu-author div:nth-of-type(odd) {
+    background-color: #97F074;
+}
+
+.menu-author div:nth-of-type(even) {
+    background-color:#C3F1B0;
+}
+
+.search-input input, .search-input button {
+    border: none;
+}
+
+.search-input button {
+    background-color: transparent;
+}
+
+.search-input i {
+    color: #FFF;
 }
 
 .logo {

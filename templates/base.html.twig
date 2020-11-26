@@ -42,11 +42,20 @@
             </div>
 
             <div id="myLinks">
-                <div><a href="{{ path("accueil") }}">Articles</a></div>
-                <div><a href="{{ path("article_new") }}">Créer un Article</a></div>
-                <div><a href="{{ path("categorie_index") }}">Catégories</a></div>
-                <div><a href="{{ path("media_index") }}">Medias</a></div>
-                <div><a href="#">News</a></div>
+                <section class="menu-admin">
+                    <p class="mb-0"><i class="fa fa-cog"></i> Espace Administrateur</p>
+                    <div><a href="{{ path("user") }}">Utilisateurs</a></div>
+                    <div><a href="">Articles</a></div>
+                    <div><a href="{{ path("media_index") }}">Medias</a></div>
+                    <div><a href="{{ path("categorie_index") }}">Catégories</a></div>
+                </section>
+                <section class="menu-author">
+                    <p class="mb-0"><i class="fa fa-pencil"></i> Espace Auteur</p>
+                    <div><a href="{{ path("article_new") }}">Créer un Article</a></div>
+                    <div><a href="">Voir mes Articles</a></div>
+                </section>
+                <div><a href="#">Voir les Catégories</a></div>
+                <div><a href="#">Agenda</a></div>
                 <div><a href="#contact">Contact</a></div>
                 <div><a href="#about">About</a></div>
             </div>
@@ -61,6 +70,10 @@
             <a href="" class="my-0 text-white font-weight-bold">Education</a>
             <a href="" class="my-0 text-white font-weight-bold">Politique</a>
             <a href="" class="my-0 text-white font-weight-bold">Science</a>
+            <div class="search-input border rounded">
+                <input type="search" placeholder="Rechercher sur le site">
+                <button class="pl-1"><i class="fa fa-search"></i></button>
+            </div>
         </section>
 
         <p class="display-4">

@@ -19,61 +19,66 @@
     </head>
     <body>
         <header>
-            <div class="d-flex justify-content-between p-3">
+            <div class="d-flex justify-content-between p-3 row">
                 <!-- burger nav -->
-                <div>
+                <div class="col-3">
                     <div class="topnav">
 
                         <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
-                        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-                            <i class="fa fa-bars fa-4x"></i>
+                        <a href="javascript:void(0);" class="icon h2 text-decoration-none text-dark" onclick="myFunction()">
+                            <i class="fa fa-bars"></i> <span class="h4">MENU</span>
                         </a>
                     </div>
                 </div>
                 <!-- logo -->
-                <div>
+                <div class="col-6 text-center">
                     <a href="{{ path('accueil') }}"><img class="logo" src="{{ asset('images/logo/logo2.png') }}" alt=""></a>
                 </div>
 
                 <!-- icone login -->
-                <div>
-                    <a href="{{ app.session.get('login') ? path("deconnexion") : path("connexion") }}"><i class="fa fa-power-off fa-4x {{  app.session.get('login') ? "text-danger" : "" }}"></i></a>
+                <div class="col-3 text-right">
+                    <a href="{{ app.session.get('login') ? path("deconnexion") : path("connexion") }}"><i class="fa fa-power-off {{  app.session.get('login') ? "text-danger" : "" }}"></i></a>
                 </div>
             </div>
 
             <div id="myLinks">
-                <section class="menu-admin">
+                <div class="search-input border rounded mx-2 mx-md-4 my-2 row">
+                    <input type="search" placeholder="Rechercher sur le site" class="col-11 py-1">
+                    <button class="col-1 text-right"><i class="fa fa-search"></i></button>
+                </div>
+                <section class="menu-all border-bottom border-secondary pb-2">
+                    <div><a href="#">Accueil</a></div>
+                    <div><a href="#">Voir les Catégories</a></div>
+                    <div><a href="#">Agenda</a></div>
+                </section>
+                <section class="menu-admin border-bottom border-secondary pb-2">
                     <p class="mb-0"><i class="fa fa-cog"></i> Espace Administrateur</p>
                     <div><a href="{{ path("user") }}">Utilisateurs</a></div>
                     <div><a href="">Articles</a></div>
                     <div><a href="{{ path("media_index") }}">Medias</a></div>
                     <div><a href="{{ path("categorie_index") }}">Catégories</a></div>
                 </section>
-                <section class="menu-author">
+                <section class="menu-author border-bottom border-secondary pb-2">
                     <p class="mb-0"><i class="fa fa-pencil"></i> Espace Auteur</p>
                     <div><a href="{{ path("article_new") }}">Créer un Article</a></div>
                     <div><a href="">Voir mes Articles</a></div>
                 </section>
-                <div><a href="#">Voir les Catégories</a></div>
-                <div><a href="#">Agenda</a></div>
-                <div><a href="#contact">Contact</a></div>
-                <div><a href="#about">About</a></div>
+                <section class="menu-all2">
+                    <div><a href="#contact">Contact</a></div>
+                    <div><a href="#about">About</a></div>
+                </section>
             </div>
         </header>
 
     <!-- BANDEAU CATEGORIES -->
         <section class="cat-ribbon d-flex flex-wrap justify-content-around py-2">
-            <a href="" class="my-0 text-white font-weight-bold">Culture</a>
-            <a href="" class="my-0 text-white font-weight-bold">Economie</a>
-            <a href="" class="my-0 text-white font-weight-bold">Société</a>
-            <a href="" class="my-0 text-white font-weight-bold">Environnement</a>
-            <a href="" class="my-0 text-white font-weight-bold">Education</a>
-            <a href="" class="my-0 text-white font-weight-bold">Politique</a>
-            <a href="" class="my-0 text-white font-weight-bold">Science</a>
-            <div class="search-input border rounded">
-                <input type="search" placeholder="Rechercher sur le site">
-                <button class="pl-1"><i class="fa fa-search"></i></button>
-            </div>
+            <a href="" class="my-0 font-weight-bold">Culture</a>
+            <a href="" class="my-0 font-weight-bold">Economie</a>
+            <a href="" class="my-0 font-weight-bold">Société</a>
+            <a href="" class="my-0 font-weight-bold">Environnement</a>
+            <a href="" class="my-0 font-weight-bold">Education</a>
+            <a href="" class="my-0 font-weight-bold">Politique</a>
+            <a href="" class="my-0 font-weight-bold">Science</a>
         </section>
 
         <p class="display-4">

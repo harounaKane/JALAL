@@ -71,9 +71,9 @@
 
         <!-- ASIDE -->
         <aside class="col-3 p-2 border-left">
-            <p class="border-bottom border-dark p-0">{{ aside > 1 ? "Dans la même catégorie" : "Ajouté récemment" }}</p>
+            <p class="border-bottom border-dark p-0">{{ aside|length > 1 ? "Dans la même catégorie" : "Ajouté récemment" }}</p>
             <div class="asideArticles mx-0">
-            {% if aside > 1 %}
+            {% if aside|length > 1 %}
                 {% for a in aside %}
                     {% if (article.categorie is same as(a.categorie)) and (article.id is not same as(a.id)) %}
                         <a href="{{ path('this_article', {'id': a.id}) }}" class="text-decoration-none text-dark d-flex flex-column justify-content-end mb-2" 
@@ -86,11 +86,9 @@
             {% else %}
                 {% for l in last %}
                     {% if article.id is not same as(l.id) %}
-                        <a href="{{ path('this_article', {'id': l.id}) }}" class="text-decoration-none text-dark mb-2">
-                            <img class="p-0" src="{{ asset('images/'~ l.mainImage) }}" alt="">
-                            <div class="aside-title">
-                                <span class="h5">{{ l.title }}</span>
-                            </div>
+                        <a href="{{ path('this_article', {'id': l.id}) }}" class="text-decoration-none text-dark d-flex flex-column justify-content-end mb-2"
+                           style="background-image: url( {{ asset('images/'~ l.mainImage) }} )">
+                            <span class="aside-title h5">{{ l.title }}</span>
                         </a>
                     {% endif %}
                 {% endfor %}

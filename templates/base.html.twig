@@ -36,6 +36,11 @@
                 </div>
 
                 <!-- icone login -->
+{#                <p class="display-4">#}
+{#                    {% if app.session.get('login') %}#}
+{#                        Bienvenue {{ app.session.get('first_name') }} !#}
+{#                    {% endif %}#}
+{#                </p>#}
                 <div class="col-3 text-right">
                     <a href="{{ app.session.get('login') ? path("deconnexion") : path("connexion") }}"><i class="fa fa-power-off {{  app.session.get('login') ? "text-danger" : "" }}"></i></a>
                 </div>
@@ -81,11 +86,6 @@
             <a href="" class="my-0 font-weight-bold">Science</a>
         </section>
 
-        <p class="display-4">
-            {% if app.session.get('login') %}
-                Bienvenue {{ app.session.get('first_name') }} !
-            {% endif %}
-        </p>
         {% block body %}{% endblock %}
         <footer  class="d-flex flex-column p-3 mt-5 bg-info">
             <figure>

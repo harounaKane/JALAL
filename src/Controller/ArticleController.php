@@ -131,7 +131,7 @@ class ArticleController extends AbstractController
             'article' => $article,
             'form' => $form->createView(),
             'commentaires' => $commentaires,
-            'aside' => $repo->findBy(['categorie' => $article->getCategorie()]),
+            'aside' => $repo->findBy(['categorie' => $article->getCategorie()], [], 10),
             'last' => $repo->findBy([], ['art_created_at' => 'DESC'], 10)
         ]);
     }

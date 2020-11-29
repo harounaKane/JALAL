@@ -44,9 +44,24 @@
             <!-- BLOCK COMMENTAIRES  -->
             {% if(commentaires) %}
                 <hr>
-                    3 à 5 derniers commentaires ici !
-                <hr>
+            {% for commentaire in commentaires %}
+
+                <div class="d-flex">
+                    <img id="avatar-author" class="rounded-circle p-2 border border-danger" src="{{ asset('images/logo/logo.png') }}" alt="avatar">
+                    <div class="ml-3 mt-4"> le {{ commentaire.commentAt|date('d F Y à H:i:s') }}</div>
+                </div>
+                <div class="my-3">
+                    {{ commentaire.comment }}
+                </div>
+                <div>
+                    <button id="like" class="btn btn-outline-success"><i class="fa fa-thumbs-up"></i></button> &nbsp;
+                    <button id="dislike" class="btn btn-outline-warning"><i class="fa fa-thumbs-down"></i></button>
+                </div>
+                <hr class="border-bottom border-dark">
+            {% endfor %}
+
             {% endif %}
+            <!-- FORM COMMENTAIRES  -->
             <section class="col-12 mt-3 py-2 bg-info">
                 <h3>Participer à la discussion</h3>
                 {{ form_start(form) }}

@@ -7,8 +7,8 @@ use App\Entity\User;
 use App\Form\ArticleType;
 use App\Form\CommentaireType;
 use App\Form\MediaType;
-use App\Form\MembreType;
 use App\Repository\ArticleRepository;
+use App\Repository\CommentaireRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
@@ -26,7 +26,7 @@ class ArticleController extends AbstractController
     /**
      * @Route("/", name="accueil", methods={"GET"})
      */
-    public function index(ArticleRepository $articleRepository): Response
+    public function index(ArticleRepository $articleRepository)
     {
         return $this->render('article/index.html.twig', [
             'articles' => $articleRepository->findAll(),
@@ -38,7 +38,7 @@ class ArticleController extends AbstractController
     /**
      * @Route("/article/new", name="article_new", methods={"GET","POST"})
      */
-    public function new(Request $request, UserRepository $repo): Response
+    public function new(Request $request, UserRepository $repo)
     {
         $article = new Article();
         $media = new Media();
@@ -65,7 +65,7 @@ class ArticleController extends AbstractController
     /**
      * @Route("/article/{id}", name="article_show", methods={"GET"})
      */
-    public function show(Article $article): Response
+    public function show(Article $article)
     {
 //        $commentaire = new Commentaire();
 //        $form = $this->createForm(CommentaireType::class, $commentaire);
@@ -76,7 +76,7 @@ class ArticleController extends AbstractController
     /**
      * @Route("/article/{id}/edit", name="article_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Article $article): Response
+    public function edit(Request $request, Article $article)
     {
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
@@ -96,7 +96,7 @@ class ArticleController extends AbstractController
     /**
      * @Route("/article/{id}", name="article_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Article $article): Response
+    public function delete(Request $request, Article $article)
     {
         if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
@@ -108,7 +108,7 @@ class ArticleController extends AbstractController
     /**
      * @Route("/article/{id}/article", name="this_article", methods={"GET","POST"})
      */
-    public function show_thisArticle(Request $request, Article $article, ArticleRepository $repo): Response
+    public function show_thisArticle(Request $request, Article $article, ArticleRepository $repo, CommentaireRepository $commentaireRepository): Response
     {
         $commentaire = new Commentaire();
         $form = $this->createForm(CommentaireType::class, $commentaire);
@@ -125,7 +125,7 @@ class ArticleController extends AbstractController
         }
 
         //RECUPRATION DES COMMENTAIRE DE L'ARTICLE
-        $commentaires = null;
+        $commentaires = $commentaireRepository->commentByArticle($article->getId());
 
         return $this->render('article/article.html.twig', [
             'article' => $article,

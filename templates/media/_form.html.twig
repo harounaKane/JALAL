@@ -2,10 +2,10 @@
 <div class="container-fluid">
     <div class="formMediaTest">
         {{ form_start(form) }}
-        {{ dump() }}
         
             {{ form_label(form.nom) }}
-            {{ form_widget(form.nom, {'attr': {'class': 'test'}}) }}
+            {{ form_widget(form.nom, {'attr': {'class': 'test',
+                                               'class': 'apercu'}}) }}
             {{ form_errors(form.nom) }}
          
         
@@ -18,8 +18,11 @@
             {{ form_widget(form.texte, {'attr': {'class': 'test'}})}}
             {{ form_errors(form.texte) }}
             
-            <button class="btn">{{ button_label|default('Save') }}</button>
-            
+            <div class="">
+                <button class="btn btn-success" id="btn_image">{{ button_label|default('Save') }}</button>
+                <p>Preview</p>
+                <img id='preview'>
+            </div>
         {{ form_end(form) }}
     </div>
 </div>

@@ -62,7 +62,7 @@ class Article
     private $media;
 
     /**
-     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="article")
+     * @ORM\OneToMany(targetEntity=Commentaire::class, mappedBy="article", orphanRemoval=true, cascade={"persist"})
      */
     private $commentaires;
 

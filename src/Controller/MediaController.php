@@ -36,13 +36,35 @@ class MediaController extends AbstractController
         $medium = new Media();
         $form = $this->createForm(MediaType::class, $medium);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $medium->setCreatedAt(new \DateTime());
             $medium->setType('image');
             $medium->setArticle($article);
             $medium->setOrdre('0');
+            
+            // On récupère les images transmises
+            $images = $form->get('nom')->getData();
+            $i = 0;
+            if($i >= 0 && $i < 10){
+                // On boucle sur les images
+                foreach($images as $image){
+                    // On génère un nouveau nom de fichier
+                    $fichier =  $article->getId().'img' . md5(uniqid()) . '.' . $image->guessExtension();
 
+                    // On copie le fichier dans le dossier uploads
+                    $image->move(
+                        $this->getParameter('images_directory'),
+                        $fichier
+                    );
+
+                    // On stocke l'image dans la base de données (son nom)
+                    
+                    $medium->setNom($fichier);
+                    $article->addMedium($medium);
+                }
+            }
+            // else{ }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($medium);
             $entityManager->flush();

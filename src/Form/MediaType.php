@@ -30,8 +30,8 @@ class MediaType extends AbstractType
                 "label" => "Votre fichier",                
                 'data_class' => null,
                 'required' => false,
-                //--------------------
-                // 'multiple' => true
+                'mapped' => false,
+                'multiple' => true
             ])
             ->add('legende', TextType::class, [
                 "label" => "Légende",

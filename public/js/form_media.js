@@ -1,52 +1,24 @@
-
-
-
-// console.log("qsrfer");
-// // add-collection-widget.js
-// jQuery(document).ready(function () {
-//     jQuery('.add-another-collection-widget').click(function (e) {
-//         var list = jQuery(jQuery(this).attr('data-list-selector'));
-//         // Try to find the counter of the list or use the length of the list
-//         var counter = list.data('widget-counter') || list.children().length;
-//         if(!counter){
-//             counter = 1;
-//         }
-//         // grab the prototype template
-//         var newWidget = list.attr('data-prototype');
-//         // replace the "__name__" used in the id and name of the prototype
-//         // with a number that's unique to your emails
-//         // end name attribute looks like name="contact[emails][2]"
-//         newWidget = newWidget.replace(/__name__/g, counter);
-//         // Increase the counter
-//         counter++;
-//         // And store it, the length cannot be used if deleting widgets is allowed
-//         list.data('widget-counter', counter);
-
-//         // create a new list element and add it to the list
-//         var newElem = jQuery(list.attr('data-widget-tags')).html(newWidget);
-//         newElem.appendTo(list);
-//     });
-//     console.log("script exécuté");
-// });
-
-var btn_image  = document.getElementById("btn_image");
-var div_img = document.getElementsByClassName("apercu");
-
-btn_image.addEventListener("click", function () {
-    input.click();
-  });
-
-  input.addEventListener("change", preview);
-  function preview() {
-    var fileObject = this.files[0];
-    var fileReader = new FileReader();
-    fileReader.readAsDataURL(fileObject);
-    fileReader.onload = function () {
-      var result = fileReader.result;
-      var img = document.querySelector("#preview");
-      img.setAttribute("src", result);
+$(function() {
+    // Multiple images preview in browser
+    var imagesPreview = function(input, placeToInsertImagePreview) {
+        if (input.files) {
+            var filesAmount = input.files.length;
+            for (i = 0; i < filesAmount; i++) {
+                var reader = new FileReader();
+                reader.onload = function(event) {
+                    $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                }
+                reader.readAsDataURL(input.files[i]);
+            }
+        }
     };
-  }  
+
+    $('#media_nom').on('change', function() {
+        imagesPreview(this, 'div.gallery');
+    });
+});
+
+
 
 /*
 var btn_image  = document.getElementById("btn_image");

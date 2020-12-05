@@ -50,17 +50,17 @@ class MediaController extends AbstractController
                 // On boucle sur les images
                 foreach($images as $image){
                     // On génère un nouveau nom de fichier
-                    $fichier =  $article->getId().'img' . md5(uniqid()) . '.' . $image->guessExtension();
+                    $file_name =  $article->getId().'img' . md5(uniqid()) . '.' . $image->guessExtension();
 
                     // On copie le fichier dans le dossier uploads
                     $image->move(
                         $this->getParameter('images_directory'),
-                        $fichier
+                        $file_name
                     );
 
                     // On stocke l'image dans la base de données (son nom)
                     
-                    $medium->setNom($fichier);
+                    $medium->setNom($file_name);
                     $article->addMedium($medium);
                 }
             }

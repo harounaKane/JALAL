@@ -6,6 +6,10 @@
     <h1>Ajouter des images</h1>
 
     {{ include('media/_form.html.twig') }}
+            <button class="btn btn-success" id="btn_image">{{ button_label|default('Save') }}</button>
+        <div class="col-md-12 gallery">
+	  		
+	  	</div>
 
     <a href="{{ path('media_index') }}">back to list</a>
 {% endblock %}

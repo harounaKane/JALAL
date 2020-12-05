@@ -18,11 +18,6 @@
             {{ form_widget(form.texte, {'attr': {'class': 'test'}})}}
             {{ form_errors(form.texte) }}
             
-            <div class="">
-                <button class="btn btn-success" id="btn_image">{{ button_label|default('Save') }}</button>
-                <p>Preview</p>
-                <img id='preview'>
-            </div>
         {{ form_end(form) }}
     </div>
 </div>

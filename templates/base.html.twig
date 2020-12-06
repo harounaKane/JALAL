@@ -78,13 +78,16 @@
 
     <!-- BANDEAU CATEGORIES -->
         <section class="cat-ribbon d-flex flex-wrap justify-content-around py-2">
-            <a href="" class="my-0 font-weight-bold">Culture</a>
-            <a href="" class="my-0 font-weight-bold">Economie</a>
-            <a href="" class="my-0 font-weight-bold">Société</a>
-            <a href="" class="my-0 font-weight-bold">Environnement</a>
-            <a href="" class="my-0 font-weight-bold">Education</a>
-            <a href="" class="my-0 font-weight-bold">Politique</a>
-            <a href="" class="my-0 font-weight-bold">Science</a>
+            {% for cat in categorie() %}
+                <a href="" class="my-0 font-weight-bold"> {{ cat.designation }} </a>
+{#            <a href="" class="my-0 font-weight-bold">Culture</a>#}
+{#            <a href="" class="my-0 font-weight-bold">Economie</a>#}
+{#            <a href="" class="my-0 font-weight-bold">Société</a>#}
+{#            <a href="" class="my-0 font-weight-bold">Environnement</a>#}
+{#            <a href="" class="my-0 font-weight-bold">Education</a>#}
+{#            <a href="" class="my-0 font-weight-bold">Politique</a>#}
+{#            <a href="" class="my-0 font-weight-bold">Science</a>#}
+            {% endfor %}
         </section>
 
         {% block body %}{% endblock %}
@@ -102,7 +105,6 @@
                 <figcaption class="figure-caption text-center">Mantcha Diawara <p>Profession</p></figcaption>
             </figure>
         </footer>
-
         
         <script src="{{ asset('js/main.js') }}"></script>
         <script src="{{ asset('js/form_media.js') }}"></script>
@@ -116,6 +118,5 @@
                 })
             </script>
         {% endblock %}
-
     </body>
 </html>

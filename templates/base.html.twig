@@ -80,14 +80,12 @@
         <section class="cat-ribbon d-flex flex-wrap justify-content-around py-2">
             {% for cat in categorie() %}
                 <a href="" class="my-0 font-weight-bold"> {{ cat.designation }} </a>
-{#            <a href="" class="my-0 font-weight-bold">Culture</a>#}
-{#            <a href="" class="my-0 font-weight-bold">Economie</a>#}
-{#            <a href="" class="my-0 font-weight-bold">Société</a>#}
-{#            <a href="" class="my-0 font-weight-bold">Environnement</a>#}
-{#            <a href="" class="my-0 font-weight-bold">Education</a>#}
-{#            <a href="" class="my-0 font-weight-bold">Politique</a>#}
-{#            <a href="" class="my-0 font-weight-bold">Science</a>#}
             {% endfor %}
+        </section>
+
+        <section>
+            {{ "hello world"|filter_name }}
+           <div>  {{ function_name() }} </div>
         </section>
 
         {% block body %}{% endblock %}

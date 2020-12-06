@@ -44,6 +44,7 @@
 /* body{
     background-color:  rgba(0, 0, 0, .09);
 } */
+body{background-image: url("../images/PAGES/fond.png")}
 
 header {
     background: linear-gradient(90deg, white, black, white);

@@ -65,12 +65,31 @@ class ArticleController extends AbstractController
     /**
      * @Route("/article/{id}", name="article_show", methods={"GET"})
      */
-    public function show(Article $article)
+    public function show(Request $request, Article $article, ArticleRepository $repo, CommentaireRepository $commentaireRepository): Response
     {
-//        $commentaire = new Commentaire();
-//        $form = $this->createForm(CommentaireType::class, $commentaire);
+        $commentaire = new Commentaire();
+        $form = $this->createForm(CommentaireType::class, $commentaire);
+
+        //TRAITEMENT DES COMMENTAIRES
+        $form->handleRequest($request);
+        if($form->isSubmitted()){
+            $commentaire->setCommentAt(new \DateTime());
+            $commentaire->setArticle($repo->find($article->getId()));
+            $this->manager->persist($commentaire);
+            $this->manager->flush();
+            //REDIRECTION POUR EVITER LA DOUBLE SOUMISSION DU FORMULAIRE
+            return $this->redirectToRoute('article_show', ['id' => $article->getId()]);
+        }
+
+        //RECUPRATION DES COMMENTAIRE DE L'ARTICLE
+        $commentaires = $commentaireRepository->commentByArticle($article->getId());
+
         return $this->render('article/show.html.twig', [
-            'article' => $article
+            'article' => $article,
+            'form' => $form->createView(),
+            'commentaires' => $commentaires,
+            'aside' => $repo->findBy(['categorie' => $article->getCategorie()], [], 10),
+            'last' => $repo->findBy([], ['art_created_at' => 'DESC'], 10)
         ]);
     }
     /**
@@ -108,32 +127,32 @@ class ArticleController extends AbstractController
     /**
      * @Route("/article/{id}/article", name="this_article", methods={"GET","POST"})
      */
-    public function show_thisArticle(Request $request, Article $article, ArticleRepository $repo, CommentaireRepository $commentaireRepository): Response
-    {
-        $commentaire = new Commentaire();
-        $form = $this->createForm(CommentaireType::class, $commentaire);
+    // public function show_thisArticle(Request $request, Article $article, ArticleRepository $repo, CommentaireRepository $commentaireRepository): Response
+    // {
+    //     $commentaire = new Commentaire();
+    //     $form = $this->createForm(CommentaireType::class, $commentaire);
 
-        //TRAITEMENT DES COMMENTAIRES
-        $form->handleRequest($request);
-        if($form->isSubmitted()){
-            $commentaire->setCommentAt(new \DateTime());
-            $commentaire->setArticle($repo->find($article->getId()));
-            $this->manager->persist($commentaire);
-            $this->manager->flush();
-            //REDIRECTION POUR EVITER LA DOUBLE SOUMISSION DU FORMULAIRE
-            return $this->redirectToRoute('this_article', ['id' => $article->getId()]);
-        }
+    //     //TRAITEMENT DES COMMENTAIRES
+    //     $form->handleRequest($request);
+    //     if($form->isSubmitted()){
+    //         $commentaire->setCommentAt(new \DateTime());
+    //         $commentaire->setArticle($repo->find($article->getId()));
+    //         $this->manager->persist($commentaire);
+    //         $this->manager->flush();
+    //         //REDIRECTION POUR EVITER LA DOUBLE SOUMISSION DU FORMULAIRE
+    //         return $this->redirectToRoute('this_article', ['id' => $article->getId()]);
+    //     }
 
-        //RECUPRATION DES COMMENTAIRE DE L'ARTICLE
-        $commentaires = $commentaireRepository->commentByArticle($article->getId());
+    //     //RECUPRATION DES COMMENTAIRE DE L'ARTICLE
+    //     $commentaires = $commentaireRepository->commentByArticle($article->getId());
 
-        return $this->render('article/article.html.twig', [
-            'article' => $article,
-            'form' => $form->createView(),
-            'commentaires' => $commentaires,
-            'aside' => $repo->findBy(['categorie' => $article->getCategorie()], [], 10),
-            'last' => $repo->findBy([], ['art_created_at' => 'DESC'], 10)
-        ]);
-    }
+    //     return $this->render('article/article.html.twig', [
+    //         'article' => $article,
+    //         'form' => $form->createView(),
+    //         'commentaires' => $commentaires,
+    //         'aside' => $repo->findBy(['categorie' => $article->getCategorie()], [], 10),
+    //         'last' => $repo->findBy([], ['art_created_at' => 'DESC'], 10)
+    //     ]);
+    // }
 
 }

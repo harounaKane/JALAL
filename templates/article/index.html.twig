@@ -10,7 +10,7 @@
 
                 <div class="mainArticle col-12 mb-3">
                     <article class="">
-                        <a href="{{ path('this_article', {'id': lastArticle.id}) }}" class="text-decoration-none text-dark row">
+                        <a href="{{ path('article_show', {'id': lastArticle.id}) }}" class="text-decoration-none text-dark row">
                             <img class="col-12 p-0" src="{{ asset('images/'~lastArticle.mainImage) }}" alt="{{ lastArticle.mainImage }}">
                             <h1 class="mainTitle">{{ lastArticle.title }}</h1>
                             <h2 class="h3">{{ lastArticle.secondaryTitle }}</h2>
@@ -21,7 +21,7 @@
                 {% for article in articles %}
                     <div class="otherArticles col-6 mb-3 {{ article.id == lastArticle.id ? 'd-none' }}">
                         <article class="">
-                            <a href="{{ path('this_article', {'id': article.id}) }}" class="text-decoration-none text-dark row">
+                            <a href="{{ path('article_show', {'id': article.id}) }}" class="text-decoration-none text-dark row">
                                 <img class="col-12 p-0" src="{{ asset('images/'~article.mainImage) }}" alt="{{ article.mainImage }}">
                                 <h3 class="col-12 p-0">{{ article.title }}</h3>
                                 <h4 class="h5">{{ article.secondaryTitle }}</h4>

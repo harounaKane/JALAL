@@ -1,3 +1,4 @@
+{#}
 {% extends 'base.html.twig' %}
 
 {% block title %}{{ article.title }}{% endblock %}
@@ -86,7 +87,6 @@
                         </a>
                     {% endif %}
                 {% endfor %}
-            {# le (else) ne fonctionne pas #}
             {% else %}
                 {% for l in last %}
                     {% if article.id is not same as(l.id) %}
@@ -102,3 +102,4 @@
     </div>
 
 {% endblock %}
+{#}

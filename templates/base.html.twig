@@ -6,6 +6,7 @@
         <title>{% block title %}Fulbe Info ! {% endblock %}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.min.css">
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('css/accueil.css') }}">
         <link rel="stylesheet" href="{{ asset('css/aside.css') }}">
@@ -16,6 +17,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
@@ -100,18 +102,26 @@
                 <figcaption class="figure-caption text-center">Mantcha Diawara <p>Profession</p></figcaption>
             </figure>
         </footer>
-        
-        <script src="{{ asset('js/main.js') }}"></script>
-        <script src="{{ asset('js/form_media.js') }}"></script>
         {% block javascripts %}
+            <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+            <script src="{{ asset('js/lodash.js') }}"></script>
+            <script src="{{ asset('js/main.js') }}"></script>
+            <script src="{{ asset('js/form_media.js') }}"></script>
             <script>
+                sortable = new Sortable(document.querySelector('#sort1'));   
+                sortable.success = function(results){
+                    console.log(results);
+                }        
+            </script>       
+            {# <script>
                 $(document).ready(function(){
                     $(document).on('change', '.custom-file-input', function () {
                         let fileName = $(this).val().replace(/\\/g, '/').replace(/.*\//, '');
                         $(this).parent('.custom-file').find('.custom-file-label').text(fileName);
                     });
                 })
-            </script>
+            </script> #}
+
         {% endblock %}
     </body>
 </html>

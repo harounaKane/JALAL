@@ -13,4 +13,56 @@
 .test{
     width: 100%;
 }
+/* ---------------------- */
+#sort1 .column{
+    transition: 0.3s;
+}
 
+
+.ui.cards {
+    margin: 20px;
+    position: relative;
+}
+
+.ui.cards .card{
+    margin: 0;
+    width: 20%;
+    transition: 0.5s;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    box-shadow: none;
+    padding: 10px;
+    border: none;
+}
+
+.ui.cards .card.is-dragged{
+    transition: 0s;
+    opacity: 0.5;
+    z-index: 9000;
+}
+.ui.cards .card .content{
+    box-shadow: 0 1px 3px 0 #d4d4d5,0 0 0 1px #d4d4d5 ;
+}
+
+
+
+/* .masthead.segment {
+    padding: 2em 0em; }
+
+.masthead .logo.item img {
+    margin-right: 1em; }
+
+.masthead .ui.menu .ui.button {
+    margin-left: 0.5em; }
+
+.masthead h1.ui.header {
+    padding-top: 1em;
+    margin-bottom: 0em;
+    font-size: 4em;
+    font-weight: normal; }
+
+.masthead h2 {
+    font-size: 1.7em;
+    font-weight: normal;
+    padding-bottom: 2em;
+} */

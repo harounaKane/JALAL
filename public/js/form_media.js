@@ -60,8 +60,8 @@ Sortable.prototype.setPositions = function(){
     for(var i = 0; i < this.items.length; i++) {
         var item = this.items[i];
         item.style.position = "absolute";
-        item.style.top = "0px";
-        item.style.left = "0px";
+        // item.style.top = "0px";
+        // item.style.left = "0px";
         item.style.transitionDuration = "0s";
         this.moveItem(item, item.dataset.position);
     }
@@ -145,6 +145,78 @@ Sortable.prototype.sendResults = function(){
     }
     this.success(results);
 }
+
+var tableau = [["nom"], ["legende"], ["texte"]];
+var tableau = new Array();
+var btn_image  = document.getElementById("btn_image");
+var media_nom = document.getElementById("media_nom");
+var media_legende = document.getElementById("media_legende");
+var media_texte = document.getElementById("media_texte");
+var div_glob = document.getElementById("global");
+var d = 10;
+var v = 0;
+var j = 0;
+var div_sort = document.createElement("div");
+div_sort.setAttribute("id", "sort1");
+div_sort.setAttribute("data-sortable", ".column");
+div_sort.classList.add("ui", "stackable", "five", "column", "grid", "relative");
+div_glob.appendChild(div_sort);
+
+btn_image.addEventListener("click", function(){
+    console.log("Vous pouvez ajouter une image !");
+ 
+
+    if( d > 0){
+        tableau.push([media_nom.files, media_legende.value, media_texte.value]);
+        console.log(media_nom.files[0].name);
+        var btn_file = document.createElement("button");
+        btn_file.classList.add("border", "border-light", "bg-muted", "p-1");
+        var div_col = document.createElement("div");
+        div_col.setAttribute("class", "column");
+        div_col.setAttribute("data-position", j);
+        div_col.setAttribute("data-id", j + 1);
+        div_sort.appendChild(div_col);
+        
+        var div_card = document.createElement("div");
+        div_card.classList.add("fluid", "ui", "card");
+        div_col.appendChild(div_card);
+
+        var div_content = document.createElement("div");
+        div_content.setAttribute("class", "content");
+        div_card.appendChild(div_content);
+
+        var prev_img = document.createElement("img");
+        prev_img.setAttribute("id", "preview"+v);
+        prev_img.setAttribute("height", "80");
+        prev_img.classList.add("image", "ui");
+
+        //var new_nom = document.createTextNode(nom_input.files[0].name);
+        div_content.appendChild(prev_img);
+        //btn_file.appendChild(new_nom);
+        // div_img.appendChild(btn_file);
+        console.log([tableau]);
+        previewImage(v);
+        // resetFields();
+        v++;
+        j++;
+        d--;
+        console.log(v);
+        console.log(j);
+        console.log(d);
+    }    
+});
+function previewImage(v) {
+    var prev = media_nom.files;
+    var fileReader = new FileReader();
+    fileReader.onload = function (event) {
+        document.getElementById("preview"+v).setAttribute("src", event.target.result);
+        //document.getElementById("preview"+x).setAttribute("height", event.target.result);
+    };
+    console.log("v = "+v);
+    fileReader.readAsDataURL(prev[0]);
+
+}
+
 // var tableau = [["nom"], ["legende"], ["texte"]];
 // var tableau = new Array();
 // var btn_image  = document.getElementById("btn_image");

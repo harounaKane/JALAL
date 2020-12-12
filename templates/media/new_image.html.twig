@@ -6,11 +6,12 @@
     <h1>Ajouter des images</h1>
 
     {{ include('media/_form.html.twig') }}
-    {# <button class="btn btn-success" id="btn_image">{{ button_label|default('Save') }}</button>
-    <div class="col-12 gallery d-flex" id="gallery"></div> #}
+    <button class="btn btn-success" id="btn_image">{{ button_label|default('Save') }}</button>
+    <button class="btn btn-success" id="btn_ok">{{ button_label|default('ok') }}</button>
+    
 
-<div class="ui container">
-    <div id="sort1" data-sortable=".column" class="ui stackable three column grid relative">
+<div id="global">
+    {# <div id="sort1" data-sortable=".column" class="ui stackable five column grid relative">
         <div class="column" data-position='0' data-id='1'>
             <div class="ui fluid card">
                 <div class="content"><img src="http://lorempixel.com/35/35/cats/0" class=" ui image">
@@ -47,9 +48,34 @@
                 </div>
             </div>
         </div>
-        
-    </div>
+
+        <div class="column" data-position='6' data-id='7'>
+            <div class="ui fluid card">
+                <div class="content"><img src="http://lorempixel.com/35/35/cats/0" class=" ui image">
+                </div>
+            </div>
+        </div>
+        <div class="column" data-position='7' data-id='8'>
+            <div class="ui fluid card">
+                <div class="content"><img src="http://lorempixel.com/35/35/cats/1" class="ui image">
+                </div>
+            </div>
+        </div>
+        <div class="column" data-position='8' data-id='9'>
+            <div class="ui fluid card">
+                <div class="content"><img src="http://lorempixel.com/35/35/cats/2" class="ui image">
+                </div>
+            </div>
+        </div>
+        <div class="column" data-position='9' data-id='10'>
+            <div class="ui fluid card">
+                <div class="content"><img src="http://lorempixel.com/35/35/cats/2" class="ui image">
+                </div>
+            </div>
+        </div> 
+
+    </div> #}
 </div>
 
-    <a href="{{ path('media_index') }}">back to list</a>
+    {# <a href="{{ path('media_index') }}">back to list</a> #}
 {% endblock %}

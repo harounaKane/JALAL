@@ -109,10 +109,15 @@
             <script src="{{ asset('js/form_media.js') }}"></script>
             <script src="{{ asset('js/commentaire.js') }}"></script>
             <script>
-                sortable = new Sortable(document.querySelector('#sort1'));   
-                sortable.success = function(results){
-                    console.log(results);
-                }        
+                btn_ok.addEventListener("click", function(){
+                    sortable = new Sortable(document.querySelector('#sort1'));
+                    sortable.success = function(results){
+                                    console.log(results);
+                    }  
+ 
+                });
+                   
+                      
             </script>       
             {# <script>
                 $(document).ready(function(){

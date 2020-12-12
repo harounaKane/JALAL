@@ -28,7 +28,7 @@ class CommentaireType extends AbstractType
                 "attr" => [
                     "placeholder" => "Tapez votre commentaire ici",
                     "minlength" => 2,
-                    "maxlength" => 100
+                    "maxlength" => 200
                 ]
             ])
             ->add('Poster', SubmitType::class)

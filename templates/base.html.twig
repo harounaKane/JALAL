@@ -104,9 +104,10 @@
         </footer>
         {% block javascripts %}
             <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
-            <script src="{{ asset('js/lodash.js') }}"></script>
-            <script src="{{ asset('js/main.js') }}"></script>
-            <script src="{{ asset('js/form_media.js') }}"></script>
+{#            <script src="{{ asset('js/lodash.js') }}"></script>#}
+{#            <script src="{{ asset('js/main.js') }}"></script>#}
+{#            <script src="{{ asset('js/form_media.js') }}"></script>#}
+            <script src="{{ asset('js/commentaire.js') }}"></script>
             <script>
                 sortable = new Sortable(document.querySelector('#sort1'));   
                 sortable.success = function(results){

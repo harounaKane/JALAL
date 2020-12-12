@@ -108,5 +108,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="CDA_PROJET_SIRA" />
+    <orderEntry type="module" module-name="blog" />
   </component>
 </module>

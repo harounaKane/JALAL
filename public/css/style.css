@@ -70,8 +70,12 @@ footer img{
     width: 50%;
     height: auto;
 }
-
-
+/*--- COMMENTAIRE ----*/
+#like:hover, #unlike:hover{
+    transition: all .2s ease 0s;
+    background-color: rgba(0, 0, 0, .1);
+    color: #ed1c24;
+}
 
 
 @media screen and (min-width:768px){

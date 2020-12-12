@@ -63,7 +63,7 @@ class ArticleController extends AbstractController
         ]);
     }
     /**
-     * @Route("/article/{id}", name="article_show", methods={"GET"})
+     * @Route("/article/{id}", name="article_show", methods={"GET", "POST"})
      */
     public function show(Request $request, Article $article, ArticleRepository $repo, CommentaireRepository $commentaireRepository): Response
     {

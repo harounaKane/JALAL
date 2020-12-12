@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../ILCI/CDA_PROJET_SIRA/.idea/CDA_PROJET_SIRA.iml" filepath="$PROJECT_DIR$/../../ILCI/CDA_PROJET_SIRA/.idea/CDA_PROJET_SIRA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../ILCI/DWWM/blog/.idea/blog.iml" filepath="$PROJECT_DIR$/../../ILCI/DWWM/blog/.idea/blog.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/jalal.iml" filepath="$PROJECT_DIR$/.idea/jalal.iml" />
     </modules>
   </component>

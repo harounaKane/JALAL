@@ -2,8 +2,72 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc5c4360-fb3b-4d20-8b11-9bae98c79f9b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../.idea/www.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../3WA/Ajax/ajax_corrigé/.idea/ajax.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../AFPA_1/afaire/.idea/afaire.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../AFPA_1/sira_asso/.idea/sira_asso.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../AFPA_2/autoloading/.idea/autoloading.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../AFPA_2/blog_objet/.idea/blog_objet.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../AFPA_2/blog_objet/controller/ArticleController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../AFPA_2/blog_objet/modele/ModeleArticle.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../AFPA_2/blog_objet/vues/accueil.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../AFPA_2/blog_objet/vues/article.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../AFPA_2/blog_objet/vues/articleDetail.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../AFPA_2/blogblog/.idea/blogblog.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../AFPA_2/stocks/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../AFPA_2/stocks/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../AFPA_2/stocks/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../AFPA_2/stocks/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../AFPA_2/tuto/.idea/tuto.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Chapitre_05/5 - TACHES - Avec dépendances/TACHES/.idea/TACHES.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ILCI/DWWM/blog/classes/Article.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ILCI/DWWM/blog/controller/ControllerArticle.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ILCI/DWWM/blog/controller/InscriptionController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ILCI/DWWM/blog/modele/Modele.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ILCI/DWWM/blog/vues/article.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ILCI/DWWM/blog/vues/connection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ILCI/DWWM/blog/vues/footer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ILCI/DWWM/blog/vues/header.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/PROJETS.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Nouveau dossier/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Nouveau dossier/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Nouveau dossier/Doc2.docx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Nouveau dossier/JALAL_TV" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/commentaire.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../TUTO/grafick/.idea/grafick.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../TUTO/linkedin_2/.idea/linkedin_2.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../TUTO/linkedin_3/.idea/linkedin_3.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../linkedin/.idea/linkedin.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../linkedin/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../linkedin/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../linkedin/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../linkedin/public/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../linkedin/public/img/th.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../linkedin/src/Controller/AccueilController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../linkedin/src/Controller/ArticleController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../linkedin/src/Controller/CategorieController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../linkedin/src/Controller/HelloController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../linkedin/src/form/ArticleType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../linkedin/templates/hello.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../linkedin/templates/pages/accueil.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../linkedin/templates/pages/article.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../linkedin/templates/pages/articleOne.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../pint/.idea/pint.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jalal.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jalal.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ArticleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/CommentaireType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/CommentaireType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/article/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/show.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -19,6 +83,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="composer.json" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -130,6 +195,7 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1lALuXOZRyEM6UJSeahCFfYMbXR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -139,7 +205,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../ILCI/DWWM/blog" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -153,7 +219,10 @@
       <updated>1607035171480</updated>
       <workItem from="1607035172730" duration="464000" />
       <workItem from="1607172248224" duration="7707000" />
-      <workItem from="1607248409950" duration="6253000" />
+      <workItem from="1607248409950" duration="8107000" />
+      <workItem from="1607423154481" duration="2322000" />
+      <workItem from="1607611511747" duration="2029000" />
+      <workItem from="1607716697706" duration="11946000" />
     </task>
     <servers />
   </component>

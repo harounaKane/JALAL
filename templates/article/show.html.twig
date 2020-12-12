@@ -46,19 +46,28 @@
                 <hr>
             {% for commentaire in commentaires %}
 
-                <div class="d-flex">
-                    <img id="avatar-author" class="rounded-circle p-2 border border-danger" src="{{ asset('images/logo/logo.png') }}" alt="avatar">
-                    <div class="ml-3 mt-4"> le {{ commentaire.commentAt|date('d F Y à H:i:s') }}</div>
+                <div class="row">
+                    <div class="col-2">
+                        <div class="row">
+                            <img id="avatar-author" class="rounded-circle p-2 col-12" src="{{ asset('images/logo/avatar_commentaire.png') }}" alt="avatar">
+                        </div>
+                    </div>
+                    <div class="mt-4 col-10">
+                        <div class="row">
+                            <strong class="col-12">{{ commentaire.user }} </strong>
+                            <span class="col-12 font-italic ">le {{ commentaire.commentAt|date('d F Y à H:i:s') }}</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="my-3">
                     {{ commentaire.comment }}
                 </div>
                 <div>
-                    <button id="like" class="btn btn-outline-success">
-                        <i class="fa fa-thumbs-up"><span class="badge ml-2">0</span></i>
+                    <button id="like" value="{{ article.id }}" class="btn p-1 ">
+                        <i class="fa fa-thumbs-up"><span class="badge ml-2">+0</span></i>
                     </button> &nbsp;
-                    <button id="dislike" class="btn btn-outline-warning">
-                        <i class="fa fa-thumbs-down"><span class="badge ml-2">0</span></i>
+                    <button id="unlike" value="{{ article.id }}" class="btn p-1">
+                        <i class="fa fa-thumbs-down"><span class="badge ml-2">-0</span></i>
                     </button>
                 </div>
                 <hr class="border-bottom border-dark">

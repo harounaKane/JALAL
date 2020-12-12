@@ -75,6 +75,8 @@ class ArticleController extends AbstractController
         if($form->isSubmitted()){
             $commentaire->setCommentAt(new \DateTime());
             $commentaire->setArticle($repo->find($article->getId()));
+            $commentaire->setLikeComment(0);
+            $commentaire->setUnLikeComment(0);
             $this->manager->persist($commentaire);
             $this->manager->flush();
             //REDIRECTION POUR EVITER LA DOUBLE SOUMISSION DU FORMULAIRE

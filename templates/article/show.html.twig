@@ -63,11 +63,11 @@
                     {{ commentaire.comment }}
                 </div>
                 <div>
-                    <button id="like" value="{{ article.id }}" class="btn p-1 ">
-                        <i class="fa fa-thumbs-up"><span class="badge ml-2">+0</span></i>
+                    <button value="{{ commentaire.id }}" class="btn p-1 like">
+                        <i class="fa fa-thumbs-up"><span class="badge ml-2 likeCompt" id="like{{ commentaire.id }}"> +{{ commentaire.likeComment }}</span></i>
                     </button> &nbsp;
-                    <button id="unlike" value="{{ article.id }}" class="btn p-1">
-                        <i class="fa fa-thumbs-down"><span class="badge ml-2">-0</span></i>
+                    <button value="{{ commentaire.id }}" class="btn p-1 unlike">
+                        <i class="fa fa-thumbs-down"><span class="badge ml-2 unlikeCompt" id="unlike{{ commentaire.id }}">-{{ commentaire.unlikeComment }}</span></i>
                     </button>
                 </div>
                 <hr class="border-bottom border-dark">

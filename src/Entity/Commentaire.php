@@ -38,6 +38,16 @@ class Commentaire
      */
     private $comment;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $like_comment;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $unlike_comment;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -87,6 +97,30 @@ class Commentaire
     public function setComment(string $comment): self
     {
         $this->comment = $comment;
+
+        return $this;
+    }
+
+    public function getLikeComment(): ?int
+    {
+        return $this->like_comment;
+    }
+
+    public function setLikeComment(?int $like_comment): self
+    {
+        $this->like_comment = $like_comment;
+
+        return $this;
+    }
+
+    public function getUnlikeComment(): ?int
+    {
+        return $this->unlike_comment;
+    }
+
+    public function setUnlikeComment(?int $unlike_comment): self
+    {
+        $this->unlike_comment = $unlike_comment;
 
         return $this;
     }

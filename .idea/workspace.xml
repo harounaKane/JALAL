@@ -40,7 +40,6 @@
       <change afterPath="$PROJECT_DIR$/../Nouveau dossier/Doc2.docx" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Nouveau dossier/JALAL_TV" afterDir="false" />
       <change afterPath="$PROJECT_DIR$" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/commentaire.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../TUTO/grafick/.idea/grafick.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../TUTO/linkedin_2/.idea/linkedin_2.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../TUTO/linkedin_3/.idea/linkedin_3.iml" afterDir="false" />
@@ -60,13 +59,12 @@
       <change afterPath="$PROJECT_DIR$/../../linkedin/templates/pages/article.html.twig" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../linkedin/templates/pages/articleOne.html.twig" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../pint/.idea/pint.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jalal.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jalal.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/commentaire.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/commentaire.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ArticleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/CommentaireType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/CommentaireType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/CommentaireController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CommentaireController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Commentaire.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Commentaire.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/article/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/show.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
     </list>
@@ -222,7 +220,7 @@
       <workItem from="1607248409950" duration="8107000" />
       <workItem from="1607423154481" duration="2322000" />
       <workItem from="1607611511747" duration="2029000" />
-      <workItem from="1607716697706" duration="11946000" />
+      <workItem from="1607716697706" duration="21118000" />
     </task>
     <servers />
   </component>

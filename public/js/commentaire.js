@@ -1,28 +1,39 @@
 "use strict";
 
 $(document).ready(function() {
-    var btnLike = byId("like");
-    var btnUnLike = byId("unlike");
 
-
-    function byId(id) {
-        return document.getElementById(id);
+    function resultat(data, op, id){
+      $("#"+id).html(op + data)
     }
 
-    $('button').click(function () {
+    //LIKE
+    $('.like').click(function () {
         var id = $(this).attr('value');
-        console.log($(this).attr('id'));
-
+        console.log(this)
         $.ajax({
-            url: "/commentaire/" + id,
+            url: "/likeCommentaire/" + id,
             type: 'GET',
             data: {id: id},
             success: function (res) {
-
-                console.log(res);
-
+                var result = JSON.parse(res);
+                resultat(result, "+", "like"+id);
             }
         });
     })
-});
+
+    //UNLIKE
+    $('.unlike').click(function () {
+        var id = $(this).attr('value');
+        console.log(this)
+        $.ajax({
+            url: "/commentaireUnLike/" + id,
+            type: 'GET',
+            data: {id: id},
+            success: function (res) {
+                var result = JSON.parse(res);
+                resultat(result, "-", "unlike"+id);
+            }
+        });
+    })
+})
 //  //  response(result);       //        var result = JSON.parse(res);

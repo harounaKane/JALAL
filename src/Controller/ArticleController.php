@@ -38,7 +38,7 @@ class ArticleController extends AbstractController
     /**
      * @Route("/article/new", name="article_new", methods={"GET","POST"})
      */
-    public function new(Request $request, UserRepository $repo)
+    public function new(Request $request, UserRepository $repo, ArticleRepository $articleRepository)
     {
         $article = new Article();
         $media = new Media();
@@ -48,12 +48,30 @@ class ArticleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $article->setArtCreatedAt(new \DateTime());
             $article->setUser($repo->idUser($request->getSession()->get('id')) );
+            
+            $image = $form->get('main_image')->getData();
+            
             try {
                 $this->manager->persist($article);
                 $this->manager->flush();
-                
+
+
             }catch (UniqueConstraintViolationException $e){
             }
+//RECUPERATION IMAGE PRINCIPALE : même procédé que celui de Mantcha pour les medias
+            $articleId = $articleRepository->findOneBy([], ['art_created_at' => 'DESC']);
+            $file_name =  $articleId->getId().'main_img' . md5(uniqid()) . '.' . $image->guessExtension();
+            $image->move(
+                $this->getParameter('main_img_directory'),
+                $file_name
+            );
+            $article->setMainImage($file_name);
+            try {
+                $this->manager->persist($article);
+                $this->manager->flush();
+            }catch (UniqueConstraintViolationException $e){
+            }
+
             return $this->redirectToRoute('media_new_image', ['id' => $article->getId()]);
         }
         return $this->render('article/new.html.twig', [

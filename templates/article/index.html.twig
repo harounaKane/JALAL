@@ -7,30 +7,30 @@
         <main class=" col-12 col-md-9">
             <section class="row p-2">
                 <p class="border-bottom border-dark col-12 p-0 h3">Derniers articles publiés</p>
-
-                <div class="mainArticle col-12 mb-3">
+{% if articles %}
+                <div class="mainArticle col-12 mb-4">
                     <article class="">
                         <a href="{{ path('article_show', {'id': lastArticle.id}) }}" class="text-decoration-none text-dark row">
-                            <img class="col-12 p-0" src="{{ asset('images/'~lastArticle.mainImage) }}" alt="{{ lastArticle.mainImage }}">
-                            <h1 class="mainTitle">{{ lastArticle.title }}</h1>
-                            <h2 class="h3">{{ lastArticle.secondaryTitle }}</h2>
+                            <img class="col-12 p-0" src="{{ asset('articles/main_img/'~ lastArticle.mainImage) }}" alt="{{ lastArticle.mainImage }}">
+                            <h1 class="mainTitle col-12 p-0 my-0">{{ lastArticle.title }}</h1>
+                            <h2 class="h3 mt-0">{{ lastArticle.secondaryTitle }}</h2>
                         </a>
                     </article>
                 </div>
 
                 {% for article in articles %}
-                    <div class="otherArticles col-6 mb-3 {{ article.id == lastArticle.id ? 'd-none' }}">
+                    <div class="otherArticles col-6 mb-4 {{ article.id == lastArticle.id ? 'd-none' }}">
                         <article class="">
                             <a href="{{ path('article_show', {'id': article.id}) }}" class="text-decoration-none text-dark row">
-                                <img class="col-12 p-0" src="{{ asset('images/'~article.mainImage) }}" alt="{{ article.mainImage }}">
-                                <h3 class="col-12 p-0">{{ article.title }}</h3>
-                                <h4 class="h5">{{ article.secondaryTitle }}</h4>
+                                <img class="col-12 p-0" src="{{ asset('articles/main_img/'~ article.mainImage) }}" alt="{{ article.mainImage }}">
+                                <h3 class="col-12 p-0 my-0">{{ article.title }}</h3>
+                                <h4 class="h5 mt-0">{{ article.secondaryTitle }}</h4>
                             </a>
                         </article>
                     </div>
                 {% endfor %}
             </section>
-
+{% endif %}
         </main>
 
         <!-- ASIDE -->

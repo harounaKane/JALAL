@@ -31,4 +31,5 @@ Quand on met en place un CRUD toutes les méthodes sont générées. Il ne reste
 
 
 ***( Ida )***
-	/!\ J'ai bien peur qu'il nous faille faire un module Javascript pour que l'utilisateur puisse recadrer l'image principale à l'ajout d'article...
+	Base de données :
+		- utilisateurs : [login1 / motdepasse]  [login2 / motdepasse]

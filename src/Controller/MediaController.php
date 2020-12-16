@@ -27,55 +27,98 @@ class MediaController extends AbstractController
             'lastArticle' => $articleRepository->findOneBy([], ['art_created_at' => 'DESC']),
         ]);
     }
+    // public function dbConnect() {
+    //     $this->db = new \PDO('mysql:host=localhost;dbname=jalal;charset=utf8', "root", "", 
+    //         [
+    //             \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
+    //             \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
+    //         ]);
+    //         return $this->db;
+    // }
+    // public function execRequete($query, array $params = null) {
+    //     $res = $this->dbConnect()->prepare($query);
+    //     if( !empty($params) ){
+    //         foreach ($params as $key => $value) {
+    //             $params[$key] = $value;
+    //         }
+    //     }
+    //     $res->execute($params);
+    //     return $res;
+    // }
 
     /**
      * @Route("/new_image/{id}", name="media_new_image", methods={"GET","POST"})
      */
-    public function new_image(Request $request, Article $article): Response
+    public function new_image(Request $request, Article $article, MediaRepository $mediaRepository): Response
     {
         $medium = new Media();
         $form = $this->createForm(MediaType::class, $medium);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
+  
             $medium->setCreatedAt(new \DateTime());
             $medium->setType('image');
             $medium->setArticle($article);
             $medium->setOrdre('0');
-            
+
             // On récupère les images transmises
             $images = $form->get('nom')->getData();
-            $i = 0;
-            if($i >= 0 && $i < 10){
-                // On boucle sur les images
-                foreach($images as $image){
-                    // On génère un nouveau nom de fichier
-                    $file_name =  $article->getId().'img' . md5(uniqid()) . '.' . $image->guessExtension();
+            
+      
+            // On boucle sur les images
+            foreach($images as $image){
+                // On génère un nouveau nom de fichier
+                $file_name =  $article->getId().'img' . md5(uniqid()) . '.' . $image->guessExtension();
 
-                    // On copie le fichier dans le dossier uploads
-                    $image->move(
-                        $this->getParameter('images_directory'),
-                        $file_name
-                    );
+                // On copie le fichier dans le dossier uploads
+                $image->move(
+                    $this->getParameter('images_directory'),
+                    $file_name
+                );
 
-                    // On stocke l'image dans la base de données (son nom)
-                    
-                    $medium->setNom($file_name);
-                    $article->addMedium($medium);
-                }
+                // On stocke l'image dans la base de données (son nom)
+                
+                $medium->setNom($file_name);
+                $article->addMedium($medium);
+    
+                
             }
-            // else{ }
+            
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($medium);
             $entityManager->flush();
-            return $this->redirectToRoute('media_new_video', ['id' => $article->getId()]);
-        }
+            
 
+            
+            //return $this->redirectToRoute('media_new_video', ['id' => $article->getId()]);
+                         
+        }
+        // L'ordre ne peut pas être donné avant car le media ne possède pas d'id avant la soumission
+        // 
+        if(isset($_POST['reorganisation'])){
+            $all_med_img = $mediaRepository->imageByArticle($article->getId());                       
+            $nb_img = count($all_med_img);
+            for( $i = 0; $i < $nb_img; $i++){
+                $id = $_POST['image_id'][$i];
+                $med_img = $mediaRepository->findOneMedia($id);
+                $med_img[0]->setOrdre($i);
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->flush();
+                // dump($med_img[0]->getOrdre());
+            }
+            // die;
+        }
+        
         return $this->render('media/new_image.html.twig', [
             'medium' => $medium,
+            'article' => $article,
             'form' => $form->createView(),
         ]);
+        
     }
+
+ 
 
     /**
      * @Route("/new_video/{id}", name="media_new_video", methods={"GET","POST"})

@@ -9,6 +9,7 @@ use App\Form\CommentaireType;
 use App\Form\MediaType;
 use App\Repository\ArticleRepository;
 use App\Repository\CommentaireRepository;
+use App\Repository\MediaRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
@@ -83,7 +84,7 @@ class ArticleController extends AbstractController
     /**
      * @Route("/article/{id}", name="article_show", methods={"GET", "POST"})
      */
-    public function show(Request $request, Article $article, ArticleRepository $repo, CommentaireRepository $commentaireRepository): Response
+    public function show(Request $request, Article $article, ArticleRepository $repo, CommentaireRepository $commentaireRepository, MediaRepository $mediaRepository): Response
     {
         $commentaire = new Commentaire();
         $form = $this->createForm(CommentaireType::class, $commentaire);
@@ -104,10 +105,13 @@ class ArticleController extends AbstractController
         //RECUPRATION DES COMMENTAIRE DE L'ARTICLE
         $commentaires = $commentaireRepository->commentByArticle($article->getId());
 
+        $images = $mediaRepository->imageByArticle($article->getId());
+
         return $this->render('article/show.html.twig', [
             'article' => $article,
             'form' => $form->createView(),
             'commentaires' => $commentaires,
+            'images' => $images,
             'aside' => $repo->findBy(['categorie' => $article->getCategorie()], [], 10),
             'last' => $repo->findBy([], ['art_created_at' => 'DESC'], 10)
         ]);

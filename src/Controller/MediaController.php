@@ -27,24 +27,6 @@ class MediaController extends AbstractController
             'lastArticle' => $articleRepository->findOneBy([], ['art_created_at' => 'DESC']),
         ]);
     }
-    // public function dbConnect() {
-    //     $this->db = new \PDO('mysql:host=localhost;dbname=jalal;charset=utf8', "root", "", 
-    //         [
-    //             \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
-    //             \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
-    //         ]);
-    //         return $this->db;
-    // }
-    // public function execRequete($query, array $params = null) {
-    //     $res = $this->dbConnect()->prepare($query);
-    //     if( !empty($params) ){
-    //         foreach ($params as $key => $value) {
-    //             $params[$key] = $value;
-    //         }
-    //     }
-    //     $res->execute($params);
-    //     return $res;
-    // }
 
     /**
      * @Route("/new_image/{id}", name="media_new_image", methods={"GET","POST"})
@@ -102,12 +84,11 @@ class MediaController extends AbstractController
             for( $i = 0; $i < $nb_img; $i++){
                 $id = $_POST['image_id'][$i];
                 $med_img = $mediaRepository->findOneMedia($id);
-                $med_img[0]->setOrdre($i);
+                $med_img[0]->setOrdre($_POST['ordre'][$i]);
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->flush();
-                // dump($med_img[0]->getOrdre());
             }
-            // die;
+            
         }
         
         return $this->render('media/new_image.html.twig', [

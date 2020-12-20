@@ -40,7 +40,9 @@ class MediaRepository extends ServiceEntityRepository
     public function imageByArticle($article_id){
         return $this->createQueryBuilder('m')
             ->andWhere("m.article = :id" )
+            ->andWhere("m.type = :img" )
             ->setParameter("id", $article_id)
+            ->setParameter("img", "image")
             ->getQuery()
             ->getResult()
             ;

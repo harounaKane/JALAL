@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <link rel="shortcut icon" href="{{ asset('images/logo/logo.png') }}">
         <title>{% block title %}Fulbe Info ! {% endblock %}</title>
+        <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.8/semantic.min.css">
@@ -112,7 +113,18 @@
                 btn_ok.addEventListener("click", function(){
                     sortable = new Sortable(document.querySelector('#sort1'));
                     sortable.success = function(results){
-                                    console.log(results);
+                        console.log(results);
+                        for(id in results){
+                            //récupérer la div avec le data.id
+                            //à partir de la div récupérer le input de l'ordre
+                            //attribuer la bonne valeur
+                            input_ordre = document.querySelector('.column[data-id="'+id+'"] .ordre');
+                            input_ordre.value = results[id];
+                            
+                            console.log(input_ordre);
+                            console.log(id);
+                        }
+                                    
                     }
                 });
                   

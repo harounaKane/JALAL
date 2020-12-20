@@ -63,6 +63,7 @@
             <!-- BLOCK COMMENTAIRES  -->
             {% if(commentaires) %}
                 <hr>
+            <div id="div-comment">
             {% for commentaire in commentaires %}
                 <div class="row">
                     <div class="col-2">
@@ -90,6 +91,7 @@
                 </div>
                 <hr class="border-bottom border-dark">
             {% endfor %}
+            </div>
 
             {% endif %}
             <!-- FORM COMMENTAIRES  -->

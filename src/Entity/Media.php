@@ -49,7 +49,7 @@ class Media
 
     /**
      * @ORM\ManyToOne(targetEntity=Article::class, inversedBy="media")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, name="article_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $article;
 

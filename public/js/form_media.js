@@ -40,13 +40,6 @@ var Sortable = function(element, scrollable){
         self.moveItem(e.target, e.target.dataset.position);
         self.sendResults();
     })
-    // .on('hold', function(e){
-    //     if(!e.interaction.interacting()){
-    //         e.interaction.start({
-    //             name: 'drag'
-    //         }, e.interactable, e.currentTarget);
-    //     }
-    // })
 };
 
 Sortable.prototype.setPositions = function(){

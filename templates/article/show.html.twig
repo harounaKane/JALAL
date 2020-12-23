@@ -17,10 +17,29 @@
                 </section>
 
             <!-- BLOCK GALERIE -->
-                <section class="block-galerie bg-secondary my-2 row">
-                    Galerie des médias
+                <section class="block-galerie  my-2 row">
+                   <h1> Galerie des médias </h1>
+                    <div class="diapo-images">
+                        <div class="elements">
+                            {% if(images) %}
+                                <hr>
+                                {% for image in images %}
+                                    <div class="element">
+                                        <img src="{{ asset('articles/galeries/images/' ~ image.nom) }}" height="500px" width="500px">
+                                        <div class="caption">
+                                            <h2>Légende : {{image.legende}}</h2>
+                                            <p>Descriptif: {{image.texte}}</p>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <!-- Flèches de navigation -->
+                        <i id="nav-gauche" class="las la-chevron-left"></i>
+                        <i id="nav-droite" class="las la-chevron-right"></i>
+                    </div>
                 </section>
-
+                
             <!-- BLOCK AUTEUR -->
                 <section class="banner-author bg-info row">
                     <p class="text-white border-bottom m-0 pl-2 col-12"><em>
@@ -28,7 +47,7 @@
                     </em></p>
                     <div class="d-flex">
                         <div class="pl-1">
-                            <img id="avatar-author" class="rounded-circle p-2" src="{{ asset('images/avatars/'~ article.user.avatar) }}" alt="">
+                            <img id="avatar-author" class="rounded-circle p-2" src="{{ asset('images/avatars/'~ article.user.avatar) }}" alt="avatar de l'auteur">
                         </div>
                         <div>
                             <p class="pt-2 mb-0">
@@ -43,8 +62,8 @@
             <!-- BLOCK COMMENTAIRES  -->
             {% if(commentaires) %}
                 <hr>
+            <div id="div-comment">
             {% for commentaire in commentaires %}
-
                 <div class="row">
                     <div class="col-2">
                         <div class="row">
@@ -71,6 +90,7 @@
                 </div>
                 <hr class="border-bottom border-dark">
             {% endfor %}
+            </div>
 
             {% endif %}
             <!-- FORM COMMENTAIRES  -->

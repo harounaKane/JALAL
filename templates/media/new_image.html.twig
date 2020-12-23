@@ -6,8 +6,7 @@
     <h1>Ajouter des images</h1>
 
     {{ include('media/_form.html.twig') }}
-    <button class="btn btn-success" id="btn_image">{{ button_label|default('Save') }}</button>
-    <button class="btn btn-success" id="btn_ok">{{ button_label|default('ok') }}</button>
+    <button class="btn btn-success" id="btn_ok">{{ button_label|default('Modification ordre affichage') }}</button>
     
 <form method="post">
     <div id="global">
@@ -15,18 +14,17 @@
             {% for images in article.media %}
                 <div class="column" data-position='{{loop.index0}}' data-id='{{images.id}}'>
                     <div class="ui fluid card">
-                        <div class="content"><img src="{{ asset('articles/galeries/images/' ~ images.nom) }}" class=" ui image">
+                        <div class="content"><img src="{{ asset('articles/galeries/images/' ~ images.nom) }}" class=" ui image" height="100px">
                         </div>
                     </div>
-                    {# <input type="text" id="ordre"  name="ordre[]"> #}
+                    <input type="hidden" class='ordre' value="{{loop.index0}}"  name="ordre[]">
                     <input type="hidden" value="{{images.id}}" name="image_id[]">
                     
                 </div>
             {% endfor %}
         </div>
     </div>
-
-<button class="btn btn-success" id="btn_reorg" name="reorganisation">{{ button_label|default('reorganisation') }}</button>
+    <button class="btn btn-success" id="btn_reorg" name="reorganisation">{{ button_label|default('Validation ordre affichage') }}</button>
 </form>
     {# <a href="{{ path('media_index') }}">back to list</a> #}
 {% endblock %}

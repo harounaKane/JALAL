@@ -100,4 +100,16 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute("accueil");
     }
+
+    /**
+     * @Route("/user_profil/{id}", name="profil", methods={"GET", "POST"})
+     */
+    public function profilUser(Request $request, User $user, UserRepository $userRepository){
+        
+        return $this->render('user/profil.html.twig', [
+            'controller_name' => 'UserController',
+            'user' => $user,
+        ]);
+    }
+
 }

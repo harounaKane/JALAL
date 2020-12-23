@@ -66,7 +66,7 @@
                 </section>
                 <section class="menu-log pt-2">
                     {% if app.session.get('login') %}
-                        <div><a href=""><i class="fa fa-user h5"></i> &nbsp;Mon Profil ( {{ app.session.get('login') }} )</a></div>
+                        <div><a href="{{ path('profil', {'id': app.session.get('id')}) }}"><i class="fa fa-user h5"></i> &nbsp;Mon Profil ( {{ app.session.get('login') }} )</a></div>
                     {% endif %}
                     <div><a href="{{ app.session.get('login') ? path("deconnexion") : path("connexion") }}"><i class="fa fa-power-off h5"></i>&nbsp; {{ app.session.get('login') ? "Se déconnecter" : "Se connecter" }}</a></div>
                     {% if not app.session.get('login') %}
@@ -86,6 +86,7 @@
         <section>
             {{ "hello world"|filter_name }}
            <div>  {{ function_name() }} </div>
+           <a href="{{ path('profil', {'id': '1'}) }}">login1</a>
         </section>
 
         {% block body %}{% endblock %}

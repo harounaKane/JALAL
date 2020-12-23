@@ -40,16 +40,6 @@
       <change afterPath="$PROJECT_DIR$/../Nouveau dossier/Doc2.docx" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Nouveau dossier/JALAL_TV" afterDir="false" />
       <change afterPath="$PROJECT_DIR$" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/articles/main_img/16main_img1b3510d99c7f28d768900e61c9ac5b98.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/articles/main_img/1main_img1ea550b55821d8f4f631ed4461d53f41.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/articles/main_img/2main_img6f706db3b0998cc9880a2e02c2e236ed.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/articles/main_img/3main_imgea9d295b30de49f8d675f7d634de9579.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/articles/main_img/4main_img8a3422c57d362db03c4fd691327a4d11.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/articles/main_img/5main_img092176fce05b06a132de8f215f9f97b8.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/articles/main_img/6main_img751711b958ba4bbb5df1d65453c02182.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/articles/main_img/7main_img88989e1cf0e80a472a3cb1ca44732584.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/articles/main_img/8main_img8ff3ce905e200228a93e80c2280b54cc.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/articles/main_img/9main_img0493f30d70ac5610edaf8d027ffc13c5.jpeg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../TUTO/grafick/.idea/grafick.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../TUTO/linkedin_2/.idea/linkedin_2.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../TUTO/linkedin_3/.idea/linkedin_3.iml" afterDir="false" />
@@ -69,14 +59,8 @@
       <change afterPath="$PROJECT_DIR$/../../linkedin/templates/pages/article.html.twig" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../linkedin/templates/pages/articleOne.html.twig" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../pint/.idea/pint.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LISTE_TACHES.txt" beforeDir="false" afterPath="$PROJECT_DIR$/LISTE_TACHES.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/jalal.sql" beforeDir="false" afterPath="$PROJECT_DIR$/jalal.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/accueil.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/accueil.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ArticleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/article/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/article/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -232,7 +216,8 @@
       <workItem from="1607611511747" duration="2029000" />
       <workItem from="1607716697706" duration="22959000" />
       <workItem from="1607937458918" duration="874000" />
-      <workItem from="1608065967663" duration="353000" />
+      <workItem from="1608065967663" duration="1420000" />
+      <workItem from="1608315463197" duration="2830000" />
     </task>
     <servers />
   </component>

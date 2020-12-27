@@ -43,6 +43,7 @@ class MediaRepository extends ServiceEntityRepository
             ->andWhere("m.type = :img" )
             ->setParameter("id", $article_id)
             ->setParameter("img", "image")
+            ->orderBy('m.ordre', 'ASC')
             ->getQuery()
             ->getResult()
             ;

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'Mon Profil' }}{% endblock %}
+
+{% block body %}
+<div class="m-0 container-lg m-lg-auto">
+    <section id="profil-user">
+        <div class="d-flex flex-column flex-md-row justify-content-md-between">
+            <div class="mx-auto">
+                <img class="rounded-circle p-2" src="{{ asset('images/avatars/'~ user.avatar) }}" alt="avatar de l'utilisateur">
+            </div>
+            <div class="pl-md-5 text-center text-md-left">
+                <h1 class="h1">Profil de <strong>{{ user.login|capitalize }}</strong></h1>
+                <p class="h3">
+                    <span>{{ user.civility == 'homme' ? '<i class="fa fa-mars"></i>' : '<i class="fa fa-venus"></i>' }}</span> 
+                    {{ user.id == app.session.get('id') ? user.firstName|capitalize ~' '~ user.lastName|capitalize ~' - '~ user.country : ' - '~ user.country }}
+                </p>
+                {% if user.id == app.session.get('id') %}
+                    <p class="h5"><i class="fa fa-envelope"></i> <em>{{ user.mail }}</em></p>
+                {% endif %}
+                <p class="h4"><i class="fa fa-book"></i> {{ user.description }}</p>
+            </div>
+        </div>
+
+    </section>
+    
+    {% if app.session.get('id') and app.session.get('id') == user.id %}
+        <hr>
+        <button id="btn-profil" type="button" class="btn btn-secondary btn-lg btn-block">Modifier les informations</button>
+        <section id="modif-user" class="d-none">
+            <div class="h1 bg-info">FORMULAIRE MODIF PROFIL</div>
+        </section>
+    {% endif %}
+
+</div>
+{% endblock %}

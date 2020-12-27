@@ -8,7 +8,14 @@ function myFunction() {
     }
 }
 
+/* Toggle pour afficher et masquer le formulaire du profil utilisateur */
+$(document).ready(function() {
+    $('#btn-profil').click(function () {
+        $('#modif-user').toggleClass('d-block');
+    });
+})
 
+/* Galerie des médias */
 const diapo_img = document.querySelector(".diapo-images");
 var elements = document.querySelector(".elements");
 var slides = Array.from(elements.children);

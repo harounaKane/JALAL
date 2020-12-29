@@ -55,7 +55,7 @@ function slidePrev(){
     elements.style.transform = `translateX(${decal}px)`;
 }
 
-var timer = setInterval(slideNext, 2000);
+var timer = setInterval(slideNext, 4000);
 
 diapo_img.addEventListener("mouseover", stopTimer);
 diapo_img.addEventListener("mouseout", startTimer);

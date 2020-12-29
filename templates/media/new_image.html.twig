@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Media{% endblock %}
+{% block title %}New Image{% endblock %}
 
 {% block body %}
     <h1>Ajouter des images</h1>
 
     {{ include('media/_form.html.twig') }}
-    <button class="btn btn-success" id="btn_ok">{{ button_label|default('Modification ordre affichage') }}</button>
+    <button class="btn btn-success m-3" id="btn_ok">{{ button_label|default('Modification ordre affichage') }}</button>
     
 <form method="post">
     <div id="global">
@@ -14,7 +14,10 @@
             {% for images in article.media %}
                 <div class="column" data-position='{{loop.index0}}' data-id='{{images.id}}'>
                     <div class="ui fluid card">
-                        <div class="content"><img src="{{ asset('articles/galeries/images/' ~ images.nom) }}" class=" ui image" height="100px">
+                        <div class="content">
+                            <img src="{{ asset('articles/galeries/images/' ~ images.nom) }}" class=" ui image" height="100px" width="150px">
+                            <p><a href="{{ path('media_edit', {'id' : images.id}) }}"><i class="las la-edit"></i></a></p>
+                            <p><a href="{{ path('media_delete', {'id' : images.id}) }}"><i class="las la-times"></i></a></p>
                         </div>
                     </div>
                     <input type="hidden" class='ordre' value="{{loop.index0}}"  name="ordre[]">
@@ -24,7 +27,7 @@
             {% endfor %}
         </div>
     </div>
-    <button class="btn btn-success" id="btn_reorg" name="reorganisation">{{ button_label|default('Validation ordre affichage') }}</button>
+    <button class="btn btn-success m-3" id="btn_reorg" name="reorganisation">{{ button_label|default('Validation ordre affichage') }}</button>
 </form>
     {# <a href="{{ path('media_index') }}">back to list</a> #}
 {% endblock %}

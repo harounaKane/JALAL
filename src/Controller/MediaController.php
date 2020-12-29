@@ -28,6 +28,8 @@ class MediaController extends AbstractController
         ]);
     }
 
+//----------------CREATIONS---------------- 
+
     /**
      * @Route("/new_image/{id}", name="media_new_image", methods={"GET","POST"})
      */
@@ -46,13 +48,10 @@ class MediaController extends AbstractController
 
             // On récupère les images transmises
             $images = $form->get('nom')->getData();
-            
-      
             // On boucle sur les images
             foreach($images as $image){
                 // On génère un nouveau nom de fichier
                 $file_name =  $article->getId().'img' . md5(uniqid()) . '.' . $image->guessExtension();
-
                 // On copie le fichier dans le dossier uploads
                 $image->move(
                     $this->getParameter('images_directory'),
@@ -98,9 +97,7 @@ class MediaController extends AbstractController
         ]);
         
     }
-
- 
-
+    
     /**
      * @Route("/new_video/{id}", name="media_new_video", methods={"GET","POST"})
      */
@@ -155,6 +152,60 @@ class MediaController extends AbstractController
         ]);
     }   
 
+//----------------MODIFICATIONS----------------    
+    /**
+     * @Route("/edit_image/{id}", name="media_edit", methods={"GET","POST"})
+     */
+    public function edit(Request $request, Media $medium,  MediaRepository $mediaRepository): Response
+    {
+        $form = $this->createForm(MediaType::class, $medium);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $article = $medium->getArticle();
+            if($medium->getType() == 'image'){
+                // On récupère les images transmises
+                $images = $form->get('nom')->getData();
+                foreach($images as $image){
+                    $file_name =  $medium->getArticle()->getId().'img' . md5(uniqid()) . '.' . $image->guessExtension();
+                    $image->move(
+                        $this->getParameter('images_directory'),
+                        $file_name
+                    );
+                    $medium->setNom($file_name);
+                    $article->addMedium($medium);
+                }
+                $this->getDoctrine()->getManager()->flush();
+
+                return $this->redirectToRoute('media_new_image', ['id' => $article->getId()]);
+            }
+        }
+
+        return $this->render('media/edit.html.twig', [
+            'medium' => $medium,
+            'form' => $form->createView(),
+        ]);
+    }
+//----------------SUPPRESSIONS---------------- 
+    /**
+     * @Route("/{id}", name="media_delete", methods={"DELETE"})
+     */
+    public function delete(Request $request, Media $medium): Response
+    {
+        if($medium->getType() == 'image'){
+            if ($this->isCsrfTokenValid('delete'.$medium->getId(), $request->request->get('_token'))) {
+                $article = $medium->getArticle();
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->remove($medium);
+                $entityManager->flush();
+            }
+
+            return $this->redirectToRoute('media_new_image', ['id' => $article->getId()]);
+        }
+    }
+
+//----------------AFFICHAGES----------------  
+
     /**
      * @Route("/{id}", name="media_show", methods={"GET"})
      */
@@ -163,39 +214,5 @@ class MediaController extends AbstractController
         return $this->render('media/show.html.twig', [
             'medium' => $medium,
         ]);
-    }
-
-    /**
-     * @Route("/{id}/edit", name="media_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, Media $medium): Response
-    {
-        $form = $this->createForm(MediaType::class, $medium);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('media_index');
-        }
-
-        return $this->render('media/edit.html.twig', [
-            'medium' => $medium,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="media_delete", methods={"DELETE"})
-     */
-    public function delete(Request $request, Media $medium): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$medium->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($medium);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('media_index');
-    }
+    }  
 }

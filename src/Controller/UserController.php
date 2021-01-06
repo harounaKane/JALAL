@@ -104,11 +104,25 @@ class UserController extends AbstractController
     /**
      * @Route("/user_profil/{id}", name="profil", methods={"GET", "POST"})
      */
-    public function profilUser(Request $request, User $user, UserRepository $userRepository){
-        
+    public function profilUser(Request $request, User $user, UserRepository $userRepository)
+    {
+        $user->setAvatar(NULL);
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user->setPassword(password_hash($user->getPassword(), PASSWORD_DEFAULT));
+            try {
+                $this->manager->persist($user);
+                $this->manager->flush();
+            }catch (UniqueConstraintViolationException $e){
+            }
+            return $this->redirectToRoute('profil', ['id'=> $user->getId()]);
+        }
+
         return $this->render('user/profil.html.twig', [
-            'controller_name' => 'UserController',
             'user' => $user,
+            'form' => $form->createView(),
         ]);
     }
 

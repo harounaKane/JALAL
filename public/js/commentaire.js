@@ -44,7 +44,6 @@ $(document).ready(function() {
         /* 
             (?) Obligation d'insérer le html du commentaire en JS ?
             Affichage des commentaires avec append()
-
         */
         if (pseudo != '' && commentaire != '') {
             $.ajax({

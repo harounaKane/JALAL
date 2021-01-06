@@ -21,7 +21,6 @@
                 <p class="h4"><i class="fa fa-book"></i> {{ user.description }}</p>
             </div>
         </div>
-
     </section>
     
     {% if app.session.get('id') and app.session.get('id') == user.id %}
@@ -29,6 +28,11 @@
         <button id="btn-profil" type="button" class="btn btn-secondary btn-lg btn-block">Modifier les informations</button>
         <section id="modif-user" class="d-none">
             <div class="h1 bg-info">FORMULAIRE MODIF PROFIL</div>
+            <section class="d-block mx-5 p-3 bg-info">
+                {{ form_start(form) }}
+                    {{ include('user/paysResidence.html.twig') }}
+                {{ form_end(form) }}
+            </section>
         </section>
     {% endif %}
 

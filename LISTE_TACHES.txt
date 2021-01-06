@@ -8,7 +8,7 @@ TRUCS A FAIRE --------------
 	- ajout des médias (...)
 	- ruban des catégories
 	- TESTS couleur(s) du site
-	- 
+	- Colonne "actif/inacatif" dans "user"
 
 
 TRUCS A CORRIGER (AKA "j'y arrive pas") -------------

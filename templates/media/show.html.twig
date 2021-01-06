@@ -40,7 +40,13 @@
 
     <a href="{{ path('media_index') }}">back to list</a>
 
-    <a href="{{ path('media_edit', {'id': medium.id}) }}">edit</a>
-
-    {{ include('media/_delete_form.html.twig') }}
+    
+    {% if medium.type == 'image' %}
+        <a href="{{ path('media_edit', {'id': medium.id}) }}">edit image</a>
+    {% elseif medium.type == 'video' %}
+        <a href="{{ path('media_edit', {'id': medium.id}) }}">edit video</a>
+    {% elseif medium.type == 'audio' %}
+        <a href="{{ path('media_edit', {'id': medium.id}) }}">edit audio</a>
+    {% endif %}
+    {{ include('media/_delete_form.html.twig') }} 
 {% endblock %}

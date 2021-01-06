@@ -22,7 +22,6 @@
                     <div class="diapo-images">
                         <div class="elements">
                             {% if(images) %}
-                                <hr>
                                 {% for image in images %}
                                     <div class="element">
                                         <img src="{{ asset('articles/galeries/images/' ~ image.nom) }}" height="500px" width="500px">
@@ -37,6 +36,27 @@
                         <!-- Flèches de navigation -->
                         <i id="nav-gauche" class="las la-chevron-left"></i>
                         <i id="nav-droite" class="las la-chevron-right"></i>
+                    </div>
+                    <div class="diapo-audios">
+                        {# {% if(audios) %}
+                            {% for audio in audios %} #}
+                                <div class="">
+                                    <h1>audio</h1>
+                                    <audio controls>
+                                        <source src="asset('articles/galeries/audios/daniel-powter-bad-day-lyrics.mp3" type="audio/mpeg">
+                                        <source src="asset('articles/galeries/audios/daniel-powter-bad-day-lyrics.ogg" type="audio/ogg">
+                                        Your browser does not support the audio element.
+                                    </audio>
+                                    <div class="">
+                                        {# <h2>Légende : {{audio.legende}}</h2>
+                                        <p>Descriptif: {{audio.texte}}</p> #}
+                                    </div>
+                                </div>
+                            {# {% endfor %}
+                        {% endif %} #}
+                    </div>
+                    <div class="diapo-videos">
+
                     </div>
                 </section>
                 

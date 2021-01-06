@@ -31,7 +31,7 @@
                 <td>{{ medium.createdAt ? medium.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('media_show', {'id': medium.id}) }}">show</a>
-                    <a href="{{ path('media_edit', {'id': medium.id}) }}">edit</a>
+                    <a href="{{ path('media_edit_image', {'id': medium.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

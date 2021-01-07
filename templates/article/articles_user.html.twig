@@ -29,9 +29,10 @@
                         <td>{{article.categorie.designation}}</td>
                         <td>{{article.artCreatedAt|date('d-m-Y')}}</td>
                         <td>
-                        {# {% for media in medias %}
-                            {{ article.id == media.article ? '<i class="fa fa-check"></i>' : '<i class="fa fa-times"></i>'}}
-                        {% endfor %} #}
+                         {% for media in medias %}
+{#                             {{ article.id }}#}
+                            {{ article.id == media.article.id ? '<i class="fa fa-check"></i>' : '<i class="fa fa-times"></i>'}}
+                        {% endfor %}
                         </td>
                         <td>{{article.title}}</td>
                         <td><a href=""><i class="fa fa-edit fa-2x text-success"></i></a></td>

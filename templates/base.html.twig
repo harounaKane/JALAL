@@ -125,20 +125,20 @@
                             console.log(input_ordre);
                             console.log(id);
                         }
-                                    
                     }
                 });
                   
                       
             </script>       
-            {# <script>
+             <script>
+                 //PERMET D'AFFICHER LE NOM DU FILE DANS LE CHAMP INPUT
                 $(document).ready(function(){
                     $(document).on('change', '.custom-file-input', function () {
                         let fileName = $(this).val().replace(/\\/g, '/').replace(/.*\//, '');
                         $(this).parent('.custom-file').find('.custom-file-label').text(fileName);
                     });
                 })
-            </script> #}
+            </script>
 
         {% endblock %}
     </body>

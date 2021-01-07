@@ -117,6 +117,16 @@ class ArticleController extends AbstractController
         ]);
     }
     /**
+     * @Route("/article/{id}/articles_user", name="articles_user", methods={"GET","POST"})
+     */
+    public function articles_user(Request $request, Article $article, ArticleRepository $repo, MediaRepository $mediaRepository, User $user)
+    {
+        return $this->render('article/articles_user.html.twig', [
+            'articles' => $repo->findBy(['user' => $user->getId()], ['art_created_at' => 'DESC']),
+            'medias' => $mediaRepository->findAll(),
+        ]);
+    }
+    /**
      * @Route("/article/{id}/edit", name="article_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Article $article)

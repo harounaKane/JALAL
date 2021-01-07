@@ -62,7 +62,7 @@
                 <section class="menu-author border-bottom border-secondary pb-2">
                     <p class="mb-0"><i class="fa fa-pencil"></i> Espace Auteur</p>
                     <div><a href="{{ path("article_new") }}">Créer un Article</a></div>
-                    <div><a href="">Voir mes Articles</a></div>
+                    <div><a href="{{ path('articles_user', {'id': app.session.get('id')}) }}">Voir mes Articles</a></div>
                 </section>
                 <section class="menu-log pt-2">
                     {% if app.session.get('login') %}

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Redirection media{% endblock %}
+
+{% block body %}
+
+    <div>
+        <p>Votre article a bien été ajouté !</p>
+        <p>Souhaitez-vous ajouter des médias pour illustrer votre article ?</p>
+        
+        <div>
+            {# <button class="accordion-regle"><h3> aaaaa </h3></button>
+            <div class="panel-regle"><p>bbbbbbbbbb</p></div> #}
+            <p>Oui je souhaite ajouter des medias</p>
+            <a href="{{ path('media_new_image', {'id' : article.id} ) }}">Je veux ajouter des images</a>
+            <hr>
+            <a href="{{ path('media_new_audio', {'id' : article.id} ) }}">Je veux ajouter des audios</a>
+            <hr>
+            <a href="{{ path('media_new_video', {'id' : article.id} ) }}">Je veux ajouter des vidéos</a> 
+        </div>  
+        
+        <div>
+            <p>Flemme</p>
+            <a href="{{ path('article_show', {'id' : article.id} ) }}">Voir l'article</a>
+        </div>          
+    </div>
+
+{% endblock %}

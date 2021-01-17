@@ -11,6 +11,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\IsTrue;
+use Symfony\Component\Validator\Constraints\IsTrueValidator;
+use Symfony\Component\Validator\Constraints\IsFalse;
+use Symfony\Component\Validator\Constraints\IsFalseValidator;
 
 /**
  * @Route("/media")
@@ -27,7 +31,16 @@ class MediaController extends AbstractController
             'lastArticle' => $articleRepository->findOneBy([], ['art_created_at' => 'DESC']),
         ]);
     }
-
+//----------------REDIRECTION---------------- 
+   /**
+     * @Route("/media_redirect/{id}", name="media_redirect", methods={"GET","POST"})
+     */
+    public function redirection_media(Request $request, Article $article): Response
+    {
+        return $this->render('media/redirect_med.html.twig', [
+            'article' => $article
+        ]);
+    }
 //----------------CREATIONS---------------- 
 
     /**
@@ -108,19 +121,51 @@ class MediaController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
             $medium->setCreatedAt(new \DateTime());
             $medium->setType('video');
             $medium->setArticle($article);
             $medium->setOrdre('0');
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($medium);
-            $entityManager->flush();
-            return $this->redirectToRoute('media_new_audio', ['id' => $article->getId()]);
+            if(!($form->get('nom')->isEmpty()) && ($form->get('url')->isEmpty()) ){
+                $videos = $form->get('nom')->getData();
+                foreach($videos as $video){
+                    $medium->setUrl('fichier');
+                    $file_name =  $article->getId().'vid' . md5(uniqid()) . '.' . $video->guessExtension();
+
+                    $video->move(
+                        $this->getParameter('videos_directory'),
+                        $file_name
+                    );
+                    $medium->setNom($file_name);
+                    $article->addMedium($medium);
+                }
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($medium);
+                $entityManager->flush();
+            }
+            elseif(!($form->get('url')->isEmpty()) && ($form->get('nom')->isEmpty()) ) {
+                $medium->setNom('url');
+                $video = $form->get('url')->getData();
+                
+                    $file_name =  substr($form->get('url')->getData(), 32 );
+                    
+                    $medium->setUrl($file_name);
+                    $article->addMedium($medium);
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $entityManager->persist($medium);
+                    $entityManager->flush();
+                
+            }
+
+            
+            
+            // return $this->redirectToRoute('media_new_audio', ['id' => $article->getId()]);
         }
 
         return $this->render('media/new_video.html.twig', [
             'medium' => $medium,
+            'article' => $article,
             'form' => $form->createView(),
         ]);
     }  
@@ -139,15 +184,29 @@ class MediaController extends AbstractController
             $medium->setType('audio');
             $medium->setArticle($article);
             $medium->setOrdre('0');
+            
+            $audios = $form->get('nom')->getData();
+            
+            foreach($audios as $audio){
+                $file_name =  $article->getId().'aud' . md5(uniqid()) . '.' . $audio->guessExtension();
+
+                $audio->move(
+                    $this->getParameter('audios_directory'),
+                    $file_name
+                );
+                $medium->setNom($file_name);
+                $article->addMedium($medium);
+            }            
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($medium);
             $entityManager->flush();
-            return $this->redirectToRoute('media_index');
+            // return $this->redirectToRoute('media_index');
         }
 
         return $this->render('media/new_audio.html.twig', [
             'medium' => $medium,
+            'article' => $article,
             'form' => $form->createView(),
         ]);
     }   

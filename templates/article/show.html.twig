@@ -38,25 +38,37 @@
                         <i id="nav-droite" class="las la-chevron-right"></i>
                     </div>
                     <div class="diapo-audios">
-                        {# {% if(audios) %}
-                            {% for audio in audios %} #}
+                        {% if(audios) %}
+                            {% for audio in audios %}
                                 <div class="">
                                     <h1>audio</h1>
                                     <audio controls>
-                                        <source src="asset('articles/galeries/audios/daniel-powter-bad-day-lyrics.mp3" type="audio/mpeg">
-                                        <source src="asset('articles/galeries/audios/daniel-powter-bad-day-lyrics.ogg" type="audio/ogg">
+                                        <source src="{{ asset('articles/galeries/audios/' ~ audio.nom) }}" type="audio/mpeg">
+                                        <source src="{{ asset('articles/galeries/audios/' ~ audio.nom) }}" type="audio/ogg">
                                         Your browser does not support the audio element.
-                                    </audio>
+                                    </audio>                                    
+                                    
                                     <div class="">
-                                        {# <h2>Légende : {{audio.legende}}</h2>
-                                        <p>Descriptif: {{audio.texte}}</p> #}
+                                        <h2>Légende : {{audio.legende}}</h2>
+                                        <p>Descriptif: {{audio.texte}}</p>
                                     </div>
                                 </div>
-                            {# {% endfor %}
-                        {% endif %} #}
+                            {% endfor %}
+                        {% endif %}
                     </div>
                     <div class="diapo-videos">
-
+                        {% if(videos_url) %}
+                            {% for video_url in videos_url %}                    
+                                <iframe width="500" height="300" src="https://www.youtube.com/embed/{{video_url.url}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                                </iframe>
+                            {% endfor %}
+                        {% endif %}
+                        {# {% if(videos_fichier) %}
+                            {% for video_fichier in videos_fichier %}                    
+                                <iframe width="500" height="300" src="https://www.youtube.com/embed/{{video_url.url}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                                </iframe>
+                            {% endfor %}
+                        {% endif %}                        #}
                     </div>
                 </section>
                 

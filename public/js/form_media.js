@@ -205,6 +205,24 @@ function previewImage(v) {
 
 }
 
+var accRegle = document.getElementsByClassName("accordion-regle");
+console.log(accRegle);
+
+
+    
+    accRegle.addEventListener("click", function() {
+        console.log("o");
+        // this.classList.toggle("activeRegle");
+        
+        // var panel = this.nextElementSibling;
+        // if (panel.style.maxHeight) {
+        //   panel.style.maxHeight = null;
+        // } else {
+        //   panel.style.maxHeight = panel.scrollHeight + "px";
+        // } 
+  });
+
+
 //-----------------------
 // function resetFields(){
 //     //nom_input.value = null; // réinitialiser le champ "file"

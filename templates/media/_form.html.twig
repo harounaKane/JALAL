@@ -7,7 +7,10 @@
             {{ form_widget(form.nom, {'attr': {'class': 'test'}}) }}
             {{ form_errors(form.nom) }}
          
-        
+            {{ form_label(form.url) }}
+            {{ form_widget(form.url, {'attr': {'class': 'test'}}) }}
+            {{ form_errors(form.url) }}
+
             {{ form_label(form.legende) }}
             {{ form_widget(form.legende, {'attr': {'class': 'test'}})}}
             {{ form_errors(form.legende) }}

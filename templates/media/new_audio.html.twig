@@ -6,6 +6,16 @@
     <h1>Ajouter des audios</h1>
 
     {{ include('media/_form.html.twig') }}
-
+        <div>
+            <p>Souhaitez-vous ajouter d'autres types de médias</p>
+            <a href="{{ path('media_new_image', {'id' : article.id} ) }}">Je veux ajouter des images</a>
+            <hr>
+            <a href="{{ path('media_new_video', {'id' : article.id} ) }}">Je veux ajouter des vidéos</a> 
+        </div>  
+        
+        <div>
+            <p>Flemme</p>
+            <a href="{{ path('article_show', {'id' : article.id} ) }}">Voir l'article</a>
+        </div> 
     <a href="{{ path('media_index') }}">back to list</a>
 {% endblock %}

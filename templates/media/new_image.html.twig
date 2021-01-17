@@ -29,6 +29,16 @@
     </div>
     <button class="btn btn-success m-3" id="btn_reorg" name="reorganisation">{{ button_label|default('Validation ordre affichage') }}</button>
 </form>
-
+        <div>
+            <p>Souhaitez-vous ajouter d'autres types de médias</p>
+            <a href="{{ path('media_new_audio', {'id' : article.id} ) }}">Je veux ajouter des audios</a>
+            <hr>
+            <a href="{{ path('media_new_video', {'id' : article.id} ) }}">Je veux ajouter des vidéos</a> 
+        </div>  
+        
+        <div>
+            <p>Flemme</p>
+            <a href="{{ path('article_show', {'id' : article.id} ) }}">Voir l'article</a>
+        </div> 
     {# <a href="{{ path('media_index') }}">back to list</a> #}
 {% endblock %}

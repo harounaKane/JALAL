@@ -48,6 +48,43 @@ class MediaRepository extends ServiceEntityRepository
             ->getResult()
             ;
     }
+    public function audioByArticle($article_id){
+        return $this->createQueryBuilder('m')
+            ->andWhere("m.article = :id" )
+            ->andWhere("m.type = :aud" )
+            ->setParameter("id", $article_id)
+            ->setParameter("aud", "audio")
+            ->orderBy('m.ordre', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    } 
+    public function videoUrlByArticle($article_id){
+        return $this->createQueryBuilder('m')
+            ->andWhere("m.article = :id" )
+            ->andWhere("m.type = :vid" )
+            ->andWhere("m.nom = :nom" )
+            ->setParameter("id", $article_id)
+            ->setParameter("vid", "video")
+            ->setParameter("nom", "url")
+            ->orderBy('m.ordre', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }  
+    public function videoFichierByArticle($article_id){
+        return $this->createQueryBuilder('m')
+            ->andWhere("m.article = :id" )
+            ->andWhere("m.type = :vid" )
+            ->andWhere("m.url = :url" )
+            ->setParameter("id", $article_id)
+            ->setParameter("vid", "video")
+            ->setParameter("url", "fichier")
+            ->orderBy('m.ordre', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }        
     public function findOneMedia($media_id){
         return $this->createQueryBuilder('m')
             ->andWhere("m.id = :id" )

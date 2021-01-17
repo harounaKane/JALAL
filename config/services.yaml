@@ -6,7 +6,7 @@
 parameters:
     images_directory: '%kernel.project_dir%/public/articles/galeries/images'
     videos_directory: '%kernel.project_dir%/public/articles/galeries/videos'
-    audios_directory: '%kernel.project_dir%/public/articles/galleries/audios'
+    audios_directory: '%kernel.project_dir%/public/articles/galeries/audios'
     main_img_directory: '%kernel.project_dir%/public/articles/main_img'
 services:
     # default configuration for services in *this* file

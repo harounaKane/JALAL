@@ -21,7 +21,12 @@ class Media
      * @ORM\Column(type="string", length=100)
      */
     private $nom;
-
+//------------------------------------------------
+    /**
+     * @ORM\Column(type="string", length=500)
+     */
+    private $url;
+//------------------------------------------------
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -66,6 +71,18 @@ class Media
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getUrl(): ?string
+    {
+        return $this->url;
+    }
+
+    public function setUrl(string $url): self
+    {
+        $this->url = $url;
 
         return $this;
     }

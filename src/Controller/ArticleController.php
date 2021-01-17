@@ -73,7 +73,7 @@ class ArticleController extends AbstractController
             }catch (UniqueConstraintViolationException $e){
             }
 
-            return $this->redirectToRoute('media_new_image', ['id' => $article->getId()]);
+            return $this->redirectToRoute('media_redirect', ['id' => $article->getId()]);
         }
         return $this->render('article/new.html.twig', [
             'article' => $article,
@@ -106,12 +106,18 @@ class ArticleController extends AbstractController
         $commentaires = $commentaireRepository->commentByArticle($article->getId());
 
         $images = $mediaRepository->imageByArticle($article->getId());
+        $audios = $mediaRepository->audioByArticle($article->getId());
+        $videos_url = $mediaRepository->videoUrlByArticle($article->getId());
+        $videos_fichier = $mediaRepository->videoFichierByArticle($article->getId());
 
         return $this->render('article/show.html.twig', [
             'article' => $article,
             'form' => $form->createView(),
             'commentaires' => $commentaires,
             'images' => $images,
+            'audios' => $audios,
+            'videos_url' => $videos_url,
+            'videos_fichier' => $videos_fichier,
             'aside' => $repo->findBy(['categorie' => $article->getCategorie()], [], 10),
             'last' => $repo->findBy([], ['art_created_at' => 'DESC'], 10)
         ]);

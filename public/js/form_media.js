@@ -1,6 +1,6 @@
 let form_mediaElt = document.querySelector(".formMediaTest");
 
-if(form_mediaElt){
+//if(form_mediaElt){
     var Sortable = function(element, scrollable){
         var self = this;
         if(scrollable == null){
@@ -307,4 +307,4 @@ if(form_mediaElt){
 //     });
 // });
 
-}
+//}

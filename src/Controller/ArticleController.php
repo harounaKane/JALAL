@@ -86,6 +86,7 @@ class ArticleController extends AbstractController
      */
     public function show(Request $request, Article $article, ArticleRepository $repo, CommentaireRepository $commentaireRepository, MediaRepository $mediaRepository): Response
     {
+        //dd($article);
         $commentaire = new Commentaire();
         $form = $this->createForm(CommentaireType::class, $commentaire);
 

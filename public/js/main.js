@@ -1,3 +1,23 @@
+
+    /* Toggle pour afficher et masquer le formulaire du profil utilisateur */
+    $(document).ready(function() {
+        $('#btn-profil').click(function () {
+            $('#modif-user').toggleClass('d-block');
+        });
+    })
+
+
+
+    /* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
+    function myFunction() {
+        var x = document.getElementById("myLinks");
+        if (x.style.display === "flex") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "flex";
+        }
+    }
+
 /* Galerie des médias */
 const diapo_img = document.querySelector(".diapo-images");
 
@@ -19,24 +39,6 @@ if(diapo_img){
     next.addEventListener("click", slideNext);
     prev.addEventListener("click", slidePrev);
 
-    /* Toggle pour afficher et masquer le formulaire du profil utilisateur */
-    $(document).ready(function() {
-        $('#btn-profil').click(function () {
-            $('#modif-user').toggleClass('d-block');
-        });
-    })
-
-
-
-    /* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */
-    function myFunction() {
-        var x = document.getElementById("myLinks");
-        if (x.style.display === "flex") {
-            x.style.display = "none";
-        } else {
-            x.style.display = "flex";
-        }
-    }
 
     function slideNext(){
         // On incrémente le compteur

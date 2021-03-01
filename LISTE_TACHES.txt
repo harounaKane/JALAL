@@ -11,6 +11,8 @@ TRUCS A FAIRE --------------
 
 	- Colonne "actif/inacatif" dans "user"
 
+	- ajout commentaire : si user connecté, récupérer pseudo (+avtr)
+
 
 TRUCS A CORRIGER (AKA "j'y arrive pas") -------------
 	- le (else) du "aside" de la page article, dans le cas où il est seul dans sa catégorie, ne marche pas

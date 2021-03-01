@@ -39,7 +39,6 @@ if(diapo_img){
     next.addEventListener("click", slideNext);
     prev.addEventListener("click", slidePrev);
 
-
     function slideNext(){
         // On incrémente le compteur
         compteur++;

@@ -77,6 +77,14 @@ footer img{
     color: #ed1c24;
 }
 
+/*ligne vertical: like & unlike*/
+.VerticalLine{
+    border-left: 2px solid #587d38;
+    margin-right: 4px;
+    margin-left: -4px;
+}
+
+
 /*--- DIVERS ---*/
 .main-img {
     width: 4em;

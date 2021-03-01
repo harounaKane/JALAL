@@ -18,12 +18,16 @@ class CommentaireController extends AbstractController
         $manager = $this->getDoctrine()->getManager();
         $commentaire = $manager->getRepository(Commentaire::class)->find($id);
 
-        if($commentaire){
+        if($commentaire && $request->isXmlHttpRequest()){
             $commentaire->setLikeComment( $commentaire->getLikeComment() + 1 );
             $manager->flush();
             $arrData = [$commentaire->getLikeComment()];
             return new JsonResponse($arrData);
         }
+
+//        return $this->redirectToRoute('article_show', ['id' => $commentaire->getArticle()->getId()]);
+        //retour à la page si != requette ajax
+        return $this->redirect($this->generateUrl("article_show", ["id" => $commentaire->getArticle()->getId()]));
 
         //throw $this->createNotFoundException("pas de commentaire pour ");
     }
@@ -35,14 +39,14 @@ class CommentaireController extends AbstractController
         $manager = $this->getDoctrine()->getManager();
         $commentaire = $manager->getRepository(Commentaire::class)->find($id);
 
-        if($commentaire){
+        if($commentaire && $request->isXmlHttpRequest()){
             $commentaire->setUnLikeComment( $commentaire->getUnLikeComment() + 1 );
             $manager->flush();
             $arrData = [$commentaire->getUnLikeComment()];
             return new JsonResponse($arrData);
-        }
+        }//retour à la page si != requette ajax
+        return $this->redirect($this->generateUrl("article_show", ["id" => $commentaire->getArticle()->getId()]));
 
-        //throw $this->createNotFoundException("pas de commentaire pour ");
     }
 
 

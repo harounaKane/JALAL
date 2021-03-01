@@ -83,11 +83,6 @@
             {% endfor %}
         </section>
 
-        <section>
-            {{ "hello world"|filter_name }}
-           <div>  {{ function_name() }} </div>
-           <a href="{{ path('profil', {'id': '1'}) }}">login1</a>
-        </section>
 
         {% block body %}{% endblock %}
         <footer  class="d-flex flex-column flex-md-row justify-content-around p-3 mt-5 bg-info">
@@ -111,24 +106,26 @@
             <script src="{{ asset('js/form_media.js') }}"></script>
             <script src="{{ asset('js/commentaire.js') }}"></script>
             <script>
-                btn_ok.addEventListener("click", function(){
-                    sortable = new Sortable(document.querySelector('#sort1'));
-                    sortable.success = function(results){
-                        console.log(results);
-                        for(id in results){
-                            //récupérer la div avec le data.id
-                            //à partir de la div récupérer le input de l'ordre
-                            //attribuer la bonne valeur
-                            input_ordre = document.querySelector('.column[data-id="'+id+'"] .ordre');
-                            input_ordre.value = results[id];
-                            
-                            console.log(input_ordre);
-                            console.log(id);
+                btn_ok = document.getElementById('btn_ok');
+                if(btn_ok){
+                    btn_ok.addEventListener("click", function(){
+                        sortable = new Sortable(document.querySelector('#sort1'));
+                        sortable.success = function(results){
+                            console.log(results);
+                            for(id in results){
+                                //récupérer la div avec le data.id
+                                //à partir de la div récupérer le input de l'ordre
+                                //attribuer la bonne valeur
+                                input_ordre = document.querySelector('.column[data-id="'+id+'"] .ordre');
+                                input_ordre.value = results[id];
+
+                                console.log(input_ordre);
+                                console.log(id);
+                            }
                         }
-                    }
-                });
-                  
-                      
+                    });
+
+                }
             </script>       
              <script>
                  //PERMET D'AFFICHER LE NOM DU FILE DANS LE CHAMP INPUT

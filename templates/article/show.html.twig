@@ -115,7 +115,8 @@
                 <div>
                     <button value="{{ commentaire.id }}" class="btn p-1 like">
                         <i class="fa fa-thumbs-up"><span class="badge ml-2 likeCompt" id="like{{ commentaire.id }}"> +{{ commentaire.likeComment }}</span></i>
-                    </button> &nbsp;
+                    </button>
+                    <span class="VerticalLine"></span>
                     <button value="{{ commentaire.id }}" class="btn p-1 unlike">
                         <i class="fa fa-thumbs-down"><span class="badge ml-2 unlikeCompt" id="unlike{{ commentaire.id }}">-{{ commentaire.unlikeComment }}</span></i>
                     </button>

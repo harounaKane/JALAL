@@ -9,14 +9,16 @@ $(document).ready(function() {
     //LIKE
     $('.like').click(function () {
         var id = $(this).attr('value');
-        console.log(this)
+
         $.ajax({
             url: "/likeCommentaire/" + id,
             type: 'GET',
             data: {id: id},
             success: function (res) {
+                console.log(res)
                 var result = JSON.parse(res);
                 resultat(result, "+", "like"+id);
+                console.log(result)
             }
         });
     })

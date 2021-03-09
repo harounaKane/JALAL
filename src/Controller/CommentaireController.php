@@ -3,6 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Commentaire;
+use App\Entity\Article;
+use App\Form\CommentaireType;
+use App\Repository\CommentaireRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,6 +13,13 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class CommentaireController extends AbstractController
 {
+    /**
+     * @Route("/addCommentaire/{idArt}", name="addCommentaire", methods={"GET","POST"})
+     */
+    public function addCommentaire(Request $request, $idArt)
+    {
+
+    }
     /**
      * @Route("/likeCommentaire/{id}", name="likeCommentaire", methods={"GET","POST"})
      */

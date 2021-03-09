@@ -40,25 +40,8 @@ $(document).ready(function() {
 
     //POST
     $('#commentaire_Poster').submit(function () {
-        console.log('bidule');
-        var pseudo = $('#commentaire_user').val();
-        var commentaire = $('#commentaire_comment').val();
-        /* 
-            (?) Obligation d'insérer le html du commentaire en JS ?
-            Affichage des commentaires avec append()
-        */
-        if (pseudo != '' && commentaire != '') {
-            $.ajax({
-                url: "/article/",
-                type: 'POST',
-                data: {pseudo:pseudo, commentaire:commentaire},
-                success: function () {
-                    $('#div-comment').append("<p>" + pseudo + " dit : " + commentaire + "</p>");
-                }
-            });
-        }
-
+        
+        
     })
-
 })
 //  //  response(result);       //        var result = JSON.parse(res);

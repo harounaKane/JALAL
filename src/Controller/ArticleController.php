@@ -86,13 +86,13 @@ class ArticleController extends AbstractController
      */
     public function show(Request $request, Article $article, ArticleRepository $repo, CommentaireRepository $commentaireRepository, MediaRepository $mediaRepository): Response
     {
-        //dd($article);
         $commentaire = new Commentaire();
         $form = $this->createForm(CommentaireType::class, $commentaire);
 
         //TRAITEMENT DES COMMENTAIRES
         $form->handleRequest($request);
         if($form->isSubmitted()){
+            dd($form);
             $commentaire->setCommentAt(new \DateTime());
             $commentaire->setArticle($repo->find($article->getId()));
             $commentaire->setLikeComment(0);
@@ -123,6 +123,13 @@ class ArticleController extends AbstractController
             'last' => $repo->findBy([], ['art_created_at' => 'DESC'], 10)
         ]);
     }
+    
+    /*
+    AJAX commentaires :
+        faire une function add_comment($form, $id_article) pour l'appeler dans le fichier JS ?
+        si oui, fonction "add_comment dans "CommentaireController", à appeler dans l'ArticleController ?
+    */
+    
     /**
      * @Route("/article/{id}/articles_user", name="articles_user", methods={"GET","POST"})
      */

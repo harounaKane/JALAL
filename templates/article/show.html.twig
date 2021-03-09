@@ -96,20 +96,22 @@
                 <hr>
             <div id="div-comment">
             {% for commentaire in commentaires %}
+            <!-- ajouter une 'div' qui englobe tout le commentaire ? -->
                 <div class="row">
-                    <div class="col-2">
+                    <div class="unchange col-2">
                         <div class="row">
+                        <!-- suppr id avatar-author -->
                             <img id="avatar-author" class="rounded-circle p-2 col-12" src="{{ asset('images/logo/avatar_commentaire.png') }}" alt="avatar">
                         </div>
                     </div>
                     <div class="mt-4 col-10">
                         <div class="row">
-                            <strong class="col-12">{{ commentaire.user }} </strong>
-                            <span class="col-12 font-italic ">le {{ commentaire.commentAt|date('d F Y à H:i:s') }}</span>
+                            <strong class="userComment col-12">{{ commentaire.user }} </strong>
+                            <span class="dateComment col-12 font-italic ">le {{ commentaire.commentAt|date('d F Y à H:i:s') }}</span>
                         </div>
                     </div>
                 </div>
-                <div class="my-3">
+                <div class="contentComment my-3">
                     {{ commentaire.comment }}
                 </div>
                 <div>
@@ -129,7 +131,14 @@
             <!-- FORM COMMENTAIRES  -->
             <section class="col-12 mt-3 py-2 bg-info">
                 <h3>Participer à la discussion</h3>
+                
                 {{ form_start(form) }}
+                    {{ form_row(form.article) }}
+
+                    {{ form_row(form.user) }}
+                    {{ form_row(form.comment) }}
+
+                    {{ form_row(form.Poster) }}
                 {{ form_end(form) }}
             </section>
         </main>

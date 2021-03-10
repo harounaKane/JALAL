@@ -92,11 +92,14 @@ class ArticleController extends AbstractController
         //TRAITEMENT DES COMMENTAIRES
         $form->handleRequest($request);
         if($form->isSubmitted()){
-            dd($form);
+//            $commentaireController = new CommentaireController();
+//            $commentaireController->addCommentaire($form, $article, $repo);
+//            dd($form);
             $commentaire->setCommentAt(new \DateTime());
             $commentaire->setArticle($repo->find($article->getId()));
             $commentaire->setLikeComment(0);
             $commentaire->setUnLikeComment(0);
+            dd($commentaire);
             $this->manager->persist($commentaire);
             $this->manager->flush();
             //REDIRECTION POUR EVITER LA DOUBLE SOUMISSION DU FORMULAIRE

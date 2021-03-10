@@ -39,9 +39,9 @@ $(document).ready(function() {
     })
 
     //POST
-    $('#commentaire_Poster').submit(function () {
-        
-        
+    $('#commentaire_Poster').click(function (e) {
+        e.preventDefault();
+        console.log(e);
     })
 })
 //  //  response(result);       //        var result = JSON.parse(res);

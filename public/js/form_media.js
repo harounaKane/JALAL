@@ -156,45 +156,49 @@ let form_mediaElt = document.querySelector(".formMediaTest");
     div_sort.setAttribute("id", "sort1");
     div_sort.setAttribute("data-sortable", ".column");
     div_sort.classList.add("ui", "stackable", "five", "column", "grid", "relative");
-    div_glob.appendChild(div_sort);
 
-    btn_image.addEventListener("click", function(){
-        console.log("Vous pouvez ajouter une image !");
+    if(div_glob)
+        div_glob.appendChild(div_sort);
+
+    if(btn_image){
+        btn_image.addEventListener("click", function(){
+            console.log("Vous pouvez ajouter une image !");
 
 
-        if( d > 0){
-            tableau.push([media_nom.files, media_legende.value, media_texte.value]);
-            console.log(media_nom.files[0].name);
-            // var btn_file = document.createElement("button");
-            // btn_file.classList.add("border", "border-light", "bg-muted", "p-1");
-            var div_col = document.createElement("div");
-            div_col.setAttribute("class", "column");
-            div_col.setAttribute("data-position", j);
-            div_col.setAttribute("data-id", j + 1);
-            div_sort.appendChild(div_col);
+            if( d > 0){
+                tableau.push([media_nom.files, media_legende.value, media_texte.value]);
+                console.log(media_nom.files[0].name);
+                // var btn_file = document.createElement("button");
+                // btn_file.classList.add("border", "border-light", "bg-muted", "p-1");
+                var div_col = document.createElement("div");
+                div_col.setAttribute("class", "column");
+                div_col.setAttribute("data-position", j);
+                div_col.setAttribute("data-id", j + 1);
+                div_sort.appendChild(div_col);
 
-            var div_card = document.createElement("div");
-            div_card.classList.add("fluid", "ui", "card");
-            div_col.appendChild(div_card);
+                var div_card = document.createElement("div");
+                div_card.classList.add("fluid", "ui", "card");
+                div_col.appendChild(div_card);
 
-            var div_content = document.createElement("div");
-            div_content.setAttribute("class", "content");
-            div_card.appendChild(div_content);
+                var div_content = document.createElement("div");
+                div_content.setAttribute("class", "content");
+                div_card.appendChild(div_content);
 
-            var prev_img = document.createElement("img");
-            prev_img.setAttribute("id", "preview"+v);
-            prev_img.setAttribute("height", "80");
-            prev_img.classList.add("image", "ui");
-            div_content.appendChild(prev_img);
+                var prev_img = document.createElement("img");
+                prev_img.setAttribute("id", "preview"+v);
+                prev_img.setAttribute("height", "80");
+                prev_img.classList.add("image", "ui");
+                div_content.appendChild(prev_img);
 
-            console.log([tableau]);
-            previewImage(v);
-            // resetFields();
-            v++;
-            j++;
-            d--;
-        }
-    });
+                console.log([tableau]);
+                previewImage(v);
+                // resetFields();
+                v++;
+                j++;
+                d--;
+            }
+        });
+    }
 
     function previewImage(v) {
         var prev = media_nom.files;
@@ -213,8 +217,8 @@ let form_mediaElt = document.querySelector(".formMediaTest");
 
 
 
-    accRegle.addEventListener("click", function() {
-        console.log("o");
+   // accRegle.addEventListener("click", function() {
+     //   console.log("o");
         // this.classList.toggle("activeRegle");
 
         // var panel = this.nextElementSibling;
@@ -223,7 +227,7 @@ let form_mediaElt = document.querySelector(".formMediaTest");
         // } else {
         //   panel.style.maxHeight = panel.scrollHeight + "px";
         // }
-    });
+   // });
 
 
 //-----------------------

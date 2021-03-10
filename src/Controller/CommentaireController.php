@@ -14,11 +14,25 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class CommentaireController extends AbstractController
 {
     /**
-     * @Route("/addCommentaire/{idArt}", name="addCommentaire", methods={"GET","POST"})
+     * @Route("/addCommentaire", name="addCommentaire", methods={"GET","POST"})
      */
-    public function addCommentaire(Request $request, $idArt)
+    public function addCommentaire($form, Article $article, $repo)
     {
+      //  dd($form->get('user')->getData());
+        $commentaire = new Commentaire();
+        $manager = $this->getDoctrine()->getManager();
 
+        $commentaire->setCommentAt(new \DateTime());
+        $commentaire->setArticle($repo->find($article->getId()));
+        $commentaire->setLikeComment(0);
+        $commentaire->setUnLikeComment(0);
+        $commentaire->setUser($form->get('user')->getData());
+        $commentaire->setComment($form->get('comment')->getData());
+        dd($commentaire);
+        $manager->persist($commentaire);
+        $manager->flush();
+        //REDIRECTION POUR EVITER LA DOUBLE SOUMISSION DU FORMULAIRE
+        return $this->redirectToRoute('article_show', ['id' => $article->getId()]);
     }
     /**
      * @Route("/likeCommentaire/{id}", name="likeCommentaire", methods={"GET","POST"})

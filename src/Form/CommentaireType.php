@@ -37,12 +37,12 @@ class CommentaireType extends AbstractType
                     "maxlength" => 200
                 ]
             ])
-            ->add('article', EntityType::class, [
-                "class" => Article::class,
-                "data" => function($article){
-                    return $article->getId();
-                }
-            ])
+//            ->add('article', EntityType::class, [
+//                "class" => Article::class,
+//                "data" => function($article){
+//                    return $article->getId();
+//                }
+//            ])
             ->add('Poster', SubmitType::class)
         ;
     }

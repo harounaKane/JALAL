@@ -76,7 +76,7 @@ if(diapo_img){
 
 
     window.addEventListener("resize", () => {
-        slideWidth = diapo.getBoundingClientRect().width;
+        slideWidth = diapo_img.getBoundingClientRect().width;
         slideNext();
     })
 }

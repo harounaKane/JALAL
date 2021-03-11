@@ -15,10 +15,8 @@ $(document).ready(function() {
             type: 'GET',
             data: {id: id},
             success: function (res) {
-                console.log(res)
                 var result = JSON.parse(res);
                 resultat(result, "+", "like"+id);
-                console.log(result)
             }
         });
     })
@@ -26,7 +24,6 @@ $(document).ready(function() {
     //UNLIKE
     $('.unlike').click(function () {
         var id = $(this).attr('value');
-        console.log(this)
         $.ajax({
             url: "/commentaireUnLike/" + id,
             type: 'GET',
@@ -41,7 +38,26 @@ $(document).ready(function() {
     //POST
     $('#commentaire_Poster').click(function (e) {
         e.preventDefault();
-        console.log(e);
+        var id = $(this).attr('value');
+        $.ajax({
+            url: "/article/" + id,
+            type: 'POST',
+            data: {id: id},
+            success: function (res) {
+                //var result = JSON.parse(res);
+                console.log(res);
+                for(let c of res){
+                    console.log(c.comment);
+                }
+            }
+        });
     })
 })
 //  //  response(result);       //        var result = JSON.parse(res);
+/*
+COMMENTAIRE
+
+$('#div-comment').append()
+
+
+*/

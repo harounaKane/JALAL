@@ -17,6 +17,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 class ArticleController extends AbstractController
 {
     private $manager;
@@ -91,19 +93,28 @@ class ArticleController extends AbstractController
 
         //TRAITEMENT DES COMMENTAIRES
         $form->handleRequest($request);
-        if($form->isSubmitted()){
-//            $commentaireController = new CommentaireController();
-//            $commentaireController->addCommentaire($form, $article, $repo);
+        if($request->isXmlHttpRequest()){
+           $commentaireController = new CommentaireController($commentaireRepository);
+           $commentaireController->addCommentaire();
 //            dd($form);
-            $commentaire->setCommentAt(new \DateTime());
-            $commentaire->setArticle($repo->find($article->getId()));
-            $commentaire->setLikeComment(0);
-            $commentaire->setUnLikeComment(0);
-            dd($commentaire);
-            $this->manager->persist($commentaire);
-            $this->manager->flush();
+            // $commentaire->setCommentAt(new \DateTime());
+            // $commentaire->setArticle($repo->find($article->getId()));
+            // $commentaire->setLikeComment(0);
+            // $commentaire->setUnLikeComment(0);
+            // dd($commentaire);
+            // $this->manager->persist($commentaire);
+            // $this->manager->flush();
             //REDIRECTION POUR EVITER LA DOUBLE SOUMISSION DU FORMULAIRE
-            return $this->redirectToRoute('article_show', ['id' => $article->getId()]);
+            //return $this->redirectToRoute('article_show', ['id' => $article->getId()]);
+            $commentaires = [$commentaireRepository->commentByArticle($article->getId())];
+            $response = new Response();
+            $data = json_encode($commentaires);
+            $response->headers->set('Content-Type', 'application/json');
+            $response->setContent($data);
+            return $response;
+            //return new JsonResponse($commentaires);
+            dd($commentaires);
+            echo(json_encode($commentaires));
         }
 
         //RECUPRATION DES COMMENTAIRE DE L'ARTICLE

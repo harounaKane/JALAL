@@ -13,11 +13,21 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class CommentaireController extends AbstractController
 {
+    private $repository;
+
+    public function __construct(CommentaireRepository $c)
+    {
+        $this->repository = $c;
+    }
+
     /**
      * @Route("/addCommentaire", name="addCommentaire", methods={"GET","POST"})
      */
-    public function addCommentaire($form, Article $article, $repo)
+    public function addCommentaire()
     {
+        $commentaires = $this->repository->findAll();
+
+        return new JsonResponse($commentaires);
       //  dd($form->get('user')->getData());
         $commentaire = new Commentaire();
         $manager = $this->getDoctrine()->getManager();

@@ -17,6 +17,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
+
 class ArticleController extends AbstractController
 {
     private $manager;
@@ -86,21 +88,33 @@ class ArticleController extends AbstractController
      */
     public function show(Request $request, Article $article, ArticleRepository $repo, CommentaireRepository $commentaireRepository, MediaRepository $mediaRepository): Response
     {
-        //dd($article);
         $commentaire = new Commentaire();
         $form = $this->createForm(CommentaireType::class, $commentaire);
 
         //TRAITEMENT DES COMMENTAIRES
         $form->handleRequest($request);
-        if($form->isSubmitted()){
-            $commentaire->setCommentAt(new \DateTime());
-            $commentaire->setArticle($repo->find($article->getId()));
-            $commentaire->setLikeComment(0);
-            $commentaire->setUnLikeComment(0);
-            $this->manager->persist($commentaire);
-            $this->manager->flush();
+        if($request->isXmlHttpRequest()){
+           $commentaireController = new CommentaireController($commentaireRepository);
+           $commentaireController->addCommentaire();
+//            dd($form);
+            // $commentaire->setCommentAt(new \DateTime());
+            // $commentaire->setArticle($repo->find($article->getId()));
+            // $commentaire->setLikeComment(0);
+            // $commentaire->setUnLikeComment(0);
+            // dd($commentaire);
+            // $this->manager->persist($commentaire);
+            // $this->manager->flush();
             //REDIRECTION POUR EVITER LA DOUBLE SOUMISSION DU FORMULAIRE
-            return $this->redirectToRoute('article_show', ['id' => $article->getId()]);
+            //return $this->redirectToRoute('article_show', ['id' => $article->getId()]);
+            $commentaires = [$commentaireRepository->commentByArticle($article->getId())];
+            $response = new Response();
+            $data = json_encode($commentaires);
+            $response->headers->set('Content-Type', 'application/json');
+            $response->setContent($data);
+            return $response;
+            //return new JsonResponse($commentaires);
+            dd($commentaires);
+            echo(json_encode($commentaires));
         }
 
         //RECUPRATION DES COMMENTAIRE DE L'ARTICLE
@@ -123,6 +137,13 @@ class ArticleController extends AbstractController
             'last' => $repo->findBy([], ['art_created_at' => 'DESC'], 10)
         ]);
     }
+    
+    /*
+    AJAX commentaires :
+        faire une function add_comment($form, $id_article) pour l'appeler dans le fichier JS ?
+        si oui, fonction "add_comment dans "CommentaireController", à appeler dans l'ArticleController ?
+    */
+    
     /**
      * @Route("/article/{id}/articles_user", name="articles_user", methods={"GET","POST"})
      */

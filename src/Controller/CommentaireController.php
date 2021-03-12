@@ -3,6 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Commentaire;
+use App\Entity\Article;
+use App\Form\CommentaireType;
+use App\Repository\CommentaireRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,6 +13,37 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class CommentaireController extends AbstractController
 {
+    private $repository;
+
+    public function __construct(CommentaireRepository $c)
+    {
+        $this->repository = $c;
+    }
+
+    /**
+     * @Route("/addCommentaire", name="addCommentaire", methods={"GET","POST"})
+     */
+    public function addCommentaire()
+    {
+        $commentaires = $this->repository->findAll();
+
+        return new JsonResponse($commentaires);
+      //  dd($form->get('user')->getData());
+        $commentaire = new Commentaire();
+        $manager = $this->getDoctrine()->getManager();
+
+        $commentaire->setCommentAt(new \DateTime());
+        $commentaire->setArticle($repo->find($article->getId()));
+        $commentaire->setLikeComment(0);
+        $commentaire->setUnLikeComment(0);
+        $commentaire->setUser($form->get('user')->getData());
+        $commentaire->setComment($form->get('comment')->getData());
+        dd($commentaire);
+        $manager->persist($commentaire);
+        $manager->flush();
+        //REDIRECTION POUR EVITER LA DOUBLE SOUMISSION DU FORMULAIRE
+        return $this->redirectToRoute('article_show', ['id' => $article->getId()]);
+    }
     /**
      * @Route("/likeCommentaire/{id}", name="likeCommentaire", methods={"GET","POST"})
      */

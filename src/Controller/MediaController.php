@@ -51,42 +51,45 @@ class MediaController extends AbstractController
         $medium = new Media();
         $form = $this->createForm(MediaType::class, $medium);
         $form->handleRequest($request);
-
+        $images = $mediaRepository->imageByArticle($article->getId());
         if ($form->isSubmitted() && $form->isValid()) {
-  
             $medium->setCreatedAt(new \DateTime());
             $medium->setType('image');
             $medium->setArticle($article);
             $medium->setOrdre('0');
-
-            // On récupère les images transmises
-            $images = $form->get('nom')->getData();
-            // On boucle sur les images
-            foreach($images as $image){
-                // On génère un nouveau nom de fichier
-                $file_name =  $article->getId().'img' . md5(uniqid()) . '.' . $image->guessExtension();
-                // On copie le fichier dans le dossier uploads
-                $image->move(
-                    $this->getParameter('images_directory'),
-                    $file_name
-                );
-
-                // On stocke l'image dans la base de données (son nom)
+            $i = 10;
+            $nb_img = count($images);
+            while($nb_img < $i){
                 
-                $medium->setNom($file_name);
-                $article->addMedium($medium);
-    
-                
+                // On récupère les images transmises
+                $images = $form->get('nom')->getData();
+                // On boucle sur les images
+                foreach($images as $image){
+                    // On génère un nouveau nom de fichier
+                    $file_name =  $article->getId().'img' . md5(uniqid()) . '.' . $image->guessExtension();
+                    // On copie le fichier dans le dossier uploads
+                    $image->move(
+                        $this->getParameter('images_directory'),
+                        $file_name
+                    );
+                    // On stocke l'image dans la base de données (son nom)
+                    $medium->setNom($file_name);
+                    $article->addMedium($medium);                   
+                }
+
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($medium);
+                $entityManager->flush();
+                $this->addFlash('notice'
+                                ,'Votre image a bien été ajoutée');
+                return $this->redirectToRoute('media_new_image', ['id' => $article->getId()]);
             }
-            
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($medium);
-            $entityManager->flush();
-            
-
-            
-            //return $this->redirectToRoute('media_new_video', ['id' => $article->getId()]);
-                         
+            if($nb_img >= $i){
+                
+                $this->addFlash('notice'
+                                ,'Vous ne pouvez pas ajouter plus de dix images !');
+                return $this->redirectToRoute('media_new_image', ['id' => $article->getId()]);
+            }
         }
         // L'ordre ne peut pas être donné avant car le media ne possède pas d'id avant la soumission
         // 
@@ -106,6 +109,7 @@ class MediaController extends AbstractController
         return $this->render('media/new_image.html.twig', [
             'medium' => $medium,
             'article' => $article,
+            'images' => $images,
             'form' => $form->createView(),
         ]);
         
@@ -143,6 +147,8 @@ class MediaController extends AbstractController
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($medium);
                 $entityManager->flush();
+                $this->addFlash('notice'
+                            ,'Votre vidéo a bien été ajoutée');
             }
             elseif(!($form->get('url')->isEmpty()) && ($form->get('nom')->isEmpty()) ) {
                 $medium->setNom('url');
@@ -155,12 +161,11 @@ class MediaController extends AbstractController
                     $entityManager = $this->getDoctrine()->getManager();
                     $entityManager->persist($medium);
                     $entityManager->flush();
+                    $this->addFlash('notice'
+                            ,'Votre vidéo a bien été ajoutée');
                 
             }
-
-            
-            
-            // return $this->redirectToRoute('media_new_audio', ['id' => $article->getId()]);
+            return $this->redirectToRoute('media_new_video', ['id' => $article->getId()]);
         }
 
         return $this->render('media/new_video.html.twig', [
@@ -178,6 +183,7 @@ class MediaController extends AbstractController
         $medium = new Media();
         $form = $this->createForm(MediaType::class, $medium);
         $form->handleRequest($request);
+        
 
         if ($form->isSubmitted() && $form->isValid()) {
             $medium->setCreatedAt(new \DateTime());
@@ -196,12 +202,14 @@ class MediaController extends AbstractController
                 );
                 $medium->setNom($file_name);
                 $article->addMedium($medium);
-            }            
+            }
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($medium);
             $entityManager->flush();
-            // return $this->redirectToRoute('media_index');
+            $this->addFlash('notice'
+                            ,'Votre audio a bien été ajoutée');
+            return $this->redirectToRoute('media_new_audio', ['id' => $article->getId()]);
         }
 
         return $this->render('media/new_audio.html.twig', [

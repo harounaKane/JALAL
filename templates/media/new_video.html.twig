@@ -3,7 +3,7 @@
 {% block title %}New Media{% endblock %}
 
 {% block body %}
-    <h1>Ajouter des vidéos</h1>
+    <h1 class="ajout-med-titre">Ajouter des vidéos</h1>
 
     {{ include('media/_form.html.twig') }}
         <div>
@@ -11,12 +11,9 @@
             <a href="{{ path('media_new_image', {'id' : article.id} ) }}">Je veux ajouter des images</a>
             <hr>
             <a href="{{ path('media_new_audio', {'id' : article.id} ) }}">Je veux ajouter des audios</a> 
-        </div>  
-        
-        <div>
-            <p>Flemme</p>
+            <hr>
             <a href="{{ path('article_show', {'id' : article.id} ) }}">Voir l'article</a>
-        </div> 
+        </div>
 
-    <a href="{{ path('media_index') }}">back to list</a>
+    {# <a href="{{ path('media_index') }}">back to list</a> #}
 {% endblock %}

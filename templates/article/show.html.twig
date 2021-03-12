@@ -18,7 +18,7 @@
 
             <!-- BLOCK GALERIE -->
                 <section class="block-galerie  my-2 row">
-                   <h1> Galerie des médias </h1>
+                    <div><h1> Galerie des médias </h1></div>
                     <div class="diapo-images">
                         <div class="elements">
                             {% if(images) %}
@@ -41,7 +41,7 @@
                         {% if(audios) %}
                             {% for audio in audios %}
                                 <div class="">
-                                    <h1>audio</h1>
+                                    <h1>audios</h1>
                                     <audio controls>
                                         <source src="{{ asset('articles/galeries/audios/' ~ audio.nom) }}" type="audio/mpeg">
                                         <source src="{{ asset('articles/galeries/audios/' ~ audio.nom) }}" type="audio/ogg">
@@ -63,12 +63,14 @@
                                 </iframe>
                             {% endfor %}
                         {% endif %}
-                        {# {% if(videos_fichier) %}
-                            {% for video_fichier in videos_fichier %}                    
-                                <iframe width="500" height="300" src="https://www.youtube.com/embed/{{video_url.url}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-                                </iframe>
+                        {% if(videos_fichier) %}
+                            {% for video_fichier in videos_fichier %}
+                            <video controls width="500" height="300">
+                                <source src="{{ asset('articles/galeries/videos/' ~ video_fichier.nom) }}" type="video/webm">
+                                <source src="{{ asset('articles/galeries/videos/' ~ video_fichier.nom) }}" type="video/mp4">
+                            </video>    
                             {% endfor %}
-                        {% endif %}                        #}
+                        {% endif %}                       
                     </div>
                 </section>
                 

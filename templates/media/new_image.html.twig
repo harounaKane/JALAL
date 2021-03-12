@@ -3,42 +3,80 @@
 {% block title %}New Image{% endblock %}
 
 {% block body %}
-    <h1>Ajouter des images</h1>
+    <h1 class="ajout-med-titre">Ajouter des images</h1>
+
+    {% for message in app.flashes('notice') %}
+        <div class="flash-notice">
+            {{ message }}
+        </div>
+    {% endfor %}
 
     {{ include('media/_form.html.twig') }}
-    <button class="btn btn-success m-3" id="btn_ok">{{ button_label|default('Modification ordre affichage') }}</button>
     
-<form method="post">
-    <div id="global">
-        <div id="sort1" data-sortable=".column" class="ui stackable five column grid relative">
-            {% for images in article.media %}
-                <div class="column" data-position='{{loop.index0}}' data-id='{{images.id}}'>
-                    <div class="ui fluid card">
-                        <div class="content">
-                            <img src="{{ asset('articles/galeries/images/' ~ images.nom) }}" class=" ui image" height="100px" width="150px">
-                            <p><a href="{{ path('media_edit', {'id' : images.id}) }}"><i class="las la-edit"></i></a></p>
-                            <p><a href="{{ path('media_delete', {'id' : images.id}) }}"><i class="las la-times"></i></a></p>
+    {% if(images) %}
+    {# <div class="container"> #}
+        <button class="btn btn-success m-3" id="btn_modif_ordre">{{ button_label|default('Modification ordre affichage') }}</button>
+        <div id="global">
+            <div  class="ui stackable five column grid relative">
+            
+                {% for image in images %}
+                    <div class="column" >
+                        <div class="ui fluid card">
+                            <div class="content">
+                                <img src="{{ asset('articles/galeries/images/' ~ image.nom) }}" class=" ui image" height="100px" width="(50px">
+                                <p><a href="{{ path('media_edit', {'id' : image.id}) }}"><i class="las la-edit"></i></a></p>
+                                <p><a href="{{ path('media_delete', {'id' : image.id}) }}"><i class="las la-times"></i></a></p>
+                            </div>
                         </div>
+                        <input type="hidden" class='ordre' value="{{loop.index0}}"  name="ordre[]">
+                        <input type="hidden" value="{{image.id}}" name="image_id[]">
                     </div>
-                    <input type="hidden" class='ordre' value="{{loop.index0}}"  name="ordre[]">
-                    <input type="hidden" value="{{images.id}}" name="image_id[]">
-                    
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-    </div>
-    <button class="btn btn-success m-3" id="btn_reorg" name="reorganisation">{{ button_label|default('Validation ordre affichage') }}</button>
-</form>
-        <div>
-            <p>Souhaitez-vous ajouter d'autres types de médias</p>
-            <a href="{{ path('media_new_audio', {'id' : article.id} ) }}">Je veux ajouter des audios</a>
-            <hr>
-            <a href="{{ path('media_new_video', {'id' : article.id} ) }}">Je veux ajouter des vidéos</a> 
-        </div>  
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+        <form method="post">
+            <!-- Modal content -->
+            <div class="modal-content">
+                        <div id="div-btn-valid">
+                    <button class="btn btn-success m-3 close" id="btn_reorg" name="reorganisation">{{ button_label|default('Validation ordre affichage') }}</button>
+            </div>
+                <div id="global">
+                    <div id="sort1" data-sortable=".column" class="ui stackable five column grid relative">
+                    
+                        {% for image in images %}
+                            <div class="column" data-position='{{loop.index0}}' data-id='{{image.id}}'>
+                                <div class="ui fluid card">
+                                    <div class="content">
+                                        <img src="{{ asset('articles/galeries/images/' ~ image.nom) }}" class=" ui image" height="100px" width="(50px">
+                                        <p><a href="{{ path('media_edit', {'id' : image.id}) }}"><i class="las la-edit"></i></a></p>
+                                        <p><a href="{{ path('media_delete', {'id' : image.id}) }}"><i class="las la-times"></i></a></p>
+                                    </div>
+                                </div>
+                                <input type="hidden" class='ordre' value="{{loop.index0}}"  name="ordre[]">
+                                <input type="hidden" value="{{image.id}}" name="image_id[]">
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+            
+            
+        </form>
+    {# </div>     #}
+    {% endif %}
+       
+            <div id="other-choices" class="container other-type">
+                <p>Souhaitez-vous ajouter d'autres types de médias ?</p>
+                <a href="{{ path('media_new_audio', {'id' : article.id} ) }}">Je veux ajouter des audios</a>
+                <hr>
+                <a href="{{ path('media_new_video', {'id' : article.id} ) }}">Je veux ajouter des vidéos</a> 
+                <hr>
+                <a href="{{ path('article_show', {'id' : article.id} ) }}">Voir l'article</a>
+            </div>
         
-        <div>
-            <p>Flemme</p>
-            <a href="{{ path('article_show', {'id' : article.id} ) }}">Voir l'article</a>
-        </div> 
     {# <a href="{{ path('media_index') }}">back to list</a> #}
 {% endblock %}

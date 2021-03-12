@@ -1,6 +1,6 @@
 let form_mediaElt = document.querySelector(".formMediaTest");
 
-//if(form_mediaElt){
+// if(form_mediaElt){
     var Sortable = function(element, scrollable){
         var self = this;
         if(scrollable == null){
@@ -56,8 +56,6 @@ let form_mediaElt = document.querySelector(".formMediaTest");
         for(var i = 0; i < this.items.length; i++) {
             var item = this.items[i];
             item.style.position = "absolute";
-            // item.style.top = "0px";
-            // item.style.left = "0px";
             item.style.transitionDuration = "0s";
             this.moveItem(item, item.dataset.position);
         }
@@ -142,60 +140,6 @@ let form_mediaElt = document.querySelector(".formMediaTest");
         this.success(results);
     }
 
-    var tableau = [["nom"], ["legende"], ["texte"]];
-    var tableau = new Array();
-    var btn_image  = document.getElementById("btn_image");
-    var media_nom = document.getElementById("media_nom");
-    var media_legende = document.getElementById("media_legende");
-    var media_texte = document.getElementById("media_texte");
-    var div_glob = document.getElementById("global");
-    var d = 10;
-    var v = 0;
-    var j = 0;
-    var div_sort = document.createElement("div");
-    div_sort.setAttribute("id", "sort1");
-    div_sort.setAttribute("data-sortable", ".column");
-    div_sort.classList.add("ui", "stackable", "five", "column", "grid", "relative");
-    div_glob.appendChild(div_sort);
-
-    btn_image.addEventListener("click", function(){
-        console.log("Vous pouvez ajouter une image !");
-
-
-        if( d > 0){
-            tableau.push([media_nom.files, media_legende.value, media_texte.value]);
-            console.log(media_nom.files[0].name);
-            // var btn_file = document.createElement("button");
-            // btn_file.classList.add("border", "border-light", "bg-muted", "p-1");
-            var div_col = document.createElement("div");
-            div_col.setAttribute("class", "column");
-            div_col.setAttribute("data-position", j);
-            div_col.setAttribute("data-id", j + 1);
-            div_sort.appendChild(div_col);
-
-            var div_card = document.createElement("div");
-            div_card.classList.add("fluid", "ui", "card");
-            div_col.appendChild(div_card);
-
-            var div_content = document.createElement("div");
-            div_content.setAttribute("class", "content");
-            div_card.appendChild(div_content);
-
-            var prev_img = document.createElement("img");
-            prev_img.setAttribute("id", "preview"+v);
-            prev_img.setAttribute("height", "80");
-            prev_img.classList.add("image", "ui");
-            div_content.appendChild(prev_img);
-
-            console.log([tableau]);
-            previewImage(v);
-            // resetFields();
-            v++;
-            j++;
-            d--;
-        }
-    });
-
     function previewImage(v) {
         var prev = media_nom.files;
         var fileReader = new FileReader();
@@ -208,103 +152,3 @@ let form_mediaElt = document.querySelector(".formMediaTest");
 
     }
 
-    var accRegle = document.getElementsByClassName("accordion-regle");
-    console.log(accRegle);
-
-
-
-    accRegle.addEventListener("click", function() {
-        console.log("o");
-        // this.classList.toggle("activeRegle");
-
-        // var panel = this.nextElementSibling;
-        // if (panel.style.maxHeight) {
-        //   panel.style.maxHeight = null;
-        // } else {
-        //   panel.style.maxHeight = panel.scrollHeight + "px";
-        // }
-    });
-
-
-//-----------------------
-// function resetFields(){
-//     //nom_input.value = null; // réinitialiser le champ "file"
-//     media_legende.value = "";
-//     media_texte.value = "";
-// }
-
-// $(function() {
-//     // Multiple images preview in browser
-//     var imagesPreview = function(input, placeToInsertImagePreview) {
-//         if (input.files) {
-//             var filesAmount = input.files.length;
-//             for (i = 0; i < filesAmount; i++) {
-//                 var reader = new FileReader();
-//                 reader.onload = function(event) {
-//                     $($.parseHTML('<img>')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
-//                 }
-//                 reader.readAsDataURL(input.files[i]);
-//             }
-//         }
-//     };
-
-//     $('#media_nom').on('change', function() {
-//         imagesPreview(this, 'div.gallery');
-//     });
-// });
-
-
-//VIDEOS
-// btn_video.addEventListener("click", function(){
-//     console.log("Vous pouvez ajouter une vidéo !");
-//     form_video.appendChild(form_media);
-//     type.value = "video";
-//     console.log("type = "+type.value);
-//     new_video.classList.toggle("d-block");
-//     new_video.addEventListener("click", function(){
-//         if( j > 0){
-//             tableau["nom"]= nom.files;
-//             tableau["legende"]= legende.value;
-//             tableau["texte"]= texte.value;
-//             var btn_test = document.createElement("button");
-//             var test = document.createTextNode(tableau["nom"][0]["name"]);
-//             btn_test.appendChild(test);
-//             div_vid.appendChild(btn_test);
-//             console.log(tableau["nom"][0]["name"]);
-//             console.log([tableau]);
-//             resetFields();
-//             j--;
-//         }else{
-//             console.log("Nombre maximal de vidéos atteint");
-//         }
-//     console.log(j);
-//     });
-// });
-//AUDIOS
-// btn_audio.addEventListener("click", function(){
-//     console.log("Vous pouvez ajouter un audio !");
-//     form_audio.appendChild(form_media);
-//     type.value = "audio";
-//     console.log("type = "+type.value);
-//     new_audio.classList.toggle("d-block");
-//     new_audio.addEventListener("click", function(){
-//         if( k > 0){
-//             tableau["nom"]= nom.files;
-//             tableau["legende"]= legende.value;
-//             tableau["texte"]= texte.value;
-//             var btn_test = document.createElement("button");
-//             var test = document.createTextNode(tableau["nom"][0]["name"]);
-//             btn_test.appendChild(test);
-//             div_aud.appendChild(btn_test);
-//             console.log(tableau["nom"][0]["name"]);
-//             console.log(tableau["legende"]);
-//             resetFields();
-//             k--;
-//         }else{
-//             console.log("Nombre maximal d'audios atteint");
-//         }
-//     console.log(k);
-//     });
-// });
-
-//}

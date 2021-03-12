@@ -1,7 +1,7 @@
 .formMediaTest{
     display: flex;
     justify-content: center;
-    background-image: url('../images/africa.jpg');
+    /* background-image: url('../images/africa.jpg'); */
     background-size: cover;
     background-repeat: no-repeat;
     -moz-border-radius: 5px;
@@ -14,13 +14,12 @@
     width: 100%;
 }
 /* ---------------------- */
-.global{
-    margin-bottom: 2rem;
-    margin-top: 2rem;
+#global{
+    margin: 2rem 2rem;
 }
 #sort1 .column{
     transition: 0.3s;
-    margin-left: 1rem;
+    width: 18%;
 }
 
 
@@ -31,7 +30,9 @@
 
 .ui.cards .card{
     margin: 0;
-    width: 20%;
+    /* margin-bottom: 1rem; */
+    overflow: hidden;
+    width: 15%;
     transition: 0.5s;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -47,41 +48,62 @@
 }
 /*-----------------------------*/
 
-/* .panel-regle{
-    padding: 0 18px;
-    background-color: white;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.2s ease-out;
+.flash-notice{
+    text-align: center;
+    margin: 1rem;
+    background: green;
+    border-radius: 25%;
 }
 
-.accordion-regle{
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
+.form-group, .ajout-med-titre{
+    text-align: center;
+    margin: 1rem;
+}
+.other-type{
+    margin-top: 2rem;
+}
+.btn-valid-ordre{
+    margin-top: 15rem;
+}
+
+ /* The Modal (background) */
+ .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    
+    background-color: white ;
+    
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
     border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-    transition: 0.4s;
-}
-
-.accordion-regle:hover{
-    background-color: #ccc;
-}
-
-.accordion-regle:after{
-    content: '\002B';
-    color: #777;
-    font-weight: bold;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #aaa;
     float: right;
-    margin-left: 5px;
-}
-.activeRegle:after {
-    content: "\2212";
-} */
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  } 
+
 @media screen and (max-width:767px){
     .global {
         margin-bottom: 30rem;

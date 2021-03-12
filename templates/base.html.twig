@@ -62,7 +62,7 @@
                 <section class="menu-author border-bottom border-secondary pb-2">
                     <p class="mb-0"><i class="fa fa-pencil"></i> Espace Auteur</p>
                     <div><a href="{{ path("article_new") }}">Créer un Article</a></div>
-                    <div><a href="{{ path('articles_user', {'id': app.session.get('id')}) }}">Voir mes Articles</a></div>
+                    {# <div><a href="{{ path('articles_user', {'id': app.session.get('id')}) }}">Voir mes Articles</a></div> #}
                 </section>
                 <section class="menu-log pt-2">
                     {% if app.session.get('login') %}
@@ -100,34 +100,55 @@
             </figure>
         </footer>
         {% block javascripts %}
-            <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+            <script src="{{ asset('js/interact.js') }}"></script>
             <script src="{{ asset('js/lodash.js') }}"></script>
             <script src="{{ asset('js/main.js') }}"></script>
             <script src="{{ asset('js/form_media.js') }}"></script>
             <script src="{{ asset('js/commentaire.js') }}"></script>
             <script>
-                btn_ok = document.getElementById('btn_ok');
-                if(btn_ok){
-                    btn_ok.addEventListener("click", function(){
+                var btn_modif_ordre = document.getElementById('btn_modif_ordre');
+                var div_btn_valid = document.getElementById("div-btn-valid");
+                var div_other_choices = document.getElementById("other-choices");
+                if(btn_modif_ordre){
+                    // Get the modal
+                    var modal = document.getElementById("myModal");
+
+                    // Get the button that opens the modal
+                    var btn_modif_ordre = document.getElementById("btn_modif_ordre");
+
+                    // Get the <span> element that closes the modal
+                    var span = document.getElementsByClassName("close")[0];
+                    btn_modif_ordre.addEventListener("click", function(){
+                        modal.style.display = "block";
                         sortable = new Sortable(document.querySelector('#sort1'));
                         sortable.success = function(results){
+                            var nb_img = _.size(results);
                             console.log(results);
+                           
                             for(id in results){
                                 //récupérer la div avec le data.id
                                 //à partir de la div récupérer le input de l'ordre
                                 //attribuer la bonne valeur
                                 input_ordre = document.querySelector('.column[data-id="'+id+'"] .ordre');
                                 input_ordre.value = results[id];
-
                                 console.log(input_ordre);
                                 console.log(id);
                             }
+
+                            // When the user clicks on <span> (x), close the modal
+                            span.onclick = function() {
+                            modal.style.display = "none";
+                            }
+
+                             
                         }
+                        
                     });
+
 
                 }
             </script>       
-             <script>
+            <script>
                  //PERMET D'AFFICHER LE NOM DU FILE DANS LE CHAMP INPUT
                 $(document).ready(function(){
                     $(document).on('change', '.custom-file-input', function () {

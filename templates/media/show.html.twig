@@ -3,50 +3,25 @@
 {% block title %}Media{% endblock %}
 
 {% block body %}
-    <h1>Media</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ medium.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ medium.nom }}</td>
-            </tr>
-            <tr>
-                <th>Legende</th>
-                <td>{{ medium.legende }}</td>
-            </tr>
-            <tr>
-                <th>Texte</th>
-                <td>{{ medium.texte }}</td>
-            </tr>
-            <tr>
-                <th>Ordre</th>
-                <td>{{ medium.ordre }}</td>
-            </tr>
-            <tr>
-                <th>Type</th>
-                <td>{{ medium.type }}</td>
-            </tr>
-            <tr>
-                <th>Created_at</th>
-                <td>{{ medium.createdAt ? medium.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <div>
+        <div  class="ui stackable five column suppression">
+            <div class="column">
+            <h1>Media</h1>
+                    <p class="">Id du media : {{ medium.id }}</p>
+                    <p class="">Légende du media : {{ medium.legende }}</p>
+                    <p class="">Texte du media : {{ medium.texte }}</p>
+                    <p class="">Type du media : {{ medium.type }}</p>
+                    <p class="">Date de création du media : {{ medium.createdAt ? medium.createdAt|date('Y-m-d H:i:s') : '' }}</p>
+                    <p class="">Aperçu du media : {{ medium.type }}</p>
+                <div class="ui fluid card">
+                    <div class="content">
+                        <img src="{{ asset('articles/galeries/images/' ~ medium.nom) }}" class=" ui image" height="100px" width="(50px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <a href="{{ path('media_index') }}">back to list</a>
-
-    
-    {% if medium.type == 'image' %}
-        <a href="{{ path('media_edit', {'id': medium.id}) }}">edit image</a>
-    {% elseif medium.type == 'video' %}
-        <a href="{{ path('media_edit', {'id': medium.id}) }}">edit video</a>
-    {% elseif medium.type == 'audio' %}
-        <a href="{{ path('media_edit', {'id': medium.id}) }}">edit audio</a>
-    {% endif %}
     {{ include('media/_delete_form.html.twig') }} 
 {% endblock %}

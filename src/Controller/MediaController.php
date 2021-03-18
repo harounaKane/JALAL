@@ -123,7 +123,10 @@ class MediaController extends AbstractController
         $medium = new Media();
         $form = $this->createForm(MediaType::class, $medium);
         $form->handleRequest($request);
-
+        $medium->setType('video');
+        // $request_uri = $request->getrequestUri();
+        // dump($request->getrequestUri());
+        // die;
         if ($form->isSubmitted() && $form->isValid()) {
             
             $medium->setCreatedAt(new \DateTime());
@@ -171,6 +174,7 @@ class MediaController extends AbstractController
         return $this->render('media/new_video.html.twig', [
             'medium' => $medium,
             'article' => $article,
+            // 'request_uri' => $request_uri,
             'form' => $form->createView(),
         ]);
     }  

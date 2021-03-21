@@ -61,13 +61,13 @@ class UserType extends AbstractType
                     "maxlength" => 15
                 ]
             ])
-            ->add('password', RepeatedType::class, [
-                "type" => PasswordType::class,
-                "first_options" => ['label' => "Mot de passe",
-                    'attr' => ['minlength' => 6, 'maxlength' => 10]],
-                "second_options" => ['label' => "Confirmation",
-                    'attr' => ['minlength' => 6, 'maxlength' => 10]]
-            ])
+            // ->add('password', RepeatedType::class, [
+            //     "type" => PasswordType::class,
+            //     "first_options" => ['label' => "Mot de passe",
+            //         'attr' => ['minlength' => 6, 'maxlength' => 10]],
+            //     "second_options" => ['label' => "Confirmation",
+            //         'attr' => ['minlength' => 6, 'maxlength' => 10]]
+            // ])
             ->add('country', TextType::class, [
                 "label" => "Pays résidence",
                 'attr'      => [
@@ -79,11 +79,11 @@ class UserType extends AbstractType
 //                "label" => "Pays résidence"
 //            ])
             ->add('avatar', FileType::class, [
-                "label" => "Image profil",
+                "label" => "Avatar profil",
                 'required' => false
             ])
             ->add('description', TextareaType::class, [
-                "label" => "Contenu",
+                "label" => "Description",
                 "attr" => [
                     "placeholder" => "Courte description",
                     "rows" => 2,
@@ -92,12 +92,24 @@ class UserType extends AbstractType
             ])
             ->add("Enregistrer", SubmitType::class)
         ;
+        
+        if($options["usePassword"]){
+            $builder->add('password', RepeatedType::class, [
+                'type' => PasswordType::class,
+                "first_options" => ['label' => "Mot de passe",
+                    'attr' => ['minlength' => 6, 'maxlength' => 10]],
+                "second_options" => ['label' => "Confirmation",
+                    'attr' => ['minlength' => 6, 'maxlength' => 10]]
+            ]);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'usePassword' => true
         ]);
     }
+
 }

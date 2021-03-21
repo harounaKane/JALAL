@@ -107,7 +107,8 @@ class UserController extends AbstractController
     public function profilUser(Request $request, User $user, UserRepository $userRepository)
     {
         $user->setAvatar(NULL);
-        $form = $this->createForm(UserType::class, $user);
+        //$form->remove('password');
+        $form = $this->createForm(UserType::class, $user, [ 'usePassword' => false ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -123,6 +124,7 @@ class UserController extends AbstractController
         return $this->render('user/profil.html.twig', [
             'user' => $user,
             'form' => $form->createView(),
+            
         ]);
     }
 

@@ -24,7 +24,17 @@ class ArticleController extends AbstractController
     private $manager;
     public function __construct(EntityManagerInterface $manager){
         $this->manager = $manager;
-    }    
+    }  
+    
+    /**
+     * @Route("/", name="article_admin", methods={"GET"})
+     */
+    public function article_admin(ArticleRepository $articleRepository): Response
+    {
+        return $this->render('article/article_admin.html.twig', [
+            'articles' => $articleRepository->findAll(),
+        ]);
+    }
     
     /**
      * @Route("/", name="accueil", methods={"GET"})

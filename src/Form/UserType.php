@@ -80,6 +80,7 @@ class UserType extends AbstractType
 //            ])
             ->add('avatar', FileType::class, [
                 "label" => "Avatar profil",
+                "data_class" => null,
                 'required' => false
             ])
             ->add('description', TextareaType::class, [

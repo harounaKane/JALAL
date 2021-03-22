@@ -61,7 +61,6 @@ class ArticleController extends AbstractController
 
             }catch (UniqueConstraintViolationException $e){
             }
-            //RECUPERATION IMAGE PRINCIPALE : même procédé que celui de Mantcha pour les medias
             $articleId = $articleRepository->findOneBy([], ['art_created_at' => 'DESC']);
             $file_name =  $articleId->getId().'main_img' . md5(uniqid()) . '.' . $image->guessExtension();
             $image->move(

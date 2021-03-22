@@ -4,12 +4,12 @@
 
 {% block body %}
 <div class="m-0 container-lg m-lg-auto">
-    <section id="profil-user">
+    <section id="profil-user" class="mt-4">
         <div class="d-flex flex-column flex-md-row justify-content-md-between">
-            <div class="mx-auto">
-                <img class="rounded-circle p-2" src="{{ asset('images/avatars/'~ user.avatar) }}" alt="avatar de l'utilisateur">
+            <div class="mx-auto ml-md-2">
+                <img class="avatar-user rounded-circle p-2" src="{{ asset('images/avatars/'~ user.avatar) }}" alt="avatar de l'utilisateur">
             </div>
-            <div class="pl-md-5 text-center text-md-left">
+            <div class="pl-md-3 text-center text-md-left">
                 <h1 class="h1">Profil de <strong>{{ user.login|capitalize }}</strong></h1>
                 <p class="h3">
                     <span>{{ user.civility == 'homme' ? '<i class="fa fa-mars"></i>' : '<i class="fa fa-venus"></i>' }}</span> 
@@ -25,7 +25,7 @@
     
     {% if app.session.get('id') and app.session.get('id') == user.id %}
         <hr>
-        <button id="btn-profil" type="button" class="btn btn-secondary btn-lg btn-block">Modifier les informations</button>
+        <button id="btn-profil" type="button" class="btn btn-secondary btn-lg btn-block">Modifier mon profil</button>
         <section id="modif-user" class="d-none">
             <div class="h1 bg-info">FORMULAIRE MODIF PROFIL</div>
             <section class="d-block mx-5 p-3 bg-info">
@@ -63,6 +63,7 @@
                 {{ form_end(form) }}
             </section>
         </section>
+        <a href="" class="btn btn-secondary btn-lg btn-block mt-2">Changer le mot de passe</a>
     {% endif %}
 
 </div>

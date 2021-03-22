@@ -21,7 +21,8 @@
 
         {% block stylesheets %}{% endblock %}
     </head>
-    <body>
+    <!-- le flex ne fonctionne pas quand j'entoure le contenu du body dans une <div>, donc le footer ne colle pas au pied de page -->
+    <body class="d-flex flex-column">
         <header>
             <div class="d-flex justify-content-between p-3 row">
                 <!-- burger nav -->
@@ -83,9 +84,11 @@
             {% endfor %}
         </section>
 
-
+        <div class="mb-5">
         {% block body %}{% endblock %}
-        <footer  class="d-flex flex-column flex-md-row justify-content-around p-3 mt-5 bg-info">
+        </div>
+
+        <footer class="mt-auto d-flex flex-column flex-md-row justify-content-around p-3 bg-info">
             <figure>
                 <img src="{{ asset('images/ha.png') }}" alt="Harouna Kane" class="rounded-circle d-block mx-auto img-fluid">
                 <figcaption class="figure-caption text-center">Harouna Kane <p>Profession</p></figcaption>

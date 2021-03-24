@@ -34,7 +34,8 @@ class CommentaireType extends AbstractType
                 "attr" => [
                     "placeholder" => "Tapez votre commentaire ici",
                     "minlength" => 2,
-                    "maxlength" => 200
+                    "maxlength" => 200,
+                    "rows" => 10
                 ]
             ])
 //            ->add('article', EntityType::class, [

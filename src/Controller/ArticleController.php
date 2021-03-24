@@ -27,7 +27,7 @@ class ArticleController extends AbstractController
     }  
     
     /**
-     * @Route("/", name="article_admin", methods={"GET"})
+     * @Route("admin/articles", name="article_admin", methods={"GET"})
      */
     public function article_admin(ArticleRepository $articleRepository): Response
     {

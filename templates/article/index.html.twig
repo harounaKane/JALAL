@@ -6,23 +6,25 @@
     <div class="row m-0 container-lg m-lg-auto">
         <main class=" col-12 col-md-9">
             <section class="row p-2">
-                <p class="border-bottom border-dark col-12 p-0 h3">Derniers articles publiés</p>
+                <p class="border-bottom border-dark col-12 p-0 mt-3 h3">Derniers articles publiés</p>
 {% if articles %}
                 <div class="mainArticle col-12 mb-4">
                     <article class="">
                         <a href="{{ path('article_show', {'id': lastArticle.id}) }}" class="text-decoration-none text-dark row">
                             <img class="col-12 p-0" src="{{ asset('articles/main_img/'~ lastArticle.mainImage) }}" alt="{{ lastArticle.mainImage }}">
                             <h1 class="mainTitle col-12 p-0 my-0">{{ lastArticle.title }}</h1>
-                            <h2 class="h3 mt-0">{{ lastArticle.secondaryTitle }}</h2>
+                            <h2 class="col-12 p-0 h3 mt-0">{{ lastArticle.secondaryTitle }}</h2>
+                            <h3 class="p-0 h5 mt-1">Par {{ lastArticle.user.firstName }} le {{ lastArticle.ArtCreatedAt|date('d F Y') }}</h3>
                         </a>
                     </article>
                 </div>
 
                 {% for article in articles %}
                     <div class="otherArticles col-6 mb-4 {{ article.id == lastArticle.id ? 'd-none' }}">
+                        <hr>
                         <article class="">
                             <a href="{{ path('article_show', {'id': article.id}) }}" class="text-decoration-none text-dark row">
-                                <img class="col-12 p-0" src="{{ asset('articles/main_img/'~ article.mainImage) }}" alt="{{ article.mainImage }}">
+                                <img class="col-12 p-0 mb-1" src="{{ asset('articles/main_img/'~ article.mainImage) }}" alt="{{ article.mainImage }}">
                                 <h3 class="col-12 p-0 my-0">{{ article.title }}</h3>
                                 <h4 class="h5 mt-0">{{ article.secondaryTitle }}</h4>
                             </a>
@@ -34,7 +36,7 @@
         </main>
 
         <!-- ASIDE -->
-        <aside class="col-3 p-2 border-left">
+        <aside class="col-3 p-2 border-left mt-4">
             <p class="border-bottom border-dark p-0">Les plus lus</p>
             <div class="asideArticles mx-0">
                 <a href="" class="text-decoration-none text-dark d-flex flex-column justify-content-end mb-2" 

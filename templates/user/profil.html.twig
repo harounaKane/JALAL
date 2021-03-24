@@ -27,43 +27,56 @@
         <hr>
         <button id="btn-profil" type="button" class="btn btn-secondary btn-lg btn-block">Modifier mon profil</button>
         <section id="modif-user" class="d-none">
-            <div class="h1 bg-info">FORMULAIRE MODIF PROFIL</div>
             <section class="d-block mx-5 p-3 bg-info">
-                {{ form_start(form) }}
+                {{ form_start(editForm) }}
                     {{ include('user/paysResidence.html.twig') }}
                     <div class="form-row">
                         <div class="col-md-12">
-                            {{ form_row(form.civility, {'attr': {'class': 'form-check-inline'}}) }}
+                            {{ form_row(editForm.civility, {'attr': {'class': 'form-check-inline'}}) }}
                         </div>
                         <div class="col-md-6">
-                            {{ form_row(form.first_name) }}
+                            {{ form_row(editForm.first_name) }}
                         </div>
                         <div class="col-md-6">
-                            {{ form_row(form.last_name) }}
+                            {{ form_row(editForm.last_name) }}
                         </div>
                         <div class="col-md-6">
-                            {{ form_row(form.mail) }}
+                            {{ form_row(editForm.mail) }}
                         </div>
                         <div class="col-md-6">
-                            {{ form_row(form.login) }}
+                            {{ form_row(editForm.login) }}
                         </div>
                         <div class="col-md-6">
-                            {{ form_row(form.country) }}
+                            {{ form_row(editForm.country) }}
                         </div>
                         <div class="col-md-6">
-                        {{ form_row(form.avatar) }}
+                        {{ form_row(editForm.avatar) }}
                         </div>
                         <div class="col-md-12">
-                            {{ form_row(form.description) }}
+                            {{ form_row(editForm.description) }}
                         </div>
                         <div class="col-md-12">
-                            {{ form_row(form.Enregistrer) }}
+                            {{ form_row(editForm.Enregistrer) }}
                         </div>
                     </div>
-                {{ form_end(form) }}
+                {{ form_end(editForm) }}
             </section>
         </section>
-        <a href="" class="btn btn-secondary btn-lg btn-block mt-2">Changer le mot de passe</a>
+        <button id="btn-mdp" type="button" class="btn btn-secondary btn-lg btn-block mt-3">Changer le mot de pass</button>
+        <section id="modif-mdp" class="d-none">
+            <section class="d-block mx-5 p-3 bg-info">
+                {{ form_start(mdpForm) }}
+                    <div class="form-row">
+                        <div class="col-md-12">
+                            {{ form_row(mdpForm.password) }}
+                        </div>
+                        <div class="col-md-12">
+                            {{ form_row(mdpForm.Enregistrer) }}
+                        </div>
+                    </div>
+                {{ form_end(mdpForm) }}
+            </section>
+        </section>
     {% endif %}
 
 </div>

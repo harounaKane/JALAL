@@ -20,7 +20,8 @@ class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
+        if($options["useAll"]){
+            $builder
             ->add('civility', ChoiceType::class, [
                 "label" => "Civilité",
                 'choices' => [
@@ -90,9 +91,8 @@ class UserType extends AbstractType
                     "rows" => 2,
                     "maxlength" => 255
                 ]
-            ])
-            ->add("Enregistrer", SubmitType::class)
-        ;
+            ]);
+        }
         
         if($options["usePassword"]){
             $builder->add('password', RepeatedType::class, [
@@ -103,13 +103,17 @@ class UserType extends AbstractType
                     'attr' => ['minlength' => 6, 'maxlength' => 10]]
             ]);
         }
+
+            $builder->add("Enregistrer", SubmitType::class)
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => User::class,
-            'usePassword' => true
+            'usePassword' => true,
+            'useAll' => true
         ]);
     }
 

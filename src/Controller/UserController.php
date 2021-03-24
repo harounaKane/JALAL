@@ -106,24 +106,18 @@ class UserController extends AbstractController
      */
     public function profilUser(Request $request, User $user, UserRepository $userRepository)
     {
+        $avatar = $user->getAvatar();
         //$form->remove('password');
         $editForm = $this->createForm(UserType::class, $user, [ 'usePassword' => false ]);
         $editForm->handleRequest($request);
 
-        //ajouter un champ pour vérifier l'ancien mdp avant d'effectuer la MaJ (utilisation form connexion ?)
         $mdpForm = $this->createForm(UserType::class, $user, [ 'useAll' => false ]);
         $mdpForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            //"avatar" est null, impossible de trouver pourquoi
-            $avatar = $user->getAvatar();
-
-            if( $editForm->get('avatar')->getData() != null  ){ dd( $editForm->get('avatar')->getData() ); }
-            else{ dd( 'avatar session = '.$avatar .' / '.$request->getSession()->get('avatar')); }
-
             if( $editForm->get('avatar')->getData() != null ){
-                if( file_exists('public/images/avatars/'.$avatar) ){
-                    unlink( 'public/images/avatars/'.$avatar );
+                if( file_exists($this->getParameter('avatar_directory').'/'.$avatar) ){
+                    unlink( $this->getParameter('avatar_directory').'/'.$avatar );
                 }
                 $image = $editForm->get('avatar')->getData();
                 $user_pseudo = $request->getSession()->get('login');
@@ -162,5 +156,8 @@ class UserController extends AbstractController
             
         ]);
     }
+    
+        //dans méthode indépendante ajouter un champ pour vérifier l'ancien mdp avant d'effectuer la MaJ (utilisation function connexionUser)
+        //créer le nouveau formulaire dans le UserController
 
 }

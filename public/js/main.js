@@ -4,6 +4,9 @@
         $('#btn-profil').click(function () {
             $('#modif-user').toggleClass('d-block');
         });
+        $('#btn-mdp').click(function () {
+            $('#modif-mdp').toggleClass('d-block');
+        });
     })
 
 

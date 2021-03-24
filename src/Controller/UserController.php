@@ -106,20 +106,20 @@ class UserController extends AbstractController
      */
     public function profilUser(Request $request, User $user, UserRepository $userRepository)
     {
-        //$user->setAvatar(NULL);
+        $avatar = $user->getAvatar();
         //$form->remove('password');
-        $form = $this->createForm(UserType::class, $user, [ 'usePassword' => false ]);
-        $form->handleRequest($request);
+        $editForm = $this->createForm(UserType::class, $user, [ 'usePassword' => false ]);
+        $editForm->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            //$user->setPassword(password_hash($user->getPassword(), PASSWORD_DEFAULT));
+        $mdpForm = $this->createForm(UserType::class, $user, [ 'useAll' => false ]);
+        $mdpForm->handleRequest($request);
 
-            if( $form->get('avatar')->getData() != null  ){ dd( $form->get('avatar')->getData() ); }
-            else{ dd( 'avatar session = '.$request->getSession()->get('avatar') ); }
-
-            if( $form->get('avatar')->getData() != null ){
-                // unlink() précédent avatar
-                $image = $form->get('avatar')->getData();
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            if( $editForm->get('avatar')->getData() != null ){
+                if( file_exists($this->getParameter('avatar_directory').'/'.$avatar) ){
+                    unlink( $this->getParameter('avatar_directory').'/'.$avatar );
+                }
+                $image = $editForm->get('avatar')->getData();
                 $user_pseudo = $request->getSession()->get('login');
                 $file_name =  $user_pseudo.'_avatar' . md5(uniqid()) . '.' . $image->guessExtension();
                 $image->move(
@@ -129,7 +129,6 @@ class UserController extends AbstractController
                 $user->setAvatar($file_name);
             }
             else {
-                $avatar = $request->getSession()->get('avatar');
                 $user->setAvatar($avatar);
             }
             try {
@@ -140,11 +139,25 @@ class UserController extends AbstractController
             return $this->redirectToRoute('profil', ['id'=> $user->getId()]);
         }
 
+        if ($mdpForm->isSubmitted() && $mdpForm->isValid()) {
+            $user->setPassword(password_hash($user->getPassword(), PASSWORD_DEFAULT));
+            try {
+                $this->manager->persist($user);
+                $this->manager->flush();
+            }catch (UniqueConstraintViolationException $e){
+            }
+            return $this->redirectToRoute('profil', ['id'=> $user->getId()]);
+        }
+
         return $this->render('user/profil.html.twig', [
             'user' => $user,
-            'form' => $form->createView(),
+            'editForm' => $editForm->createView(),
+            'mdpForm' => $mdpForm->createView()
             
         ]);
     }
+    
+        //dans méthode indépendante ajouter un champ pour vérifier l'ancien mdp avant d'effectuer la MaJ (utilisation function connexionUser)
+        //créer le nouveau formulaire dans le UserController
 
 }

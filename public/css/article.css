@@ -2,11 +2,10 @@
 .block-article img {
 	height: 35em;
 	width: 100%;
-	object-fit: cover;
 }
 
 .banner-author {
-    font-size: 0.8em;
+    font-size: 1em;
 }
 
 .avatar-author {

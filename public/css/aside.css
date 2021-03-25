@@ -6,30 +6,13 @@ aside {
 	height: 10em;
 	background-size: cover;
 	background-repeat: no-repeat;
-	background-position: center;
+	background-position: top;
 }
 
-/* .asideArticles img {
-	height: 10em;
-	width: 100%;
-	object-fit: cover;
-} */
-
 .aside-title {
-	/* height: 3.2em;
-    margin-top: -3.6em;
-	position: relative;
-    z-index: 1; */
     background-color: rgba(255, 255, 255, 0.6);
 	padding: 0 0.5em;
 }
-
-/* .asideArticles span {
-	padding: 0 0.5em;
-} */
-
-
-
 
 @media screen and (min-width:768px){
 	aside {

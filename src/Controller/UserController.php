@@ -11,6 +11,9 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class UserController extends AbstractController
 {
@@ -107,12 +110,21 @@ class UserController extends AbstractController
     public function profilUser(Request $request, User $user, UserRepository $userRepository)
     {
         $avatar = $user->getAvatar();
-        //$form->remove('password');
+        $user_login = $request->getSession()->get('login');
         $editForm = $this->createForm(UserType::class, $user, [ 'usePassword' => false ]);
         $editForm->handleRequest($request);
 
-        $mdpForm = $this->createForm(UserType::class, $user, [ 'useAll' => false ]);
-        $mdpForm->handleRequest($request);
+        $mdpForm = $this->updatePassword();
+
+        if ($mdpForm->isSubmitted() && $mdpForm->isValid()) {
+            dd('dd1'.$mdpForm->get('password'));
+            $oldMdp = $mdpForm->get('oldPassword')->getData();
+            $userInfo = $userRepository->connexionUser($user_login, $oldMdp);
+            if($userInfo){
+                dd('dd2'.$mdpForm->get('password')->getData());
+                $user->setPassword(password_hash($mdpForm->get('password')->getData(), PASSWORD_DEFAULT));
+            }
+        }
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             if( $editForm->get('avatar')->getData() != null ){
@@ -120,8 +132,7 @@ class UserController extends AbstractController
                     unlink( $this->getParameter('avatar_directory').'/'.$avatar );
                 }
                 $image = $editForm->get('avatar')->getData();
-                $user_pseudo = $request->getSession()->get('login');
-                $file_name =  $user_pseudo.'_avatar' . md5(uniqid()) . '.' . $image->guessExtension();
+                $file_name =  $user_login.'_avatar' . md5(uniqid()) . '.' . $image->guessExtension();
                 $image->move(
                     $this->getParameter('avatar_directory'),
                     $file_name
@@ -131,16 +142,6 @@ class UserController extends AbstractController
             else {
                 $user->setAvatar($avatar);
             }
-            try {
-                $this->manager->persist($user);
-                $this->manager->flush();
-            }catch (UniqueConstraintViolationException $e){
-            }
-            return $this->redirectToRoute('profil', ['id'=> $user->getId()]);
-        }
-
-        if ($mdpForm->isSubmitted() && $mdpForm->isValid()) {
-            $user->setPassword(password_hash($user->getPassword(), PASSWORD_DEFAULT));
             try {
                 $this->manager->persist($user);
                 $this->manager->flush();
@@ -159,5 +160,27 @@ class UserController extends AbstractController
     
         //dans méthode indépendante ajouter un champ pour vérifier l'ancien mdp avant d'effectuer la MaJ (utilisation function connexionUser)
         //créer le nouveau formulaire dans le UserController
+        public function updatePassword()
+        {
+            $form = $this->createFormBuilder()
+                ->add('oldPassword', PasswordType::class, [
+                    "label" => "Mot de passe actuel",
+                        'attr' => [
+                            'minlength' => 6,
+                            'maxlength' => 10
+                        ]
+                ])
+                ->add('password', RepeatedType::class, [
+                    'type' => PasswordType::class,
+                    "first_options" => ['label' => "Nouveau mot de passe",
+                        'attr' => ['minlength' => 6, 'maxlength' => 10]],
+                    "second_options" => ['label' => "Confirmer le mot de passe",
+                        'attr' => ['minlength' => 6, 'maxlength' => 10]]
+                ])
+                ->add("Enregistrer", SubmitType::class)
+                ->getForm();
+
+            return $form;
+        }
 
 }

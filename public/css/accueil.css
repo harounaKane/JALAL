@@ -1,6 +1,7 @@
 
-.mainArticle img, .otherArticles img {
+.main-img {
 	object-fit: cover;
+	object-position: top;
 }
 
 .mainArticle img {

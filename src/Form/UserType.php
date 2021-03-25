@@ -20,8 +20,7 @@ class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        if($options["useAll"]){
-            $builder
+        $builder
             ->add('civility', ChoiceType::class, [
                 "label" => "Civilité",
                 'choices' => [
@@ -62,15 +61,8 @@ class UserType extends AbstractType
                     "maxlength" => 15
                 ]
             ])
-            // ->add('password', RepeatedType::class, [
-            //     "type" => PasswordType::class,
-            //     "first_options" => ['label' => "Mot de passe",
-            //         'attr' => ['minlength' => 6, 'maxlength' => 10]],
-            //     "second_options" => ['label' => "Confirmation",
-            //         'attr' => ['minlength' => 6, 'maxlength' => 10]]
-            // ])
             ->add('country', TextType::class, [
-                "label" => "Pays résidence",
+                "label" => "Pays",
                 'attr'      => [
                     'list'        => 'pays',
                     'value' => "Sénégal"
@@ -80,7 +72,7 @@ class UserType extends AbstractType
 //                "label" => "Pays résidence"
 //            ])
             ->add('avatar', FileType::class, [
-                "label" => "Avatar profil",
+                "label" => "Avatar",
                 "data_class" => null,
                 'required' => false
             ])
@@ -92,7 +84,6 @@ class UserType extends AbstractType
                     "maxlength" => 255
                 ]
             ]);
-        }
         
         if($options["usePassword"]){
             $builder->add('password', RepeatedType::class, [
@@ -104,16 +95,14 @@ class UserType extends AbstractType
             ]);
         }
 
-            $builder->add("Enregistrer", SubmitType::class)
-        ;
+        $builder->add("Enregistrer", SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
             'data_class' => User::class,
-            'usePassword' => true,
-            'useAll' => true
+            'usePassword' => true
         ]);
     }
 

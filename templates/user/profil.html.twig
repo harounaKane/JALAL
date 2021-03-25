@@ -62,12 +62,15 @@
                 {{ form_end(editForm) }}
             </section>
         </section>
-        <button id="btn-mdp" type="button" class="btn btn-secondary btn-lg btn-block mt-3">Changer le mot de pass</button>
+        <button id="btn-mdp" type="button" class="btn btn-secondary btn-lg btn-block mt-3">Changer le mot de passe</button>
         <section id="modif-mdp" class="d-none">
             <section class="d-block mx-5 p-3 bg-info">
                 {{ form_start(mdpForm) }}
                     <div class="form-row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 border-bottom">
+                        {{ form_row(mdpForm.oldPassword) }}
+                        </div>
+                        <div class="col-md-12 mt-2">
                             {{ form_row(mdpForm.password) }}
                         </div>
                         <div class="col-md-12">

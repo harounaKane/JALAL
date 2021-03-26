@@ -158,8 +158,12 @@ class UserController extends AbstractController
         ]);
     }
     
-        //dans méthode indépendante ajouter un champ pour vérifier l'ancien mdp avant d'effectuer la MaJ (utilisation function connexionUser)
-        //créer le nouveau formulaire dans le UserController
+        //paramètre request
+        //appel du isSubmitted dans la fonction updatePassword
+        //MaJ ROUTE
+        /**
+         * @Route("/user_profil/{id}", name="profil", methods={"POST"})
+         */
         public function updatePassword()
         {
             $form = $this->createFormBuilder()

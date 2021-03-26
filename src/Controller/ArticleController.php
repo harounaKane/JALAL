@@ -125,7 +125,7 @@ class ArticleController extends AbstractController
             dd($commentaires);
             echo(json_encode($commentaires));
         }
-
+        //dd($this->getIp());
         //RECUPRATION DES COMMENTAIRE DE L'ARTICLE
         $commentaires = $commentaireRepository->commentByArticle($article->getId());
 
@@ -146,7 +146,18 @@ class ArticleController extends AbstractController
             'last' => $repo->findBy([], ['art_created_at' => 'DESC'], 10)
         ]);
     }
-    
+
+    public function getIp(){
+        if(!empty($_SERVER['HTTP_CLIENT_IP'])){
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        }elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        }else{
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        return $ip;
+    }
+
     /*
     AJAX commentaires :
         faire une function add_comment($form, $id_article) pour l'appeler dans le fichier JS ?

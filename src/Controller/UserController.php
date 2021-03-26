@@ -115,13 +115,12 @@ class UserController extends AbstractController
         $editForm->handleRequest($request);
 
         $mdpForm = $this->updatePassword();
+        $mdpForm->handleRequest($request);
 
         if ($mdpForm->isSubmitted() && $mdpForm->isValid()) {
-            dd('dd1'.$mdpForm->get('password'));
             $oldMdp = $mdpForm->get('oldPassword')->getData();
             $userInfo = $userRepository->connexionUser($user_login, $oldMdp);
             if($userInfo){
-                dd('dd2'.$mdpForm->get('password')->getData());
                 $user->setPassword(password_hash($mdpForm->get('password')->getData(), PASSWORD_DEFAULT));
             }
         }
@@ -161,7 +160,7 @@ class UserController extends AbstractController
         //paramètre request
         //appel du isSubmitted dans la fonction updatePassword
         //MaJ ROUTE
-        /**
+        /*
          * @Route("/user_profil/{id}", name="profil", methods={"POST"})
          */
         public function updatePassword()

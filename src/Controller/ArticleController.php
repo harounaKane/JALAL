@@ -133,6 +133,9 @@ class ArticleController extends AbstractController
         $audios = $mediaRepository->audioByArticle($article->getId());
         $videos_url = $mediaRepository->videoUrlByArticle($article->getId());
         $videos_fichier = $mediaRepository->videoFichierByArticle($article->getId());
+        $nb_total_img = count($images);
+        // dump($images);
+        // die;
 
         return $this->render('article/show.html.twig', [
             'article' => $article,
@@ -142,6 +145,7 @@ class ArticleController extends AbstractController
             'audios' => $audios,
             'videos_url' => $videos_url,
             'videos_fichier' => $videos_fichier,
+            'nb_total_img' => $nb_total_img,
             'aside' => $repo->findBy(['categorie' => $article->getCategorie()], [], 10),
             'last' => $repo->findBy([], ['art_created_at' => 'DESC'], 10)
         ]);

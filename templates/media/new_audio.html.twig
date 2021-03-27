@@ -4,9 +4,36 @@
 
 {% block body %}
     <h1 class="ajout-med-titre">Ajouter des audios</h1>
+    {% for message in app.flashes('notice-add-aud') %}
+        <div class="flash-notice">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('notice-upd-aud') %}
+        <div class="flash-notice">
+            {{ message }}
+        </div>
+    {% endfor %}
 
     {{ include('media/_form.html.twig') }}
-        <div>
+
+        {% for audio in audios %}
+        <div class="column" >
+            <div class="ui fluid card" style="text-align: center;">
+                <div class="content">
+                    <audio controls>
+                        <source src="{{ asset('articles/galeries/audios/' ~ audio.nom) }}" type="audio/mpeg">
+                        <source src="{{ asset('articles/galeries/audios/' ~ audio.nom) }}" type="audio/ogg">
+                        Your browser does not support the audio element.
+                    </audio> 
+                    <p><span>Légende de l'audio :</span> {{audio.legende}}</p>
+                    <p><a href="{{ path('media_edit', {'id' : audio.id}) }}"><i class="las la-edit"></i></a></p>
+                    <p><a href="{{ path('media_delete', {'id' : audio.id}) }}"><i class="las la-times"></i></a></p>
+                </div>
+            </div>
+        </div>    
+        {% endfor %}
+        <div class="container other-type">
             <p>Souhaitez-vous ajouter d'autres types de médias</p>
             <a href="{{ path('media_new_image', {'id' : article.id} ) }}">Je veux ajouter des images</a>
             <hr>

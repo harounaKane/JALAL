@@ -4,9 +4,54 @@
 
 {% block body %}
     <h1 class="ajout-med-titre">Ajouter des vidéos</h1>
+    {% for message in app.flashes('notice-add-vid') %}
+        <div class="flash-notice">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('notice-upd-vid') %}
+        <div class="flash-notice">
+            {{ message }}
+        </div>
+    {% endfor %}
 
     {{ include('media/_form.html.twig') }}
-        <div>
+
+        <div class="column" >
+            {% if(videos_url) %}
+                {% for video_url in videos_url %} 
+                    <div class="ui fluid card" style="text-align: center;">
+                        <div class="content">                   
+                            <iframe width="200" height="100" src="https://www.youtube.com/embed/{{video_url.url}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div>
+                            <p><span>Légende de la vidéo : </span>{{video_url.legende}}</p>
+                            <p><a href="{{ path('media_edit', {'id' : video_url.id}) }}"><i class="las la-edit"></i></a></p>
+                            <p><a href="{{ path('media_delete', {'id' : video_url.id}) }}"><i class="las la-times"></i></a></p>
+                        </div>    
+                    </div>
+                {% endfor %}
+            {% endif %}
+            {% if(videos_fichier) %}
+                {% for video_fichier in videos_fichier %}
+                    <div class="ui fluid card" style="text-align: center;">
+                        <div class="content">  
+                            <video controls width="200" height="100">
+                                <source src="{{ asset('articles/galeries/videos/' ~ video_fichier.nom) }}" type="video/webm">
+                                <source src="{{ asset('articles/galeries/videos/' ~ video_fichier.nom) }}" type="video/mp4">
+                            </video>  
+                            <div>
+                                <p><span>Légende de la vidéo : </span>{{video_fichier.legende}}</p>
+                                <p><a href="{{ path('media_edit', {'id' : video_fichier.id}) }}"><i class="las la-edit"></i></a></p>
+                                <p><a href="{{ path('media_delete', {'id' : video_fichier.id}) }}"><i class="las la-times"></i></a></p>
+                            </div>
+                        </div>
+                    </div>  
+                {% endfor %}
+            {% endif %}
+        </div>
+        <div class="container other-type">
             <p>Souhaitez-vous ajouter d'autres types de médias</p>
             <a href="{{ path('media_new_image', {'id' : article.id} ) }}">Je veux ajouter des images</a>
             <hr>

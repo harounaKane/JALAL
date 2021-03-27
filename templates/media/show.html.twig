@@ -14,11 +14,29 @@
                     <p class="">Type du media : {{ medium.type }}</p>
                     <p class="">Date de création du media : {{ medium.createdAt ? medium.createdAt|date('Y-m-d H:i:s') : '' }}</p>
                     <p class="">Aperçu du media : {{ medium.type }}</p>
-                <div class="ui fluid card">
-                    <div class="content">
-                        <img src="{{ asset('articles/galeries/images/' ~ medium.nom) }}" class=" ui image" height="100px" width="(50px">
-                    </div>
-                </div>
+                    {% if medium.type == 'image' %}
+                        <div class="ui fluid card">
+                            <div class="content">
+                                <img src="{{ asset('articles/galeries/images/' ~ medium.nom) }}" class=" ui image" height="100px" width="(50px">
+                            </div>
+                        </div>
+                    {% elseif medium.type == 'audio' %}
+                        <audio controls>
+                            <source src="{{ asset('articles/galeries/audios/' ~ medium.nom) }}" type="audio/mpeg">
+                            <source src="{{ asset('articles/galeries/audios/' ~ medium.nom) }}" type="audio/ogg">
+                            Your browser does not support the audio element.
+                        </audio> 
+                    {% elseif medium.type == 'video' %}
+                        {% if medium.nom == 'url' %}
+                            <iframe width="500" height="300" src="https://www.youtube.com/embed/{{medium.url}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                            </iframe>
+                        {% elseif medium.url == 'fichier' %}
+                            <video controls width="500" height="300">
+                                <source src="{{ asset('articles/galeries/videos/' ~ medium.nom) }}" type="video/webm">
+                                <source src="{{ asset('articles/galeries/videos/' ~ medium.nom) }}" type="video/mp4">
+                            </video> 
+                        {% endif %}
+                    {% endif %}
             </div>
         </div>
     </div>

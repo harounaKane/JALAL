@@ -19,11 +19,17 @@ class MediaType extends AbstractType
     {
         $builder
             ->add('url',  TextType::class, [
-                "label" => "Collez l'URL ici",
+                "label" => "URL",
+                "attr" => [
+                    "placeholder" => "Collez votre URL ici",
+                ],
                 'required' => false,
             ])
             ->add('nom', FileType::class, [
-                "label" => "Votre fichier",                
+                "label" => "Fichier",
+                "attr" => [
+                    "placeholder" => "Importez votre fichier ici",
+                ],               
                 'data_class' => null,
                 'required' => false,
                 'mapped' => false,
@@ -32,7 +38,7 @@ class MediaType extends AbstractType
             ->add('legende', TextType::class, [
                 "label" => "Légende",
                 "attr" => [
-                    "placeholder" => "légende fichier",
+                    "placeholder" => "Légende du media",
                     "required" => false,
                     "maxlength" => 255
                 ]
@@ -40,24 +46,13 @@ class MediaType extends AbstractType
             ->add('texte', TextareaType::class, [
                 "label" => "Description",
                 "attr" => [
-                    "placeholder" => "texte complémentaire du média",
+                    "placeholder" => "Texte complémentaire du média",
                     "required" => false,
                     "maxlength" => 500,
                     "rows" => 5
                 ]
             ])
             ->add('ordre',  HiddenType::class)
-            // ->add('ordre', ChoiceType::class, [
-            //     "label" => "Ordre",
-            //     "choices" => [
-            //         "1" => 1,
-            //         "2" => 2,
-            //         "3" => 3,
-            //         "4" => 4,
-            //         "5" => 5
-            //     ]
-            // ])
-            //->add('type',  HiddenType::class)
 
            ->add("Ajouter", SubmitType::class)
         ;

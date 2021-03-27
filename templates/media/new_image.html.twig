@@ -5,7 +5,12 @@
 {% block body %}
     <h1 class="ajout-med-titre">Ajouter des images</h1>
 
-    {% for message in app.flashes('notice') %}
+    {% for message in app.flashes('notice-add-img') %}
+        <div class="flash-notice">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('notice-upd-img') %}
         <div class="flash-notice">
             {{ message }}
         </div>

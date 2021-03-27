@@ -58,6 +58,17 @@ class MediaRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
             ;
+    }
+    public function videoByArticle($article_id){
+        return $this->createQueryBuilder('m')
+            ->andWhere("m.article = :id" )
+            ->andWhere("m.type = :vid" )
+            ->setParameter("id", $article_id)
+            ->setParameter("vid", "video")
+            ->orderBy('m.ordre', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
     } 
     public function videoUrlByArticle($article_id){
         return $this->createQueryBuilder('m')

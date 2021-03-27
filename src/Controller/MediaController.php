@@ -80,13 +80,13 @@ class MediaController extends AbstractController
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($medium);
                 $entityManager->flush();
-                $this->addFlash('notice'
+                $this->addFlash('notice-add-img'
                                 ,'Votre image a bien été ajoutée');
                 return $this->redirectToRoute('media_new_image', ['id' => $article->getId()]);
             }
             if($nb_img >= $i){
                 
-                $this->addFlash('notice'
+                $this->addFlash('notice-add-img'
                                 ,'Vous ne pouvez pas ajouter plus de dix images !');
                 return $this->redirectToRoute('media_new_image', ['id' => $article->getId()]);
             }
@@ -118,63 +118,76 @@ class MediaController extends AbstractController
     /**
      * @Route("/new_video/{id}", name="media_new_video", methods={"GET","POST"})
      */
-    public function new_video(Request $request, Article $article): Response
+    public function new_video(Request $request, Article $article, MediaRepository $mediaRepository): Response
     {
         $medium = new Media();
         $form = $this->createForm(MediaType::class, $medium);
         $form->handleRequest($request);
+        $videos = $mediaRepository->videoByArticle($article->getId());
+        $videos_url = $mediaRepository->videoUrlByArticle($article->getId());
+        $videos_fichier = $mediaRepository->videoFichierByArticle($article->getId());
+        $nb_vid = count($videos);
+        $i = 2;
         $medium->setType('video');
-        // $request_uri = $request->getrequestUri();
-        // dump($request->getrequestUri());
-        // die;
+        
         if ($form->isSubmitted() && $form->isValid()) {
-            
-            $medium->setCreatedAt(new \DateTime());
-            $medium->setType('video');
-            $medium->setArticle($article);
-            $medium->setOrdre('0');
+            while($nb_vid< $i){
+                $medium->setCreatedAt(new \DateTime());
+                $medium->setType('video');
+                $medium->setArticle($article);
+                $medium->setOrdre('0');
 
-            if(!($form->get('nom')->isEmpty()) && ($form->get('url')->isEmpty()) ){
-                $videos = $form->get('nom')->getData();
-                foreach($videos as $video){
-                    $medium->setUrl('fichier');
-                    $file_name =  $article->getId().'vid' . md5(uniqid()) . '.' . $video->guessExtension();
+                if(!($form->get('nom')->isEmpty()) && ($form->get('url')->isEmpty()) ){
+                    $videos = $form->get('nom')->getData();
+                    foreach($videos as $video){
+                        $medium->setUrl('fichier');
+                        $file_name =  $article->getId().'vid' . md5(uniqid()) . '.' . $video->guessExtension();
 
-                    $video->move(
-                        $this->getParameter('videos_directory'),
-                        $file_name
-                    );
-                    $medium->setNom($file_name);
-                    $article->addMedium($medium);
-                }
-                $entityManager = $this->getDoctrine()->getManager();
-                $entityManager->persist($medium);
-                $entityManager->flush();
-                $this->addFlash('notice'
-                            ,'Votre vidéo a bien été ajoutée');
-            }
-            elseif(!($form->get('url')->isEmpty()) && ($form->get('nom')->isEmpty()) ) {
-                $medium->setNom('url');
-                $video = $form->get('url')->getData();
-                
-                    $file_name =  substr($form->get('url')->getData(), 32 );
-                    
-                    $medium->setUrl($file_name);
-                    $article->addMedium($medium);
+                        $video->move(
+                            $this->getParameter('videos_directory'),
+                            $file_name
+                        );
+                        $medium->setNom($file_name);
+                        $article->addMedium($medium);
+                    }
                     $entityManager = $this->getDoctrine()->getManager();
                     $entityManager->persist($medium);
                     $entityManager->flush();
-                    $this->addFlash('notice'
-                            ,'Votre vidéo a bien été ajoutée');
-                
+                    $this->addFlash('notice-add-vid'
+                                ,'Votre vidéo a bien été ajoutée');
+                }
+                elseif(!($form->get('url')->isEmpty()) && ($form->get('nom')->isEmpty()) ) {
+                    $medium->setNom('url');
+                    $video = $form->get('url')->getData();
+                    
+                        $file_name =  substr($form->get('url')->getData(), 32 );
+                        
+                        $medium->setUrl($file_name);
+                        $article->addMedium($medium);
+                        $entityManager = $this->getDoctrine()->getManager();
+                        $entityManager->persist($medium);
+                        $entityManager->flush();
+                        $this->addFlash('notice-add-vid'
+                                ,'Votre vidéo a bien été ajoutée');
+                    
+                }
+                return $this->redirectToRoute('media_new_video', ['id' => $article->getId()]);
+
             }
-            return $this->redirectToRoute('media_new_video', ['id' => $article->getId()]);
+            if($nb_vid>= $i){
+                
+                $this->addFlash('notice-add-vid'
+                                ,'Vous ne pouvez pas ajouter plus de deux vidéos !');
+                return $this->redirectToRoute('media_new_video', ['id' => $article->getId()]);
+            }
         }
 
         return $this->render('media/new_video.html.twig', [
             'medium' => $medium,
             'article' => $article,
-            // 'request_uri' => $request_uri,
+            'videos' => $videos,
+            'videos_url' => $videos_url,
+            'videos_fichier' => $videos_fichier,
             'form' => $form->createView(),
         ]);
     }  
@@ -182,43 +195,54 @@ class MediaController extends AbstractController
     /**
      * @Route("/new_audio/{id}", name="media_new_audio", methods={"GET","POST"})
      */
-    public function new_audio(Request $request, Article $article): Response
+    public function new_audio(Request $request, Article $article, MediaRepository $mediaRepository): Response
     {
         $medium = new Media();
         $form = $this->createForm(MediaType::class, $medium);
         $form->handleRequest($request);
-        
+        $audios = $mediaRepository->audioByArticle($article->getId());
+        $nb_aud = count($audios);
+        $i = 2;
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $medium->setCreatedAt(new \DateTime());
-            $medium->setType('audio');
-            $medium->setArticle($article);
-            $medium->setOrdre('0');
-            
-            $audios = $form->get('nom')->getData();
-            
-            foreach($audios as $audio){
-                $file_name =  $article->getId().'aud' . md5(uniqid()) . '.' . $audio->guessExtension();
+            while($nb_aud< $i){
+                $medium->setCreatedAt(new \DateTime());
+                $medium->setType('audio');
+                $medium->setArticle($article);
+                $medium->setOrdre('0');
+                
+                $audios = $form->get('nom')->getData();
+                
+                foreach($audios as $audio){
+                    $file_name =  $article->getId().'aud' . md5(uniqid()) . '.' . $audio->guessExtension();
 
-                $audio->move(
-                    $this->getParameter('audios_directory'),
-                    $file_name
-                );
-                $medium->setNom($file_name);
-                $article->addMedium($medium);
+                    $audio->move(
+                        $this->getParameter('audios_directory'),
+                        $file_name
+                    );
+                    $medium->setNom($file_name);
+                    $article->addMedium($medium);
+                }
+
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($medium);
+                $entityManager->flush();
+                $this->addFlash('notice-add-aud'
+                                ,'Votre audio a bien été ajoutée');
+                return $this->redirectToRoute('media_new_audio', ['id' => $article->getId()]);
             }
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($medium);
-            $entityManager->flush();
-            $this->addFlash('notice'
-                            ,'Votre audio a bien été ajoutée');
-            return $this->redirectToRoute('media_new_audio', ['id' => $article->getId()]);
+            if($nb_aud>= $i){
+                
+                $this->addFlash('notice-add-aud'
+                                ,'Vous ne pouvez pas ajouter plus de deux audios !');
+                return $this->redirectToRoute('media_new_video', ['id' => $article->getId()]);
+            }
         }
 
         return $this->render('media/new_audio.html.twig', [
             'medium' => $medium,
             'article' => $article,
+            'audios' => $audios,
             'form' => $form->createView(),
         ]);
     }   
@@ -231,9 +255,15 @@ class MediaController extends AbstractController
     {
         $form = $this->createForm(MediaType::class, $medium);
         $form->handleRequest($request);
+        $article = $medium->getArticle();
+        $images = $mediaRepository->imageByArticle($article->getId());
+        $audios = $mediaRepository->audioByArticle($article->getId());
+        $videos = $mediaRepository->videoByArticle($article->getId());
+        $videos_url = $mediaRepository->videoUrlByArticle($article->getId());
+        $videos_fichier = $mediaRepository->videoFichierByArticle($article->getId());
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $article = $medium->getArticle();
+            // $article = $medium->getArticle();
             if($medium->getType() == 'image'){
                 // On récupère les images transmises
                 $images = $form->get('nom')->getData();
@@ -247,13 +277,72 @@ class MediaController extends AbstractController
                     $article->addMedium($medium);
                 }
                 $this->getDoctrine()->getManager()->flush();
-
+                $this->addFlash('notice-upd-img'
+                                ,'Les informations de cette image ont bien été modifiées');
                 return $this->redirectToRoute('media_new_image', ['id' => $article->getId()]);
+
+                // return $this->redirectToRoute('media_new_image', ['id' => $article->getId()]);
+            }
+            if($medium->getType() == 'audio'){
+                
+                $audios = $form->get('nom')->getData();
+                foreach($audios as $audio){
+                    $file_name =  $medium->getArticle()->getId().'aud' . md5(uniqid()) . '.' . $audio->guessExtension();
+                    $audio->move(
+                        $this->getParameter('audios_directory'),
+                        $file_name
+                    );
+                    $medium->setNom($file_name);
+                    $article->addMedium($medium);
+                }
+                $this->getDoctrine()->getManager()->flush();
+                $this->addFlash('notice-upd-aud'
+                                ,'Les informations de cette audio ont bien été modifiées');
+                return $this->redirectToRoute('media_new_audio', ['id' => $article->getId()]);
+
+                // return $this->redirectToRoute('media_new_image', ['id' => $article->getId()]);
+            }
+            if($medium->getType() == 'video'){
+                if($medium->getNom() == 'url'){
+                    $medium->setNom('url');
+                    $video = $form->get('url')->getData();
+                    
+                        $file_name =  substr($form->get('url')->getData(), 32 );
+                        
+                        $medium->setUrl($file_name);
+                        $article->addMedium($medium);
+                }
+                elseif($medium->getUrl() == 'fichier'){
+                    $videos = $form->get('nom')->getData();
+                    foreach($videos as $video){
+                        $file_name =  $article->getId().'vid' . md5(uniqid()) . '.' . $video->guessExtension();
+
+                        $video->move(
+                            $this->getParameter('videos_directory'),
+                            $file_name
+                        );
+                        $medium->setNom($file_name);
+                        $article->addMedium($medium);
+                    }
+                }
+               
+                $this->getDoctrine()->getManager()->flush();
+                $this->addFlash('notice-upd-vid'
+                                ,'Les informations de cette vidéos ont bien été modifiées');
+                return $this->redirectToRoute('media_new_video', ['id' => $article->getId()]);
+
+                // return $this->redirectToRoute('media_new_image', ['id' => $article->getId()]);
             }
         }
 
         return $this->render('media/edit.html.twig', [
             'medium' => $medium,
+            'article' => $article,
+            'images' => $images,
+            'audios' => $audios,
+            'videos' => $videos,
+            'videos_url' => $videos_url,
+            'videos_fichier' => $videos_fichier,
             'form' => $form->createView(),
         ]);
     }
@@ -272,6 +361,26 @@ class MediaController extends AbstractController
             }
 
             return $this->redirectToRoute('media_new_image', ['id' => $article->getId()]);
+        }
+        if($medium->getType() == 'audio'){
+            if ($this->isCsrfTokenValid('delete'.$medium->getId(), $request->request->get('_token'))) {
+                $article = $medium->getArticle();
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->remove($medium);
+                $entityManager->flush();
+            }
+
+            return $this->redirectToRoute('media_new_audio', ['id' => $article->getId()]);
+        }
+        if($medium->getType() == 'video'){
+            if ($this->isCsrfTokenValid('delete'.$medium->getId(), $request->request->get('_token'))) {
+                $article = $medium->getArticle();
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->remove($medium);
+                $entityManager->flush();
+            }
+
+            return $this->redirectToRoute('media_new_video', ['id' => $article->getId()]);
         }
     }
 

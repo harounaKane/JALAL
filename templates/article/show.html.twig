@@ -23,9 +23,11 @@
                         <div class="elements">
                             {% if(images) %}
                                 {% for image in images %}
+                                {# {{dump(image.ordre + 1)}} #}
                                     <div class="element">
                                         <img src="{{ asset('articles/galeries/images/' ~ image.nom) }}" height="500px" width="500px">
                                         <div class="caption">
+                                            <p>Image n° {{image.ordre + 1}} sur {{nb_total_img}}</p>
                                             <h2>Légende : {{image.legende}}</h2>
                                             <p>Descriptif: {{image.texte}}</p>
                                         </div>

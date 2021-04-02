@@ -56,4 +56,34 @@
     padding-right: 30px;
     padding-left: 30px;
 }
-
+.diapo-images, .diapo-videos, .diapo-audios{
+    margin-bottom: 5rem;
+    text-align: center;
+    
+}
+.diapo-audios, .diapo-videos{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.heading{
+    padding-top: 0.5rem;
+    border-top: 1px dashed #32a1ce ;
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: .2rem;
+    text-align: center;
+    text-shadow: 0 .3rem 5.rem rgba(0, 0, 0, .5);
+}
+.audio-container, .video-container, .elements{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.video-container{
+    border: thick double #32a1ce;
+    border-radius: 6px;
+}
+.block-galerie{
+    display: flex;
+    flex-direction: column;
+}

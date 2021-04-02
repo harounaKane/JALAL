@@ -131,6 +131,7 @@ class ArticleController extends AbstractController
 
         $images = $mediaRepository->imageByArticle($article->getId());
         $audios = $mediaRepository->audioByArticle($article->getId());
+        $videos = $mediaRepository->videoByArticle($article->getId());
         $videos_url = $mediaRepository->videoUrlByArticle($article->getId());
         $videos_fichier = $mediaRepository->videoFichierByArticle($article->getId());
         $nb_total_img = count($images);
@@ -145,6 +146,7 @@ class ArticleController extends AbstractController
             'audios' => $audios,
             'videos_url' => $videos_url,
             'videos_fichier' => $videos_fichier,
+            'videos' => $videos,
             'nb_total_img' => $nb_total_img,
             'aside' => $repo->findBy(['categorie' => $article->getCategorie()], [], 10),
             'last' => $repo->findBy([], ['art_created_at' => 'DESC'], 10)

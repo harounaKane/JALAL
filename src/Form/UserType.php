@@ -32,13 +32,16 @@ class UserType extends AbstractType
             ])
             ->add('first_name', TextType::class, [
                 "label" => "Prénom",
+                "help" => '2 à 30 caractères',
                 "attr" => [
                     "placeholder" => "Prénom",
                     "minlength" => 2,
                     "maxlength" => 30
                 ]
-            ])->add('last_name', TextType::class, [
+            ])
+            ->add('last_name', TextType::class, [
                 "label" => "Nom",
+                "help" => '2 à 30 caractères',
                 "attr" => [
                     "placeholder" => "Nom",
                     "minlength" => 2,
@@ -47,24 +50,29 @@ class UserType extends AbstractType
             ])
             ->add('mail', EmailType::class, [
                 "label" => "Mail",
+                "help" => '8 à 40 caractères',
                 "attr" => [
                     "placeholder" => "votre.adresse@mail.fr",
                     "minlength" => 8,
-                    "maxlength" => 40
+                    "maxlength" => 40,
+                    "pattern" => "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                 ]
             ])
             ->add('login', TextType::class, [
                 "label" => "Login",
+                "help" => '4 à 15 caractères, pas de caractères spéciaux',
                 "attr" => [
                     "placeholder" => "Login",
                     "minlength" => 4,
-                    "maxlength" => 15
+                    "maxlength" => 15,
+                    "pattern" => "[A-Za-z0-9]" 
                 ]
             ])
             ->add('country', TextType::class, [
                 "label" => "Pays",
+                "help" => '',
                 'attr'      => [
-                    'list'        => 'pays',
+                    'list'  => 'pays',
                     'value' => "Sénégal"
                     ]
             ])
@@ -78,6 +86,7 @@ class UserType extends AbstractType
             ])
             ->add('description', TextareaType::class, [
                 "label" => "Description",
+                "help" => '255 caractères maximum',
                 "attr" => [
                     "placeholder" => "Courte description",
                     "rows" => 2,
@@ -89,7 +98,8 @@ class UserType extends AbstractType
             $builder->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 "first_options" => ['label' => "Mot de passe",
-                    'attr' => ['minlength' => 6, 'maxlength' => 10]],
+                    'help' => '6 à 10 caractères, au moins une majuscule et un chiffre',
+                    'attr' => ['minlength' => 6, 'maxlength' => 10, 'pattern' => "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,10}"]],
                 "second_options" => ['label' => "Confirmation",
                     'attr' => ['minlength' => 6, 'maxlength' => 10]]
             ]);

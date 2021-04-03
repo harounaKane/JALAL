@@ -20,6 +20,7 @@
                 <section class="block-galerie  my-4 row">
                     <h1> Galerie des médias </h1>
                     <div class="diapo-images">
+                        <div class="heading"><h2>Images</h2></div>
                         <div class="elements">
                             {% if(images) %}
                                 {% for image in images %}
@@ -33,46 +34,64 @@
                                         </div>
                                     </div>
                                 {% endfor %}
+                            {% else %}
+                                <p>Il n'y a pas d'images dans cet article</p>
                             {% endif %}
                         </div>
                         <!-- Flèches de navigation -->
                         <i id="nav-gauche" class="las la-chevron-left"></i>
                         <i id="nav-droite" class="las la-chevron-right"></i>
                     </div>
+                    <div class="heading"><h2>Audios</h2></div>
                     <div class="diapo-audios">
                         {% if(audios) %}
-                            {% for audio in audios %}
+                        {% for audio in audios %}
+                             <div class="audio-container">
+                                <p><strong>Légende : </strong>{{audio.legende}}</p>
+                                <audio controls>
+                                    <source src="{{ asset('articles/galeries/audios/' ~ audio.nom) }}" type="audio/mpeg">
+                                    <source src="{{ asset('articles/galeries/audios/' ~ audio.nom) }}" type="audio/ogg">
+                                    Your browser does not support the audio element.
+                                </audio>
                                 <div class="">
-                                    <h1>audios</h1>
-                                    <audio controls>
-                                        <source src="{{ asset('articles/galeries/audios/' ~ audio.nom) }}" type="audio/mpeg">
-                                        <source src="{{ asset('articles/galeries/audios/' ~ audio.nom) }}" type="audio/ogg">
-                                        Your browser does not support the audio element.
-                                    </audio>                                    
                                     
-                                    <div class="">
-                                        <h2>Légende : {{audio.legende}}</h2>
-                                        <p>Descriptif: {{audio.texte}}</p>
-                                    </div>
+                                    <p><strong>Descriptif: </strong> {{audio.texte}}</p>
                                 </div>
+                            </div>
                             {% endfor %}
+                        {% else %}
+                            <p>Il n'y a pas d'audios dans cet article</p>
                         {% endif %}
                     </div>
+                    <div class="heading"><h2>Vidéos</h2></div>
                     <div class="diapo-videos">
-                        {% if(videos_url) %}
-                            {% for video_url in videos_url %}                    
-                                <iframe width="500" height="300" src="https://www.youtube.com/embed/{{video_url.url}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-                                </iframe>
-                            {% endfor %}
-                        {% endif %}
-                        {% if(videos_fichier) %}
-                            {% for video_fichier in videos_fichier %}
-                            <video controls width="500" height="300">
-                                <source src="{{ asset('articles/galeries/videos/' ~ video_fichier.nom) }}" type="video/webm">
-                                <source src="{{ asset('articles/galeries/videos/' ~ video_fichier.nom) }}" type="video/mp4">
-                            </video>    
-                            {% endfor %}
-                        {% endif %}                       
+                        {% if(videos) %}
+                            {% if(videos_url) %}
+                                {% for video_url in videos_url %} 
+                                    <div class="video-container">
+                                        <p><strong>Légende : </strong>{{video_url.legende}}</p>                   
+                                        <iframe width="350" height="200" src="https://www.youtube.com/embed/{{video_url.url}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                                        </iframe>
+                                        <p><strong>Descriptif : </strong>{{video_url.texte}}</p>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                            {% if(videos_fichier) %}
+                                {% for video_fichier in videos_fichier %}
+                                    <div class="video-container">
+                                        <p><strong>Légende : </strong>{{video_fichier.legende}}</p> 
+                                        <video controls width="350" height="200">
+                                            <source src="{{ asset('articles/galeries/videos/' ~ video_fichier.nom) }}" type="video/webm">
+                                            <source src="{{ asset('articles/galeries/videos/' ~ video_fichier.nom) }}" type="video/mp4">
+                                        </video>
+                                        <p><strong>Descriptif : </strong>{{video_fichier.texte}}</p>  
+                                    </div>  
+                                {% endfor %}
+                            {% endif %} 
+                        {% else %}
+                            <p>Il n'y a pas de vidéos dans cet article</p>
+                        {% endif %} 
+
                     </div>
                 </section>
                 

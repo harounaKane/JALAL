@@ -25,9 +25,14 @@
     
     {% if app.session.get('id') and app.session.get('id') == user.id %}
         <hr>
+        {% for message in app.flashes('notice') %}
+            <div id="msg-profil" class="bg-success text-white text-center h3 my-2 p-2">
+                {{ message }}
+            </div>
+        {% endfor %}
         <button id="btn-profil" type="button" class="btn btn-secondary btn-lg btn-block">Modifier mon profil</button>
         <section id="modif-user" class="d-none">
-            <section class="d-block mx-5 p-3 bg-info">
+            <div class="p-3 shadow rounded bg-light">
                 {{ form_start(editForm) }}
                     {{ include('user/paysResidence.html.twig') }}
                     <div class="form-row">
@@ -60,11 +65,11 @@
                         </div>
                     </div>
                 {{ form_end(editForm) }}
-            </section>
+            </div>
         </section>
         <button id="btn-mdp" type="button" class="btn btn-secondary btn-lg btn-block mt-3">Changer le mot de passe</button>
         <section id="modif-mdp" class="d-none">
-            <section class="d-block mx-5 p-3 bg-info">
+            <div class="p-3 shadow rounded bg-light">
                 {{ form_start(mdpForm) }}
                     <div class="form-row">
                         <div class="col-md-12 border-bottom">
@@ -78,7 +83,7 @@
                         </div>
                     </div>
                 {{ form_end(mdpForm) }}
-            </section>
+            </div>
         </section>
     {% endif %}
 

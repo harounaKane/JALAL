@@ -9,6 +9,10 @@
         });
     })
 
+    /* Message de mise à jour du profil utilisateur */ 
+    $(document).ready(function() {
+        $('#msg-profil').delay(3000).fadeOut('slow');
+    })
 
 
     /* Toggle between showing and hiding the navigation menu links when the user clicks on the hamburger menu / bar icon */

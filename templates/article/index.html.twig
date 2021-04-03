@@ -12,7 +12,7 @@
                     <article class="">
                         <a href="{{ path('article_show', {'id': lastArticle.id}) }}" class="text-decoration-none text-dark row">
                             <img class="main-img col-12 p-0" src="{{ asset('articles/main_img/'~ lastArticle.mainImage) }}" alt="{{ lastArticle.mainImage }}">
-                            <h1 class="mainTitle col-12 p-0 my-0">{{ lastArticle.title }}</h1>
+                            <h1 class="mainTitle col-12 p-0 my-0 display-4">{{ lastArticle.title }}</h1>
                             <h2 class="col-12 p-0 h3 mt-0">{{ lastArticle.secondaryTitle }}</h2>
                             <h3 class="p-0 h5 mt-1">Par {{ lastArticle.user.firstName }} le {{ lastArticle.ArtCreatedAt|date('d F Y') }}</h3>
                         </a>
@@ -25,7 +25,7 @@
                         <article class="">
                             <a href="{{ path('article_show', {'id': article.id}) }}" class="text-decoration-none text-dark row">
                                 <img class="main-img col-12 p-0 mb-1" src="{{ asset('articles/main_img/'~ article.mainImage) }}" alt="{{ article.mainImage }}">
-                                <h3 class="col-12 p-0 my-0">{{ article.title }}</h3>
+                                <h3 class="col-12 p-0 my-0 h2">{{ article.title }}</h3>
                                 <h4 class="h5 mt-0">{{ article.secondaryTitle }}</h4>
                             </a>
                         </article>

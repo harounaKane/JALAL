@@ -40,7 +40,7 @@ class MediaType extends AbstractType
                 "attr" => [
                     "placeholder" => "Légende du media",
                     "required" => false,
-                    "maxlength" => 255
+                    "maxlength" => 150
                 ]
             ])
             ->add('texte', TextareaType::class, [
@@ -48,7 +48,7 @@ class MediaType extends AbstractType
                 "attr" => [
                     "placeholder" => "Texte complémentaire du média",
                     "required" => false,
-                    "maxlength" => 500,
+                    "maxlength" => 150,
                     "rows" => 5
                 ]
             ])

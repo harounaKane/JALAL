@@ -7,7 +7,9 @@ use App\Entity\Article;
 use App\Form\CommentaireType;
 use App\Repository\CommentaireRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -52,7 +54,14 @@ class CommentaireController extends AbstractController
         $manager = $this->getDoctrine()->getManager();
         $commentaire = $manager->getRepository(Commentaire::class)->find($id);
 
-        if($commentaire && $request->isXmlHttpRequest()){
+        if($commentaire && $request->isXmlHttpRequest() && !$request->cookies->has('myCookie')){
+
+            $response = new Response();
+
+            $cookie = new Cookie('myCookie', "un truc de fou", time() + (365 * 24 * 60 * 60));  // Expires 1 years
+            $response->headers->setCookie($cookie);
+            $response->sendHeaders();
+
             $commentaire->setLikeComment( $commentaire->getLikeComment() + 1 );
             $manager->flush();
             $arrData = [$commentaire->getLikeComment()];

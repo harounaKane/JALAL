@@ -2,8 +2,10 @@
 body{background-image: url("../images/PAGES/fond.png")}
 
 header {
-    background: linear-gradient(90deg, white, black, white);
+    /*background: linear-gradient(90deg, white, black, white);*/
+    background-color: black;
 }
+
 
 .logo {
     width: 8em;

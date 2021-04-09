@@ -1,6 +1,5 @@
 
 .block-article img {
-	height: 35em;
 	width: 100%;
 }
 
@@ -44,6 +43,8 @@
 
 .element > img{
     width: 100%;
+    height: 400px;
+    margin-bottom: 12rem;
 }
 
 .caption{
@@ -51,7 +52,7 @@
     bottom: 0%;
     left: 0%;
     /* transform: translate(-50%, -50%); */
-    text-align: center;
+    
     background-color: rgba(255,255,255,0.4);
     padding-right: 30px;
     padding-left: 30px;
@@ -86,4 +87,23 @@
 .block-galerie{
     display: flex;
     flex-direction: column;
+}
+.new-vid, .new-aud, .new-img{
+    margin-top: 1rem;
+}
+@media screen and (max-width:768px){
+    .aside-show {
+        display: none;
+    }
+    .element > img{
+        width: 80%;
+        height: 300px;
+        margin-bottom: 12rem;
+    }
+    .video-show{
+        width: 250px;
+        height: 100px;
+    }
+
+
 }

@@ -21,26 +21,29 @@
                     <h1> Galerie des médias </h1>
                     <div class="diapo-images">
                         <div class="heading"><h2>Images</h2></div>
+                        {% if(images) %}
                         <div class="elements">
-                            {% if(images) %}
+                            
                                 {% for image in images %}
-                                {# {{dump(image.ordre + 1)}} #}
                                     <div class="element">
-                                        <img src="{{ asset('articles/galeries/images/' ~ image.nom) }}" height="500px" width="500px">
+                                        <img class="img-show" src="{{ asset('articles/galeries/images/' ~ image.nom) }}" height="500px" width="500px">
                                         <div class="caption">
-                                            <p>Image n° {{image.ordre + 1}} sur {{nb_total_img}}</p>
-                                            <h2>Légende : {{image.legende}}</h2>
-                                            <p>Descriptif: {{image.texte}}</p>
+                                            <p><small>Image n° {{image.ordre + 1}} sur {{nb_total_img}}</small></p>
+                                            <h2><small>Légende : {{image.legende}}</small></h2>
+                                            <p><small>Descriptif: {{image.texte}}</small></p>
                                         </div>
                                     </div>
                                 {% endfor %}
-                            {% else %}
-                                <p>Il n'y a pas d'images dans cet article</p>
-                            {% endif %}
                         </div>
                         <!-- Flèches de navigation -->
                         <i id="nav-gauche" class="las la-chevron-left"></i>
                         <i id="nav-droite" class="las la-chevron-right"></i>
+                        {% else %}
+                            <div class="new-img">
+                                <p>Il n'y a pas d'images dans cet article</p>
+                                <a href="{{ path('media_new_image', {'id' : article.id} ) }}">Aller vers le formulaire d'ajout d'images</a>
+                            </div>
+                        {% endif %}
                     </div>
                     <div class="heading"><h2>Audios</h2></div>
                     <div class="diapo-audios">
@@ -54,13 +57,17 @@
                                     Your browser does not support the audio element.
                                 </audio>
                                 <div class="">
-                                    
                                     <p><strong>Descriptif: </strong> {{audio.texte}}</p>
+                                    <p><a href="{{ path('media_edit', {'id' : audio.id}) }}"><i class="las la-edit"></i></a></p>
+                                    <p><a href="{{ path('media_delete', {'id' : audio.id}) }}"><i class="las la-times"></i></a></p>
                                 </div>
                             </div>
                             {% endfor %}
                         {% else %}
-                            <p>Il n'y a pas d'audios dans cet article</p>
+                            <div class="new-aud">
+                                <p>Il n'y a pas d'audios dans cet article</p>
+                                <a href="{{ path('media_new_audio', {'id' : article.id} ) }}">Aller vers le formulaire d'ajout d'audios</a>
+                            </div>
                         {% endif %}
                     </div>
                     <div class="heading"><h2>Vidéos</h2></div>
@@ -70,9 +77,11 @@
                                 {% for video_url in videos_url %} 
                                     <div class="video-container">
                                         <p><strong>Légende : </strong>{{video_url.legende}}</p>                   
-                                        <iframe width="350" height="200" src="https://www.youtube.com/embed/{{video_url.url}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                                        <iframe class="video-show" width="350" height="200" src="https://www.youtube.com/embed/{{video_url.url}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
                                         </iframe>
                                         <p><strong>Descriptif : </strong>{{video_url.texte}}</p>
+                                        <p><a href="{{ path('media_edit', {'id' : video_url.id}) }}"><i class="las la-edit"></i></a></p>
+                                        <p><a href="{{ path('media_delete', {'id' : video_url.id}) }}"><i class="las la-times"></i></a></p>
                                     </div>
                                 {% endfor %}
                             {% endif %}
@@ -80,18 +89,23 @@
                                 {% for video_fichier in videos_fichier %}
                                     <div class="video-container">
                                         <p><strong>Légende : </strong>{{video_fichier.legende}}</p> 
-                                        <video controls width="350" height="200">
+                                        <video class="video-show" controls width="350" height="200">
                                             <source src="{{ asset('articles/galeries/videos/' ~ video_fichier.nom) }}" type="video/webm">
                                             <source src="{{ asset('articles/galeries/videos/' ~ video_fichier.nom) }}" type="video/mp4">
                                         </video>
-                                        <p><strong>Descriptif : </strong>{{video_fichier.texte}}</p>  
+                                        <p><strong>Descriptif : </strong>{{video_fichier.texte}}</p>
+                                        <p><a href="{{ path('media_edit', {'id' : video_fichier.id}) }}"><i class="las la-edit"></i></a></p>
+                                        <p><a href="{{ path('media_delete', {'id' : video_fichier.id}) }}"><i class="las la-times"></i></a></p>  
                                     </div>  
                                 {% endfor %}
                             {% endif %} 
                         {% else %}
-                            <p>Il n'y a pas de vidéos dans cet article</p>
-                        {% endif %} 
-
+                            <div class="new-vid">
+                                <p>Il n'y a pas de vidéos dans cet article</p>
+                                <p><a href="{{ path('media_new_video', {'id' : article.id} ) }}">Aller vers le formulaire d'ajout de vidéos</a></p>
+                            </div>
+                        {% endif %}
+                        
                     </div>
                 </section>
                 
@@ -170,7 +184,7 @@
         </main>
 
         <!-- ASIDE -->
-        <aside class="col-3 p-2 border-left mt-2">
+        <aside class="col-3 p-2 border-left mt-2 aside-show">
             <p class="border-bottom border-dark p-0">{{ aside|length > 1 ? "Dans la même catégorie" : "Ajouté récemment" }}</p>
             <div class="asideArticles mx-0">
             {% if aside|length > 1 %}

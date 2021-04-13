@@ -2,8 +2,10 @@
 body{background-image: url("../images/PAGES/fond.png")}
 
 header {
-    background: linear-gradient(90deg, white, black, white);
+    /*background: linear-gradient(90deg, white, black, white);*/
+    background-color: black;
 }
+
 
 .logo {
     width: 8em;
@@ -70,6 +72,17 @@ footer img{
     width: 50%;
     height: auto;
 }
+
+/*--- SHOW ARTICLE ---*/
+.contenu{
+    font-size: 25px;
+    line-height: 30px;
+    color: #1e2123;
+    letter-spacing: -.4px;
+    font-weight: 400;
+    font-family: "Segoe UI";
+}
+
 /*--- COMMENTAIRE ----*/
 .like:hover, .unlike:hover{
     transition: all .2s ease 0s;

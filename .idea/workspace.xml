@@ -24,6 +24,7 @@
       <change afterPath="$PROJECT_DIR$/../../AFPA_2/tuto/.idea/tuto.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../Chapitre_05/5 - TACHES - Avec dépendances/TACHES/.idea/TACHES.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../ILCI/CDA_PROJET_SIRA/.idea/CDA_PROJET_SIRA.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ILCI/DWWM/MVC/.idea/MVC.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../ILCI/DWWM/blog (4)/blog/.idea/blog.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../ILCI/DWWM/blog/.idea/blog.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../ILCI/DWWM/blog/classes/Article.php" afterDir="false" />
@@ -35,8 +36,10 @@
       <change afterPath="$PROJECT_DIR$/../../ILCI/DWWM/blog/vues/footer.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../ILCI/DWWM/blog/vues/header.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../ILCI/DWWM/intro_poo/compteBancaire/.idea/compteBancaire.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ILCI/DWWM/nameEspace/.idea/nameEspace.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../ILCI/ILCI_CDA/PHP_OBJET/.idea/PHP_OBJET.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../ILCI/ILCI_CDA/boutique/PhpProject4/.idea/PhpProject4.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ILCI/ILCI_CDA/qcm/.idea/qcm.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../.idea/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../.idea/PROJETS.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../.idea/jsLibraryMappings.xml" afterDir="false" />
@@ -49,6 +52,7 @@
       <change afterPath="$PROJECT_DIR$/../Nouveau dossier/Doc2.docx" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Nouveau dossier/JALAL_TV" afterDir="false" />
       <change afterPath="$PROJECT_DIR$" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/articles/galeries/images/65img8c0cbe676c2a0a6e67133fcca13209e1.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../TUTO/grafick/.idea/grafick.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../TUTO/linkedin_2/.idea/linkedin_2.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../TUTO/linkedin_3/.idea/linkedin_3.iml" afterDir="false" />
@@ -69,8 +73,13 @@
       <change afterPath="$PROJECT_DIR$/../../linkedin/templates/pages/articleOne.html.twig" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../pint/.idea/pint.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/article.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/article.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ArticleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/CommentaireController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CommentaireController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/MediaType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/MediaType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/article/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,7 +216,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../ILCI/DWWM/intro_poo/compteBancaire" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../ILCI/DWWM/stock" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -245,22 +254,14 @@
       <workItem from="1616159249599" duration="4863000" />
       <workItem from="1616402089736" duration="1449000" />
       <workItem from="1616490421245" duration="7792000" />
-      <workItem from="1616575542250" duration="13094000" />
+      <workItem from="1616575542250" duration="21480000" />
+      <workItem from="1617088880479" duration="16089000" />
+      <workItem from="1617796650535" duration="4446000" />
+      <workItem from="1617883864862" duration="23449000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/templates/article/show.html.twig</url>
-          <line>161</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

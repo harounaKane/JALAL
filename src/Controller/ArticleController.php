@@ -13,6 +13,7 @@ use App\Repository\MediaRepository;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
+use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -39,8 +40,20 @@ class ArticleController extends AbstractController
     /**
      * @Route("/", name="accueil", methods={"GET"})
      */
-    public function index(ArticleRepository $articleRepository)
+    public function index(ArticleRepository $articleRepository, Request $request)
     {
+        $response = new Response();
+//
+//        $cookie = new Cookie('myCookie', "un truc de fou", time() + (365 * 24 * 60 * 60));  // Expires 1 years
+//        $response->headers->setCookie($cookie);
+//        $response->sendHeaders();
+
+//        dump(   $user = $request->cookies->get('myCookie') );
+//
+//        setcookie('myCookie', FALSE);
+
+        //dd(   $request->cookies->has('myCookie') );
+
         return $this->render('article/index.html.twig', [
             'articles' => $articleRepository->findAll(),
             'articles' => $articleRepository->findBy([], ['art_created_at' => 'DESC']),

@@ -128,7 +128,7 @@ class ArticleController extends AbstractController
         //dd($this->getIp());
         //RECUPRATION DES COMMENTAIRE DE L'ARTICLE
         $commentaires = $commentaireRepository->commentByArticle($article->getId());
-
+        $medias = $mediaRepository->mediaByArticle($article->getId());
         $images = $mediaRepository->imageByArticle($article->getId());
         $audios = $mediaRepository->audioByArticle($article->getId());
         $videos = $mediaRepository->videoByArticle($article->getId());
@@ -148,6 +148,7 @@ class ArticleController extends AbstractController
             'videos_fichier' => $videos_fichier,
             'videos' => $videos,
             'nb_total_img' => $nb_total_img,
+            'medias' => $medias,
             'aside' => $repo->findBy(['categorie' => $article->getCategorie()], [], 10),
             'last' => $repo->findBy([], ['art_created_at' => 'DESC'], 10)
         ]);

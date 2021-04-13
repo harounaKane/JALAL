@@ -36,7 +36,15 @@ class MediaRepository extends ServiceEntityRepository
         ;
     }
     */
-
+    public function mediaByArticle($article_id){
+        return $this->createQueryBuilder('m')
+            ->andWhere("m.article = :id" )
+            ->setParameter("id", $article_id)
+            ->orderBy('m.ordre', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
     public function imageByArticle($article_id){
         return $this->createQueryBuilder('m')
             ->andWhere("m.article = :id" )

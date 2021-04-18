@@ -79,6 +79,11 @@ class User
      */
     private $description;
 
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $state;
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
@@ -248,6 +253,18 @@ class User
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getState(): ?string
+    {
+        return $this->state;
+    }
+
+    public function setState(string $state): self
+    {
+        $this->state = $state;
 
         return $this;
     }

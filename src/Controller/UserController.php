@@ -24,12 +24,12 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/user", name="user")
+     * @Route("/user", name="user_index", methods={"GET"})
      */
-    public function index()
+    public function index(UserRepository $userRepository)
     {
         return $this->render('user/index.html.twig', [
-            'controller_name' => 'UserController',
+            'users' => $userRepository->findAll(),
         ]);
     }
 
@@ -46,6 +46,7 @@ class UserController extends AbstractController
         if( $form->isSubmitted() && $form->isValid() ){
             $user->setCreatedAt(new \DateTime());
             $user->setStatus('utilisateur');
+            $user->setState('actif');
             $user->setPassword(password_hash($user->getPassword(), PASSWORD_DEFAULT));
 
             try {
@@ -138,7 +139,7 @@ class UserController extends AbstractController
                     unlink( $this->getParameter('avatar_directory').'/'.$avatar );
                 }
                 $image = $editForm->get('avatar')->getData();
-                $file_name =  $user_login.'_avatar' . md5(uniqid()) . '.' . $image->guessExtension();
+                $file_name =  $user_login.'_avatar'.'.'.$image->guessExtension();
                 $image->move(
                     $this->getParameter('avatar_directory'),
                     $file_name

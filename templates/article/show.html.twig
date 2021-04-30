@@ -49,8 +49,9 @@
                    {% endif %}
 
                    {% if(audios or app.session.get('id') == article.user.id or app.session.get('status') == 'admin') %}
+                        <div class="heading"><h2>Audios</h2></div>
                         <div class="diapo-audios">
-                            <div class="heading"><h2>Audios</h2></div>
+                           
                         {% for audio in audios %}
                              <div class="audio-container">
                                 <p><strong>Légende : </strong>{{audio.legende}}</p>
@@ -75,8 +76,8 @@
                   {% endif %}
 
                   {% if(videos or app.session.get('id') == article.user.id or app.session.get('status') == 'admin') %}
+                        <div class="heading"><h2>Vidéos</h2></div>
                         <div class="diapo-videos">
-                            <div class="heading"><h2>Vidéos</h2></div>
                             {% if(videos_url) %}
                                 {% for video_url in videos_url %} 
                                     <div class="video-container">
@@ -103,12 +104,13 @@
                                     </div>  
                                 {% endfor %}
                             {% endif %} 
+                        
+                        </div>
                         {% if(app.session.get('id') == article.user.id or app.session.get('status') == 'admin') %}
                             <div class="new-vid">
                                 <p><a href="{{ path('media_new_video', {'id' : article.id} ) }}">Aller vers le formulaire d'ajout de vidéos</a></p>
                             </div>
                         {% endif %}
-                        </div>
                  {% endif %}
 
                 </section>

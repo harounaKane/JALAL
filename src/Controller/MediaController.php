@@ -385,9 +385,22 @@ class MediaController extends AbstractController
             }
         }
 
-        if($medium->getType() == 'video'){
+        if($medium->getType() == 'video' && $medium->getUrl() == 'fichier'){
             if(file_exists($this->getParameter('videos_directory').'/'.$medium->getNom())){
                 unlink(($this->getParameter('videos_directory').'/'.$medium->getNom()));
+                if ($this->isCsrfTokenValid('delete'.$medium->getId(), $request->request->get('_token'))) {
+                    $article = $medium->getArticle();
+                    $entityManager = $this->getDoctrine()->getManager();
+                    $entityManager->remove($medium);
+                    $entityManager->flush();
+                }
+
+                return $this->redirectToRoute('media_new_video', ['id' => $article->getId()]);
+            }
+        }
+        if($medium->getType() == 'video' && $medium->getNom() == 'url'){
+            if(strpos($medium->getUrl(),$medium->getUrl()) !== false){
+                //unlink($medium->getUrl());
                 if ($this->isCsrfTokenValid('delete'.$medium->getId(), $request->request->get('_token'))) {
                     $article = $medium->getArticle();
                     $entityManager = $this->getDoctrine()->getManager();

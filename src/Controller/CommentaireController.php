@@ -54,11 +54,12 @@ class CommentaireController extends AbstractController
         $manager = $this->getDoctrine()->getManager();
         $commentaire = $manager->getRepository(Commentaire::class)->find($id);
 
-        if($commentaire && $request->isXmlHttpRequest() && !$request->cookies->has('myCookie')){
+        if($commentaire && $request->isXmlHttpRequest() && !$request->cookies->has('like'.$id)){
 
             $response = new Response();
 
-            $cookie = new Cookie('myCookie', "un truc de fou", time() + (365 * 24 * 60 * 60));  // Expires 1 years
+            $cookie = new Cookie('like'.$id, "un truc de fou", time() + (365 * 24 * 60 * 60));  // Expires 1 years
+
             $response->headers->setCookie($cookie);
             $response->sendHeaders();
 
@@ -82,7 +83,14 @@ class CommentaireController extends AbstractController
         $manager = $this->getDoctrine()->getManager();
         $commentaire = $manager->getRepository(Commentaire::class)->find($id);
 
-        if($commentaire && $request->isXmlHttpRequest()){
+        if($commentaire && $request->isXmlHttpRequest() && !$request->cookies->has('unlike'.$id)){
+
+            $response = new Response();
+
+            $cookie = new Cookie('unlike'.$id, "un truc de fou", time() + (365 * 24 * 60 * 60));  // Expires 1 years
+
+            $response->headers->setCookie($cookie);
+            $response->sendHeaders();
             $commentaire->setUnLikeComment( $commentaire->getUnLikeComment() + 1 );
             $manager->flush();
             $arrData = [$commentaire->getUnLikeComment()];

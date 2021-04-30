@@ -7,7 +7,7 @@
         <main class="col-12 col-md-9">
             <article>
             <!-- BLOCK ARTICLE -->
-                <section class="block-article row">
+                <section class="block-article row mb-5">
                     <span class="col-12 pl-0 border-bottom border-dark mb-2 mt-3">{{ article.categorie.designation }}</span>
                     <h1 class="mainTitle">{{ article.title }}</h1>
                     <small class="mt-0 col-12 pl-0">{{ 'Publié le '~ article.artCreatedAt|date('d-m-Y') }}</small>
@@ -17,14 +17,13 @@
                 </section>
 
             <!-- BLOCK GALERIE -->
-            
-            {# {% if(medias) %} #}
+             {% if( medias or app.session.get('id') == article.user.id or app.session.get('status') == 'admin' ) %}
                 <section class="block-galerie  my-4 row">
-                    <h1> Galerie des médias </h1>
-                    <div class="diapo-images">
-                        <div class="heading"><h2>Images</h2></div>
-                        {% if(images) %}
-                        <div class="elements">
+
+                   {% if(images or app.session.get('id') == article.user.id or app.session.get('status') == 'admin') %}
+                        <div class="diapo-images">
+                            <div class="heading"><h2>Images</h2></div>
+                            <div class="elements">
                             
                                 {% for image in images %}
                                     <div class="element">
@@ -37,20 +36,21 @@
                                         </div>
                                     </div>
                                 {% endfor %}
-                        </div>
-                        <!-- Flèches de navigation -->
-                        <i id="nav-gauche" class="las la-chevron-left"></i>
-                        <i id="nav-droite" class="las la-chevron-right"></i>
-                        {% else %}
-                            <div class="new-img">
-                                <p>Il n'y a pas d'images dans cet article</p>
-                                <a href="{{ path('media_new_image', {'id' : article.id} ) }}">Aller vers le formulaire d'ajout d'images</a>
                             </div>
-                        {% endif %}
-                    </div>
-                    <div class="heading"><h2>Audios</h2></div>
-                    <div class="diapo-audios">
-                        {% if(audios) %}
+                            <!-- Flèches de navigation -->
+                            <i id="nav-gauche" class="las la-chevron-left"></i>
+                            <i id="nav-droite" class="las la-chevron-right"></i>
+                            {% if(app.session.get('id') == article.user.id or app.session.get('status') == 'admin') %}
+                                <div class="new-img">
+                                    <a href="{{ path('media_new_image', {'id' : article.id} ) }}">Aller vers le formulaire d'ajout d'images</a>
+                                </div>
+                            {% endif %}
+                        </div>
+                   {% endif %}
+
+                   {% if(audios or app.session.get('id') == article.user.id or app.session.get('status') == 'admin') %}
+                        <div class="diapo-audios">
+                            <div class="heading"><h2>Audios</h2></div>
                         {% for audio in audios %}
                              <div class="audio-container">
                                 <p><strong>Légende : </strong>{{audio.legende}}</p>
@@ -64,18 +64,19 @@
                                     <p><a href="{{ path('media_edit', {'id' : audio.id}) }}"><i class="las la-edit"></i></a></p>
                                     <p><a href="{{ path('media_delete', {'id' : audio.id}) }}"><i class="las la-times"></i></a></p>
                                 </div>
-                            </div>
-                            {% endfor %}
-                        {% else %}
+                             </div>
+                        {% endfor %}
+                        {% if(app.session.get('id') == article.user.id or app.session.get('status') == 'admin') %}
                             <div class="new-aud">
-                                <p>Il n'y a pas d'audios dans cet article</p>
                                 <a href="{{ path('media_new_audio', {'id' : article.id} ) }}">Aller vers le formulaire d'ajout d'audios</a>
                             </div>
                         {% endif %}
-                    </div>
-                    <div class="heading"><h2>Vidéos</h2></div>
-                    <div class="diapo-videos">
-                        {% if(videos) %}
+                        </div>
+                  {% endif %}
+
+                  {% if(videos or app.session.get('id') == article.user.id or app.session.get('status') == 'admin') %}
+                        <div class="diapo-videos">
+                            <div class="heading"><h2>Vidéos</h2></div>
                             {% if(videos_url) %}
                                 {% for video_url in videos_url %} 
                                     <div class="video-container">
@@ -102,16 +103,16 @@
                                     </div>  
                                 {% endfor %}
                             {% endif %} 
-                        {% else %}
+                        {% if(app.session.get('id') == article.user.id or app.session.get('status') == 'admin') %}
                             <div class="new-vid">
-                                <p>Il n'y a pas de vidéos dans cet article</p>
                                 <p><a href="{{ path('media_new_video', {'id' : article.id} ) }}">Aller vers le formulaire d'ajout de vidéos</a></p>
                             </div>
                         {% endif %}
-                        
-                    </div>
+                        </div>
+                 {% endif %}
+
                 </section>
-            {# {% endif %}     #}
+             {% endif %}
             <!-- BLOCK AUTEUR -->
                 <section class="banner-author bg-info row">
                     <p class="text-white border-bottom m-0 pl-2 col-12"><em>

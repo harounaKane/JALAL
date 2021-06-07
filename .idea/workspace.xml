@@ -5,7 +5,6 @@
       <change afterPath="$PROJECT_DIR$/../../.idea/www.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../3WA/Ajax/ajax_corrigé/.idea/ajax.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../AFPA_1/afaire/.idea/afaire.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../AFPA_1/sira_asso/.idea/sira_asso.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../AFPA_2/ANNE/absolu-master/.idea/absolu.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../AFPA_2/MVC/.idea/MVC.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../AFPA_2/autoloading/.idea/autoloading.iml" afterDir="false" />
@@ -25,7 +24,6 @@
       <change afterPath="$PROJECT_DIR$/../../Chapitre_05/5 - TACHES - Avec dépendances/TACHES/.idea/TACHES.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../ILCI/CDA_PROJET_SIRA/.idea/CDA_PROJET_SIRA.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../ILCI/DWWM/MVC/.idea/MVC.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../ILCI/DWWM/blog (4)/blog/.idea/blog.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../ILCI/DWWM/blog/.idea/blog.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../ILCI/DWWM/blog/classes/Article.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../ILCI/DWWM/blog/controller/ControllerArticle.php" afterDir="false" />
@@ -72,8 +70,8 @@
       <change afterPath="$PROJECT_DIR$/../../linkedin/templates/pages/articleOne.html.twig" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../pint/.idea/pint.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CommentaireController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CommentaireController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/article/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,7 +208,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../ILCI/DWWM/stock" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -253,7 +251,15 @@
       <workItem from="1617796650535" duration="4446000" />
       <workItem from="1617883864862" duration="24852000" />
       <workItem from="1618586369728" duration="5892000" />
-      <workItem from="1619189089737" duration="7932000" />
+      <workItem from="1619189089737" duration="8721000" />
+      <workItem from="1619736450270" duration="620000" />
+      <workItem from="1620114075360" duration="15890000" />
+      <workItem from="1620568251645" duration="20000" />
+      <workItem from="1620633196300" duration="12219000" />
+      <workItem from="1620806294574" duration="6014000" />
+      <workItem from="1621504877728" duration="1792000" />
+      <workItem from="1622918070073" duration="4092000" />
+      <workItem from="1623069263165" duration="1759000" />
     </task>
     <servers />
   </component>

@@ -67,12 +67,26 @@
                     {# <div><a href="{{ path('articles_user', {'id': app.session.get('id')}) }}">Voir mes Articles</a></div> #}
                 </section>
                 <section class="menu-log pt-2">
-                    {% if app.session.get('login') %}
-                        <div><a href="{{ path('profil', {'id': app.session.get('id')}) }}"><i class="fa fa-user h5"></i> &nbsp;Mon Profil ( {{ app.session.get('login') }} )</a></div>
+                    {% if app.session.get("user") %}
+                        <div>
+                            <a href="{{ path('profil', {'id': app.session.get("user").id}) }}">
+                                <i class="fa fa-user h5"></i> &nbsp;
+                                Mon Profil ( {{ app.session.get("user").login }} )
+                            </a>
+                        </div>
                     {% endif %}
-                    <div><a href="{{ app.session.get('login') ? path("deconnexion") : path("connexion") }}"><i class="fa fa-power-off h5"></i>&nbsp; {{ app.session.get('login') ? "Se déconnecter" : "Se connecter" }}</a></div>
-                    {% if not app.session.get('login') %}
-                        <div><a href="{{ path('inscription') }}"><i class="fa fa-sign-in h5"></i>&nbsp; S'inscrire</a></div>
+                    <div>
+                        <a href="{{ app.session.get("user") ? path("deconnexion") : path("connexion") }}">
+                            <i class="fa fa-power-off h5"></i>&nbsp;
+                            {{ app.session.get("user") ? "Se déconnecter" : "Se connecter" }}
+                        </a>
+                    </div>
+                    {% if not app.session.get("user") %}
+                        <div>
+                            <a href="{{ path('inscription') }}">
+                                <i class="fa fa-sign-in h5"></i>&nbsp; S'inscrire
+                            </a>
+                        </div>
                     {% endif %}
                 </section>
             </div>

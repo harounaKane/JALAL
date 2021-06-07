@@ -78,15 +78,8 @@ class UserController extends AbstractController
             $userInfo = $userRepository->connexionUser($login, $mdp);
             if($userInfo){
                 $session = $request->getSession();
-                $session->set('id', $userInfo->getId());
-                $session->set('civility', $userInfo->getCivility());
-                $session->set('first_name', $userInfo->getFirstName());
-                $session->set('last_name', $userInfo->getLastName());
-                $session->set('mail', $userInfo->getMail());
-                $session->set('login', $userInfo->getLogin());
-                $session->set('country', $userInfo->getCountry());
-                $session->set('avatar', $userInfo->getAvatar());
-                $session->set('status', $userInfo->getStatus());
+
+                $session->set("user", $userInfo);
                 
                 return $this->redirectToRoute("accueil");
             }

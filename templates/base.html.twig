@@ -24,26 +24,36 @@
     <!-- le flex ne fonctionne pas quand j'entoure le contenu du body dans une <div>, donc le footer ne colle pas au pied de page -->
     <body class="d-flex flex-column">
         <header class="container-fluid">
-            <div class="d-flex justify-content-between p-3 row">
+            <div class="d-flex justify-content-between align-items-center p-3 row">
+                <!-- logo -->
+                <div class="text-center col-1">
+                    <a href="{{ path('accueil') }}"><img class="logo" src="{{ asset('images/logo/logo2.png') }}" alt=""></a>
+                </div>
+
+                <!-- BANDEAU CATEGORIES cat-ribbon d-flex flex-wrap justify-content-around py-2-->
+                <section class="d-none d-md-block col-md-8">
+                    <div class="row text-center text-uppercase">
+                        {% for cat in categorie() %}
+                            <a href="" class="font-weight-bold text-white col-12 col-md-3"> {{ cat.designation }} </a>
+                        {% endfor %}
+                    </div>
+                </section>
+
                 <!-- burger nav -->
-                <div class="col-3">
+                <div class="col-1">
                     <div class="topnav">
                         <!-- "Hamburger menu" / "Bar icon" to toggle the navigation links -->
-                        <a href="javascript:void(0);" class="icon h2 text-decoration-none" onclick="myFunction()">
-                            <i class="fa fa-bars text-white"></i> <span class="h4 text-white">MENU</span>
+                        <a href="javascript:void(0);" class="icon h2 text-decoration-none " onclick="myFunction()">
+                            <i class="fa fa-bars text-white"></i>
+{#                            <span class="h4 text-white">MENU</span>#}
                         </a>
                     </div>
                 </div>
-                <!-- logo -->
-                <div class="col-6 text-center">
-                    <a href="{{ path('accueil') }}"><img class="logo" src="{{ asset('images/logo/logo2.png') }}" alt=""></a>
-                </div>
-                <div class="col-3"></div> <!-- <div> vide pour le positionnement central du logo -->
             </div>
 
-            <div id="myLinks" class="pb-2">
+            <div id="myLinks" class="pb-2 text-right">
                 <div class="search-input border rounded mx-2 mx-md-4 my-2 row">
-                    <input type="search" placeholder="Rechercher sur le site" class="col-11 py-1">
+                    <input type="search" placeholder="Rechercher sur le site" class="col-10 py-1">
                     <button class="col-1 text-right"><i class="fa fa-search"></i></button>
                 </div>
                 <section class="menu-all border-bottom border-secondary pb-2">
@@ -92,15 +102,8 @@
             </div>
         </header>
 
-    <!-- BANDEAU CATEGORIES -->
-        <section class="cat-ribbon d-flex flex-wrap justify-content-around py-2">
-            {% for cat in categorie() %}
-                <a href="" class="my-0 font-weight-bold"> {{ cat.designation }} </a>
-            {% endfor %}
-        </section>
-
         <div class="mb-5">
-        {% block body %}{% endblock %}
+            {% block body %}{% endblock %}
         </div>
 
         <footer class="mt-auto d-flex flex-column flex-md-row justify-content-around p-3 bg-info">

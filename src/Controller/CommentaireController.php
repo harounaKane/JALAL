@@ -31,18 +31,18 @@ class CommentaireController extends AbstractController
 
         return new JsonResponse($commentaires);
       //  dd($form->get('user')->getData());
-        $commentaire = new Commentaire();
-        $manager = $this->getDoctrine()->getManager();
+        // $commentaire = new Commentaire();
+        // $manager = $this->getDoctrine()->getManager();
 
-        $commentaire->setCommentAt(new \DateTime());
-        $commentaire->setArticle($repo->find($article->getId()));
-        $commentaire->setLikeComment(0);
-        $commentaire->setUnLikeComment(0);
-        $commentaire->setUser($form->get('user')->getData());
-        $commentaire->setComment($form->get('comment')->getData());
-        dd($commentaire);
-        $manager->persist($commentaire);
-        $manager->flush();
+        // $commentaire->setCommentAt(new \DateTime());
+        // $commentaire->setArticle($repo->find($article->getId()));
+        // $commentaire->setLikeComment(0);
+        // $commentaire->setUnLikeComment(0);
+        // $commentaire->setUser($form->get('user')->getData());
+        // $commentaire->setComment($form->get('comment')->getData());
+        // dd($commentaire);
+        // $manager->persist($commentaire);
+        // $manager->flush();
         //REDIRECTION POUR EVITER LA DOUBLE SOUMISSION DU FORMULAIRE
         return $this->redirectToRoute('article_show', ['id' => $article->getId()]);
     }

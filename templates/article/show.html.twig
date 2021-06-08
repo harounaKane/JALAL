@@ -6,7 +6,7 @@
 
         <main class="col-12 col-md-9">
             <article>
-            <!-- BLOCK ARTICLE -->
+                <!-- BLOCK ARTICLE -->
                 <section class="block-article row mb-5">
                     <span class="col-12 pl-0 border-bottom border-dark mb-2 mt-3">{{ article.categorie.designation }}</span>
                     <h1 class="mainTitle">{{ article.title }}</h1>
@@ -16,68 +16,68 @@
                     <p class="mt-3 contenu">{{ article.content | nl2br }}</p>
                 </section>
 
-            <!-- BLOCK GALERIE -->
-             {% if( medias or app.session.get('id') == article.user.id or app.session.get('status') == 'admin' ) %}
-                <section class="block-galerie  my-4 row">
+                <!-- BLOCK GALERIE -->
+                {% if( app.session.get('user') and (medias or app.session.get('user').id == article.user.id or app.session.get('user').status == 'admin') ) %}
+                    <section class="block-galerie row">
 
-                   {% if(images or app.session.get('id') == article.user.id or app.session.get('status') == 'admin') %}
-                        <div class="diapo-images">
-                            <div class="heading"><h2>Images</h2></div>
-                            <div class="elements">
+                        {% if(images or app.session.get('user').id == article.user.id or app.session.get('user').status == 'admin') %}
+                            <div class="diapo-images mb-1">
+                                <div class="heading"><h2>Images</h2></div>
+                                <div class="elements">
                             
-                                {% for image in images %}
-                                    <div class="element">
+                                    {% for image in images %}
+                                        <div class="element">
 
-                                        <img src="{{ asset('articles/galeries/images/' ~ image.nom) }}" height="500px" width="500px" alt="image galerie">
-                                        <div class="caption">
-                                            <p>Image {{image.ordre + 1}} sur {{nb_total_img}}</p>
-                                            <h2>Légende : {{image.legende}}</h2>
-                                            <p>Descriptif: {{image.texte}}</p>
+                                            <img src="{{ asset('articles/galeries/images/' ~ image.nom) }}" height="500px" width="500px" alt="image galerie">
+                                            <div class="caption">
+                                                <p>Image {{image.ordre + 1}} sur {{nb_total_img}}</p>
+                                                <h2>Légende : {{image.legende}}</h2>
+                                            </div>
+                                            <div class="mt-0">Descriptif: {{image.texte}}</div>
                                         </div>
+                                    {% endfor %}
+                                </div>
+                                <!-- Flèches de navigation -->
+                                <i id="nav-gauche" class="las la-chevron-left"></i>
+                                <i id="nav-droite" class="las la-chevron-right"></i>
+                                {% if(app.session.get('user') and ( app.session.get('user').id == article.user.id or app.session.get('user').status == 'admin') ) %}
+                                    <div class="new-img">
+                                        <a href="{{ path('media_new_image', {'id' : article.id} ) }}">Aller vers le formulaire d'ajout d'images</a>
                                     </div>
-                                {% endfor %}
+                                {% endif %}
                             </div>
-                            <!-- Flèches de navigation -->
-                            <i id="nav-gauche" class="las la-chevron-left"></i>
-                            <i id="nav-droite" class="las la-chevron-right"></i>
-                            {% if(app.session.get('id') == article.user.id or app.session.get('status') == 'admin') %}
-                                <div class="new-img">
-                                    <a href="{{ path('media_new_image', {'id' : article.id} ) }}">Aller vers le formulaire d'ajout d'images</a>
+                        {% endif %}
+
+                        {% if(audios or app.session.get('user') and ( app.session.get('user').id == article.user.id or app.session.get('user').status == 'admin') ) %}
+                            <div class="heading"><h2>Audios</h2></div>
+                            <div class="diapo-audios mb-1">
+                           
+                                {% for audio in audios %}
+                                     <div class="audio-container">
+                                        <p><strong>Légende : </strong>{{audio.legende}}</p>
+                                        <audio controls>
+                                            <source src="{{ asset('articles/galeries/audios/' ~ audio.nom) }}" type="audio/mpeg">
+                                            <source src="{{ asset('articles/galeries/audios/' ~ audio.nom) }}" type="audio/ogg">
+                                            Your browser does not support the audio element.
+                                        </audio>
+                                        <div class="">
+                                            <p><strong>Descriptif: </strong> {{audio.texte}}</p>
+                                            <p><a href="{{ path('media_edit', {'id' : audio.id}) }}"><i class="las la-edit"></i></a></p>
+                                            <p><a href="{{ path('media_delete', {'id' : audio.id}) }}"><i class="las la-times"></i></a></p>
+                                        </div>
+                                     </div>
+                                {% endfor %}
+                            {% if(app.session.get('user').id == article.user.id or app.session.get('user').status == 'admin') %}
+                                <div class="new-aud">
+                                    <a href="{{ path('media_new_audio', {'id' : article.id} ) }}">Aller vers le formulaire d'ajout d'audios</a>
                                 </div>
                             {% endif %}
                         </div>
-                   {% endif %}
-
-                   {% if(audios or app.session.get('id') == article.user.id or app.session.get('status') == 'admin') %}
-                        <div class="heading"><h2>Audios</h2></div>
-                        <div class="diapo-audios">
-                           
-                        {% for audio in audios %}
-                             <div class="audio-container">
-                                <p><strong>Légende : </strong>{{audio.legende}}</p>
-                                <audio controls>
-                                    <source src="{{ asset('articles/galeries/audios/' ~ audio.nom) }}" type="audio/mpeg">
-                                    <source src="{{ asset('articles/galeries/audios/' ~ audio.nom) }}" type="audio/ogg">
-                                    Your browser does not support the audio element.
-                                </audio>
-                                <div class="">
-                                    <p><strong>Descriptif: </strong> {{audio.texte}}</p>
-                                    <p><a href="{{ path('media_edit', {'id' : audio.id}) }}"><i class="las la-edit"></i></a></p>
-                                    <p><a href="{{ path('media_delete', {'id' : audio.id}) }}"><i class="las la-times"></i></a></p>
-                                </div>
-                             </div>
-                        {% endfor %}
-                        {% if(app.session.get('id') == article.user.id or app.session.get('status') == 'admin') %}
-                            <div class="new-aud">
-                                <a href="{{ path('media_new_audio', {'id' : article.id} ) }}">Aller vers le formulaire d'ajout d'audios</a>
-                            </div>
-                        {% endif %}
-                        </div>
                   {% endif %}
 
-                  {% if(videos or app.session.get('id') == article.user.id or app.session.get('status') == 'admin') %}
+                  {% if(videos or app.session.get('user') and ( app.session.get('user').id == article.user.id or app.session.get('user').status == 'admin') ) %}
                         <div class="heading"><h2>Vidéos</h2></div>
-                        <div class="diapo-videos">
+                        <div class="diapo-videos mb-1">
                             {% if(videos_url) %}
                                 {% for video_url in videos_url %} 
                                     <div class="video-container">
@@ -103,30 +103,27 @@
                                         <p><a href="{{ path('media_delete', {'id' : video_fichier.id}) }}"><i class="las la-times"></i></a></p>  
                                     </div>  
                                 {% endfor %}
-                            {% endif %} 
-                        
+                            {% endif %}
                         </div>
-                        {% if(app.session.get('id') == article.user.id or app.session.get('status') == 'admin') %}
+
+                        {% if(app.session.get('user').id == article.user.id or app.session.get('user').status == 'admin') %}
                             <div class="new-vid">
                                 <p><a href="{{ path('media_new_video', {'id' : article.id} ) }}">Aller vers le formulaire d'ajout de vidéos</a></p>
                             </div>
                         {% endif %}
-                 {% endif %}
+                    {% endif %}
 
                 </section>
              {% endif %}
             <!-- BLOCK AUTEUR -->
-                <section class="banner-author bg-info row">
-                    <p class="text-white border-bottom m-0 pl-2 col-12"><em>
-                    Cet article a été rédigé par
-                    </em></p>
+                <section class="banner-author row">
                     <div class="d-flex">
                         <div class="pl-1">
                             <img id="" class="avatar-author rounded-circle p-2" src="{{ asset('images/avatars/'~ article.user.avatar) }}" alt="avatar de l'auteur">
                         </div>
                         <div>
                             <p class="pt-2 mb-0">
-                                <strong> {{ article.user.firstName ~ ' ' ~  article.user.lastName }} </strong>
+                                Par : <strong class="text-danger">{{ article.user.firstName ~ ' ' ~  article.user.lastName }} </strong>
                             </p>
                             <p>{{ article.user.description }}</p>
                         </div>
@@ -173,7 +170,7 @@
 
             {% endif %}
             <!-- FORM COMMENTAIRES  -->
-            <section class="col-12 mt-3 py-2 bg-info">
+            <section class="col-12 mt-3 py-2">
                 <h3>Participer à la discussion</h3>
 
 {#                {{ form_start(form) }}#}
@@ -181,17 +178,25 @@
 
                 {{ form_start(form) }}
 
-                {{ form_row(form.user) }}
-                {{ form_row(form.comment) }}
+                <div class="row">
+                    <div class="col-12 col-sm-6 mb-4">{{ form_widget(form.user) }}</div>
+                    <div class="col-12 col-sm-6 mb-4">
+                        <input type="text" name="prenom" class="bg_input form-control" placeholder="Prénom">
+                    </div>
+                    <div class="col-12">{{ form_widget(form.comment) }}</div>
 
-                {{ form_row(form.Poster, {'attr' : {'value': article.id, "class": "commentaire_Poster btn btn-primary"}}) }}
+                    <div class="col-1 mt-2">
+                        {{ form_widget(form.Poster, {'attr' : {'value': article.id, "class": "commentaire_Poster btn btn-danger"}}) }}
+                    </div>
+                </div>
+
                 {{ form_end(form) }}
             </section>
         </main>
 
         <!-- ASIDE -->
         <aside class="col-3 p-2 border-left mt-2 aside-show">
-            <p class="border-bottom border-dark p-0">{{ aside|length > 1 ? "Dans la même catégorie" : "Ajouté récemment" }}</p>
+            <p class="bg-dark text-center"><span class="bg-danger text-white h3">{{ aside|length > 1 ? "Même catégorie" : "Récents" }}</span></p>
             <div class="asideArticles mx-0">
             {% if aside|length > 1 %}
                 {% for a in aside %}
@@ -209,13 +214,29 @@
                     {% if article.id is not same as(l.id) %}
                         <a href="{{ path('article_show', {'id': l.id}) }}" class="text-decoration-none text-dark d-flex flex-column justify-content-end mb-2"
                            style="background-image: url( {{ asset('articles/main_img/'~ l.mainImage) }} )">
-                            <span class="aside-title h5">{{ l.title }}</span>
+                            <span class="aside-title h5">{{ l.title | length < 10 ? l.title : l.title | slice(0, 10) ~ "..." }}</span>
                         </a>
                         <hr>
                     {% endif %}
                 {% endfor %}
             {% endif %}
             </div>
+
+            {#    les plus lus        #}
+            <p class="bg-dark text-center mt-5"><span class="bg-danger text-white h3">Best post</span></p>
+            <div class="asideArticles mx-0 mt-4">
+                <a href="" class="text-decoration-none text-dark d-flex flex-column justify-content-end mb-2"
+                   style="background-image: url( {{ asset('images/Barro.jpg') }} )">
+                    <span class="aside-title h5">Titre de l'article</span>
+                </a>
+            </div>
+            <div class="asideArticles mx-0 mt-4">
+                <a href="" class="text-decoration-none text-dark d-flex flex-column justify-content-end mb-2"
+                   style="background-image: url( {{ asset('images/Barro.jpg') }} )">
+                    <span class="aside-title h5">Titre de l'article</span>
+                </a>
+            </div>
+
         </aside>
     </div>
 

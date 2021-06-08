@@ -106,30 +106,20 @@ class ArticleController extends AbstractController
 
         //TRAITEMENT DES COMMENTAIRES
         $form->handleRequest($request);
-        if($request->isXmlHttpRequest()){
-           $commentaireController = new CommentaireController($commentaireRepository);
-           $commentaireController->addCommentaire();
-//            dd($form);
-            // $commentaire->setCommentAt(new \DateTime());
-            // $commentaire->setArticle($repo->find($article->getId()));
-            // $commentaire->setLikeComment(0);
-            // $commentaire->setUnLikeComment(0);
-            // dd($commentaire);
-            // $this->manager->persist($commentaire);
-            // $this->manager->flush();
+        if($form->isSubmitted() && $form->isValid()){
+            $commentaire->setUser( $commentaire->getUser() . " " . $request->get('prenom') );
+
+            $commentaire->setCommentAt(new \DateTime());
+            $commentaire->setArticle($repo->find($article->getId()));
+            $commentaire->setLikeComment(0);
+            $commentaire->setUnLikeComment(0);
+
+            $this->manager->persist($commentaire);
+            $this->manager->flush();
             //REDIRECTION POUR EVITER LA DOUBLE SOUMISSION DU FORMULAIRE
-            //return $this->redirectToRoute('article_show', ['id' => $article->getId()]);
-            $commentaires = [$commentaireRepository->commentByArticle($article->getId())];
-            $response = new Response();
-            $data = json_encode($commentaires);
-            $response->headers->set('Content-Type', 'application/json');
-            $response->setContent($data);
-            return $response;
-            //return new JsonResponse($commentaires);
-            dd($commentaires);
-            echo(json_encode($commentaires));
+            return $this->redirectToRoute('article_show', ['id' => $article->getId()]);
         }
-        //dd($this->getIp());
+
         //RECUPRATION DES COMMENTAIRE DE L'ARTICLE
         $commentaires = $commentaireRepository->commentByArticle($article->getId());
         $medias = $mediaRepository->mediaByArticle($article->getId());
@@ -139,8 +129,6 @@ class ArticleController extends AbstractController
         $videos_url = $mediaRepository->videoUrlByArticle($article->getId());
         $videos_fichier = $mediaRepository->videoFichierByArticle($article->getId());
         $nb_total_img = count($images);
-        // dump($images);
-        // die;
 
         return $this->render('article/show.html.twig', [
             'article' => $article,

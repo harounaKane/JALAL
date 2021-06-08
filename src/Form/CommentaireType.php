@@ -26,7 +26,8 @@ class CommentaireType extends AbstractType
                 "attr" => [
                     "placeholder" => "Nom et prénom",
                     "minlength" => 4,
-                    "maxlength" => 50
+                    "maxlength" => 50,
+                    "class" => "bg_input",
                 ]
             ])
             ->add('comment', TextareaType::class, [
@@ -35,7 +36,8 @@ class CommentaireType extends AbstractType
                     "placeholder" => "Tapez votre commentaire ici",
                     "minlength" => 2,
                     "maxlength" => 200,
-                    "rows" => 10
+                    "rows" => 10,
+                    "class" => "bg_input",
                 ]
             ])
 //            ->add('article', EntityType::class, [

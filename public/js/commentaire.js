@@ -19,7 +19,7 @@ $(document).ready(function() {
                 resultat(result, "+", "like"+id);
             }
         });
-    })
+    });
 
     //UNLIKE
     $('.unlike').click(function () {
@@ -33,26 +33,26 @@ $(document).ready(function() {
                 resultat(result, "-", "unlike"+id);
             }
         });
-    })
+    });
 
     //POST
-    $('#commentaire_Poster').click(function (e) {
-        e.preventDefault();
-        var id = $(this).attr('value');
-        $.ajax({
-            url: "/article/" + id,
-            type: 'POST',
-            data: {id: id},
-            success: function (res) {
-                //var result = JSON.parse(res);
-                console.log(res);
-                for(let c of res){
-                    console.log(c.comment);
-                }
-            }
-        });
-    })
-})
+//     $('#commentaire_Poster').click(function (e) {
+//         e.preventDefault();
+//         var id = $(this).attr('value');
+//         $.ajax({
+//             url: "/article/" + id,
+//             type: 'POST',
+//             data: {id: id},
+//             success: function (res) {
+//                 //var result = JSON.parse(res);
+//                 console.log(res);
+//                 for(let c of res){
+//                     console.log(c.comment);
+//                 }
+//             }
+//         });
+//     })
+ })
 //  //  response(result);       //        var result = JSON.parse(res);
 /*
 COMMENTAIRE

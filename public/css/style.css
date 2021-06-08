@@ -67,11 +67,30 @@ header {
     color: black !important;
 }
 
+/* ASIDE */
+aside p{
+    padding: .2px !important;
+}
+
+aside p span{
+    padding: 5px 10px !important;
+}
 
 footer img{
     width: 50%;
     height: auto;
 }
+
+.reseauSocial{
+    background-color: rgba(0, 0, 0, .08) !important;
+    padding: 20px;
+}
+
+.reseauSocial a:hover{
+    color: red !important;
+    transition: 1s ease 0s;
+}
+
 
 /*--- SHOW ARTICLE ---*/
 .contenu{
@@ -99,9 +118,9 @@ footer img{
 
 
 /*--- DIVERS ---*/
-.main-img {
-    width: 4em;
-}
+/*.main-img {*/
+/*    width: 4em;*/
+/*}*/
 
 .avatar-user {
     width: 12em;

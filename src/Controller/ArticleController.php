@@ -23,6 +23,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class ArticleController extends AbstractController
 {
     private $manager;
+
     public function __construct(EntityManagerInterface $manager){
         $this->manager = $manager;
     }  
@@ -43,21 +44,11 @@ class ArticleController extends AbstractController
     public function index(ArticleRepository $articleRepository, Request $request)
     {
         $response = new Response();
-//
-//        $cookie = new Cookie('myCookie', "un truc de fou", time() + (365 * 24 * 60 * 60));  // Expires 1 years
-//        $response->headers->setCookie($cookie);
-//        $response->sendHeaders();
-
-//        dump(   $user = $request->cookies->get('myCookie') );
-//
-//        setcookie('myCookie', FALSE);
-
-        //dd(   $request->cookies->has('myCookie') );
 
         return $this->render('article/index.html.twig', [
-            'articles' => $articleRepository->findAll(),
             'articles' => $articleRepository->findBy([], ['art_created_at' => 'DESC']),
             'lastArticle' => $articleRepository->findOneBy([], ['art_created_at' => 'DESC']),
+            'articlesRecents' => $articleRepository->findBy([], ['art_created_at' => 'DESC'], 10)
         ]);
     }
 
@@ -73,7 +64,7 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $article->setArtCreatedAt(new \DateTime());
-            $article->setUser($repo->idUser($request->getSession()->get('id')) );
+            $article->setUser($repo->idUser($request->getSession()->get('user')->getId()) );
             
             $image = $form->get('main_image')->getData();
             

@@ -116,7 +116,7 @@
                 </section>
              {% endif %}
             <!-- BLOCK AUTEUR -->
-                <section class="banner-author row">
+                <section class="banner-author row mb-4">
                     <div class="d-flex">
                         <div class="pl-1">
                             <img id="" class="avatar-author rounded-circle p-2" src="{{ asset('images/avatars/'~ article.user.avatar) }}" alt="avatar de l'auteur">
@@ -132,63 +132,59 @@
             </article>
 
             <!-- BLOCK COMMENTAIRES  -->
-            {% if(commentaires) %}
-                <h3 class="bg-secondary p-2 text-light">Commentaires</h3>
-                <hr>
             <div id="div-comment">
-            {% for commentaire in commentaires %}
-            <!-- ajouter une 'div' qui englobe tout le commentaire ? -->
-            <!-- réduire taille de l'avatar et float du texte à sa droite -->
-                <div class="row">
-                    <div class="unchange col-2">
+                {% if(commentaires) %}
+                    <h3 class="bg-secondary p-1 text-light">Commentaires</h3>
+                    <hr>
+                    {% for commentaire in commentaires %}
+
                         <div class="row">
-                            <img id="" class="avatar-author rounded-circle col-12" src="{{ asset('images/logo/avatar_commentaire.png') }}" alt="avatar">
+                            <div class="unchange col-2">
+                                <div class="row">
+                                    <img id="" class="avatar-author rounded-circle col-12" src="{{ asset('images/logo/avatar_commentaire.png') }}" alt="avatar">
+                                </div>
+                            </div>
+                            <div class="mt-4 col-10">
+                                <div class="row">
+                                    <strong class="userComment col-12">{{ commentaire.user }} </strong>
+                                    <span class="dateComment col-12 font-italic ">le {{ commentaire.commentAt|date('d F Y à H:i:s') }}</span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="mt-4 col-10">
-                        <div class="row">
-                            <strong class="userComment col-12">{{ commentaire.user }} </strong>
-                            <span class="dateComment col-12 font-italic ">le {{ commentaire.commentAt|date('d F Y à H:i:s') }}</span>
+                        <div class="contentComment my-3">
+                            {{ commentaire.comment }}
                         </div>
-                    </div>
-                </div>
-                <div class="contentComment my-3">
-                    {{ commentaire.comment }}
-                </div>
-                <div>
-                    <button value="{{ commentaire.id }}" class="btn p-1 like">
-                        <i class="fa fa-thumbs-up"><span class="badge ml-2 likeCompt" id="like{{ commentaire.id }}"> +{{ commentaire.likeComment }}</span></i>
-                    </button>
-                    <span class="VerticalLine"></span>
-                    <button value="{{ commentaire.id }}" class="btn p-1 unlike">
-                        <i class="fa fa-thumbs-down"><span class="badge ml-2 unlikeCompt" id="unlike{{ commentaire.id }}">-{{ commentaire.unlikeComment }}</span></i>
-                    </button>
-                </div>
-                <hr class="border-bottom border-dark">
-            {% endfor %}
+                        <div>
+                            <button value="{{ commentaire.id }}" class="btn p-1 like">
+                                <i class="fa fa-thumbs-up"><span class="badge ml-2 likeCompt" id="like{{ commentaire.id }}"> +{{ commentaire.likeComment }}</span></i>
+                            </button>
+                            <span class="VerticalLine"></span>
+                            <button value="{{ commentaire.id }}" class="btn p-1 unlike">
+                                <i class="fa fa-thumbs-down"><span class="badge ml-2 unlikeCompt" id="unlike{{ commentaire.id }}">-{{ commentaire.unlikeComment }}</span></i>
+                            </button>
+                        </div>
+                        <hr class="border-bottom border-dark">
+                    {% endfor %}
+                {% endif %}
             </div>
 
-            {% endif %}
             <!-- FORM COMMENTAIRES  -->
             <section class="col-12 mt-3 py-2">
                 <h3>Participer à la discussion</h3>
 
-{#                {{ form_start(form) }}#}
-{#                {{ form_end(form) }}#}
-
                 {{ form_start(form) }}
 
-                <div class="row">
-                    <div class="col-12 col-sm-6 mb-4">{{ form_widget(form.user) }}</div>
-                    <div class="col-12 col-sm-6 mb-4">
-                        <input type="text" name="prenom" class="bg_input form-control" placeholder="Prénom">
-                    </div>
-                    <div class="col-12">{{ form_widget(form.comment) }}</div>
+                    <div class="row">
+                        <div class="col-12 col-sm-6 mb-4">{{ form_widget(form.user) }}</div>
+                        <div class="col-12 col-sm-6 mb-4">
+                            <input type="text" name="prenom" id="prenom" class="bg_input form-control" placeholder="Prénom">
+                        </div>
+                        <div class="col-12">{{ form_widget(form.comment) }}</div>
 
-                    <div class="col-1 mt-2">
-                        {{ form_widget(form.Poster, {'attr' : {'value': article.id, "class": "commentaire_Poster btn btn-danger"}}) }}
+                        <div class="col-1 mt-2">
+                            {{ form_widget(form.Poster, {'attr' : {'value': article.id, "class": "commentaire_Poster btn btn-danger"}}) }}
+                        </div>
                     </div>
-                </div>
 
                 {{ form_end(form) }}
             </section>

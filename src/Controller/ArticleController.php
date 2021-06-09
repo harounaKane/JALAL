@@ -106,9 +106,10 @@ class ArticleController extends AbstractController
 
         //TRAITEMENT DES COMMENTAIRES
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
-            $commentaire->setUser( $commentaire->getUser() . " " . $request->get('prenom') );
+        if( $request->isXmlHttpRequest() ){
 
+            $commentaire->setUser( $request->get("data")['prenom'] . " " . $request->get('data')['nom'] );
+            $commentaire->setComment( $request->get("data")['commentaire'] );
             $commentaire->setCommentAt(new \DateTime());
             $commentaire->setArticle($repo->find($article->getId()));
             $commentaire->setLikeComment(0);
@@ -116,11 +117,21 @@ class ArticleController extends AbstractController
 
             $this->manager->persist($commentaire);
             $this->manager->flush();
-            //REDIRECTION POUR EVITER LA DOUBLE SOUMISSION DU FORMULAIRE
-            return $this->redirectToRoute('article_show', ['id' => $article->getId()]);
+
+            $comment = $commentaireRepository->find($commentaire->getId());
+            $commentData = [
+                $comment->getId(),
+                $comment->getUser(),
+                $comment->getCommentAt()->format("d/M/Y à H:i:s"),
+                $comment->getComment(),
+                $comment->getLikeComment(),
+                $comment->getUnlikeComment(),
+                [$commentaireRepository->commentByArticle($article->getId())]
+            ];
+            return new JsonResponse($commentData);
         }
 
-        //RECUPRATION DES COMMENTAIRE DE L'ARTICLE
+        //RECUPRATION DES COMMENTAIRE DE L'ARTICLE & COMMENTAIRE S'IL Y A
         $commentaires = $commentaireRepository->commentByArticle($article->getId());
         $medias = $mediaRepository->mediaByArticle($article->getId());
         $images = $mediaRepository->imageByArticle($article->getId());

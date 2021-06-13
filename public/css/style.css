@@ -94,7 +94,7 @@ footer img{
 
 /*--- SHOW ARTICLE ---*/
 .contenu{
-    font-size: 25px;
+    font-size: 18px;
     line-height: 30px;
     color: #1e2123;
     letter-spacing: -.4px;
@@ -130,7 +130,10 @@ footer img{
 .avatar-user {
     width: 12em;
 }
-
+.table-image {
+    vertical-align: middle;
+    padding-right: -20px !important;
+}
 
 @media screen and (min-width:768px){
     .icon span {

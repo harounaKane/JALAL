@@ -24,7 +24,7 @@ class CommentaireType extends AbstractType
             ->add('user', TextType::class, [
                 "label" => "Auteur",
                 "attr" => [
-                    "placeholder" => "Nom et prénom",
+                    "placeholder" => "Nom",
                     "minlength" => 4,
                     "maxlength" => 50,
                     "class" => "bg_input",
@@ -34,7 +34,7 @@ class CommentaireType extends AbstractType
                 "label" => "Commentaire",
                 "attr" => [
                     "placeholder" => "Tapez votre commentaire ici",
-                    "minlength" => 2,
+                    "minlength" => 5,
                     "maxlength" => 200,
                     "rows" => 10,
                     "class" => "bg_input",

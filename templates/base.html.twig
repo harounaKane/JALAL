@@ -102,6 +102,20 @@
             </div>
         </header>
 
+        <!-- MESSAGE FLASH -->
+        <div class="w-100 text-center m-2">
+            {% for message in app.flashes("warning") %}
+                <div class="alert alert-warning">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {% for message in app.flashes("success") %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+
         <div class="mb-5">
             {% block body %}{% endblock %}
         </div>

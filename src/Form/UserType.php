@@ -65,7 +65,7 @@ class UserType extends AbstractType
                     "placeholder" => "Login",
                     "minlength" => 4,
                     "maxlength" => 15,
-                    "pattern" => "[A-Za-z0-9]" 
+                    "pattern" => "^[A-Za-z0-9]+"
                 ]
             ])
             ->add('country', TextType::class, [

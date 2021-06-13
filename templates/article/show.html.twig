@@ -67,54 +67,53 @@
                                         </div>
                                      </div>
                                 {% endfor %}
-                            {% if(app.session.get('user').id == article.user.id or app.session.get('user').status == 'admin') %}
-                                <div class="new-aud">
-                                    <a href="{{ path('media_new_audio', {'id' : article.id} ) }}">Aller vers le formulaire d'ajout d'audios</a>
-                                </div>
-                            {% endif %}
-                        </div>
-                  {% endif %}
-
-                  {% if(videos or app.session.get('user') and ( app.session.get('user').id == article.user.id or app.session.get('user').status == 'admin') ) %}
-                        <div class="heading"><h2>Vidéos</h2></div>
-                        <div class="diapo-videos mb-1">
-                            {% if(videos_url) %}
-                                {% for video_url in videos_url %} 
-                                    <div class="video-container">
-                                        <p><strong>Légende : </strong>{{video_url.legende}}</p>                   
-                                        <iframe class="video-show" width="350" height="200" src="https://www.youtube.com/embed/{{video_url.url}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-                                        </iframe>
-                                        <p><strong>Descriptif : </strong>{{video_url.texte}}</p>
-                                        <p><a href="{{ path('media_edit', {'id' : video_url.id}) }}"><i class="las la-edit"></i></a></p>
-                                        <p><a href="{{ path('media_delete', {'id' : video_url.id}) }}"><i class="las la-times"></i></a></p>
+                                {% if(app.session.get('user').id == article.user.id or app.session.get('user').status == 'admin') %}
+                                    <div class="new-aud">
+                                        <a href="{{ path('media_new_audio', {'id' : article.id} ) }}">Aller vers le formulaire d'ajout d'audios</a>
                                     </div>
-                                {% endfor %}
-                            {% endif %}
-                            {% if(videos_fichier) %}
-                                {% for video_fichier in videos_fichier %}
-                                    <div class="video-container">
-                                        <p><strong>Légende : </strong>{{video_fichier.legende}}</p> 
-                                        <video class="video-show" controls width="350" height="200">
-                                            <source src="{{ asset('articles/galeries/videos/' ~ video_fichier.nom) }}" type="video/webm">
-                                            <source src="{{ asset('articles/galeries/videos/' ~ video_fichier.nom) }}" type="video/mp4">
-                                        </video>
-                                        <p><strong>Descriptif : </strong>{{video_fichier.texte}}</p>
-                                        <p><a href="{{ path('media_edit', {'id' : video_fichier.id}) }}"><i class="las la-edit"></i></a></p>
-                                        <p><a href="{{ path('media_delete', {'id' : video_fichier.id}) }}"><i class="las la-times"></i></a></p>  
-                                    </div>  
-                                {% endfor %}
-                            {% endif %}
-                        </div>
-
-                        {% if(app.session.get('user').id == article.user.id or app.session.get('user').status == 'admin') %}
-                            <div class="new-vid">
-                                <p><a href="{{ path('media_new_video', {'id' : article.id} ) }}">Aller vers le formulaire d'ajout de vidéos</a></p>
+                                {% endif %}
                             </div>
                         {% endif %}
-                    {% endif %}
 
-                </section>
-             {% endif %}
+                        {% if(videos or app.session.get('user') and ( app.session.get('user').id == article.user.id or app.session.get('user').status == 'admin') ) %}
+                            <div class="heading"><h2>Vidéos</h2></div>
+                            <div class="diapo-videos mb-1">
+                                {% if(videos_url) %}
+                                    {% for video_url in videos_url %}
+                                        <div class="video-container">
+                                            <p><strong>Légende : </strong>{{video_url.legende}}</p>
+                                            <iframe class="video-show" width="350" height="200" src="https://www.youtube.com/embed/{{video_url.url}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                                            </iframe>
+                                            <p><strong>Descriptif : </strong>{{video_url.texte}}</p>
+                                            <p><a href="{{ path('media_edit', {'id' : video_url.id}) }}"><i class="las la-edit"></i></a></p>
+                                            <p><a href="{{ path('media_delete', {'id' : video_url.id}) }}"><i class="las la-times"></i></a></p>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                                {% if(videos_fichier) %}
+                                    {% for video_fichier in videos_fichier %}
+                                        <div class="video-container">
+                                            <p><strong>Légende : </strong>{{video_fichier.legende}}</p>
+                                            <video class="video-show" controls width="350" height="200">
+                                                <source src="{{ asset('articles/galeries/videos/' ~ video_fichier.nom) }}" type="video/webm">
+                                                <source src="{{ asset('articles/galeries/videos/' ~ video_fichier.nom) }}" type="video/mp4">
+                                            </video>
+                                            <p><strong>Descriptif : </strong>{{video_fichier.texte}}</p>
+                                            <p><a href="{{ path('media_edit', {'id' : video_fichier.id}) }}"><i class="las la-edit"></i></a></p>
+                                            <p><a href="{{ path('media_delete', {'id' : video_fichier.id}) }}"><i class="las la-times"></i></a></p>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+
+                                {% if(app.session.get('user').id == article.user.id or app.session.get('user').status == 'admin') %}
+                                    <div class="new-vid">
+                                        <a href="{{ path('media_new_video', {'id' : article.id} ) }}">Aller vers le formulaire d'ajout de vidéos</a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    </section>
+                {% endif %}
             <!-- BLOCK AUTEUR -->
                 <section class="banner-author row mb-4">
                     <div class="d-flex">
@@ -132,7 +131,7 @@
             </article>
 
             <!-- BLOCK COMMENTAIRES  -->
-            <div id="div-comment">
+                <div id="div-comment">
                 {% if(commentaires) %}
                     <h3 class="bg-secondary p-1 text-light">Commentaires</h3>
                     <hr>
@@ -175,12 +174,21 @@
                 {{ form_start(form) }}
 
                     <div class="row">
-                        <div class="col-12 col-sm-6 mb-4">{{ form_widget(form.user) }}</div>
                         <div class="col-12 col-sm-6 mb-4">
-                            <input type="text" name="prenom" id="prenom" class="bg_input form-control" placeholder="Prénom">
+                            <label for=""></label>
+                            {{ form_widget(form.user, {'attr' : {'required': "required"}}) }}
                         </div>
-                        <div class="col-12">{{ form_widget(form.comment) }}</div>
-
+                        <div class="col-12 col-sm-6 mb-4">
+                            <label for=""></label>
+                            <input type="text" name="prenom" required minlength="2" maxlength="10" id="prenom"
+                                   class="bg_input
+                            form-control"
+                                   placeholder="Prénom">
+                        </div>
+                        <div class="col-12">
+                            <label for=""></label>
+                            {{ form_widget(form.comment, {'attr' : {'required': "required"}}) }}
+                        </div>
                         <div class="col-1 mt-2">
                             {{ form_widget(form.Poster, {'attr' : {'value': article.id, "class": "commentaire_Poster btn btn-danger"}}) }}
                         </div>

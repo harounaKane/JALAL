@@ -76,7 +76,7 @@
     text-transform: uppercase;
     letter-spacing: .2rem;
     text-align: center;
-    text-shadow: 0 .3rem 5.rem rgba(0, 0, 0, .5);
+    text-shadow: 0 .3rem 5rem rgba(0, 0, 0, .5);
 }
 .audio-container, .video-container, .elements{
     margin-top: 2rem;

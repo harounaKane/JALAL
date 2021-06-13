@@ -49,9 +49,28 @@ class UserController extends AbstractController
             $user->setState('actif');
             $user->setPassword(password_hash($user->getPassword(), PASSWORD_DEFAULT));
 
+            //avatar
+            if( $form->get('avatar')->getData() != null ) {
+
+                $image = $form->get('avatar')->getData();
+                $file_name = $user->getLogin() . '_avatar' . '.' . $image->guessExtension();
+                $image->move(
+                    $this->getParameter('avatar_directory'),
+                    $file_name
+                );
+                $user->setAvatar($file_name);
+            }
+
             try {
                 $this->manager->persist($user);
                 $this->manager->flush();
+
+                //CONNEXION AUTOMATIQUE
+                $session = $request->getSession();
+                $session->set("user", $user);
+
+                $this->addFlash("success", "Incription réussie. Vous êtes connectés");
+
             }catch (UniqueConstraintViolationException $e){
 
             }
@@ -80,9 +99,12 @@ class UserController extends AbstractController
                 $session = $request->getSession();
 
                 $session->set("user", $userInfo);
+
+                $this->addFlash("success", "Bienvenue " . $userInfo->getFirstName() . " " . $userInfo->getLastName() );
                 
                 return $this->redirectToRoute("accueil");
             }
+            $this->addFlash("warning", "Login et/ou mot de passe incorrect");
         }
 
         return $this->render('user/connexion.html.twig', ['form' => $form->createView()]);

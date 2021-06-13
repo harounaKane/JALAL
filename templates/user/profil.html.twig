@@ -3,89 +3,89 @@
 {% block title %}{{ parent()}} - Mon Profil{% endblock %}
 
 {% block body %}
-<div class="m-0 container-lg m-lg-auto">
-    <section id="profil-user" class="mt-4">
-        <div class="d-flex flex-column flex-md-row justify-content-md-between">
-            <div class="mx-auto ml-md-2">
-                <img class="avatar-user rounded-circle p-2" src="{{ asset('images/avatars/'~ user.avatar) }}" alt="avatar de l'utilisateur">
-            </div>
-            <div class="pl-md-3 text-center text-md-left">
-                <h1 class="h1">Profil de <strong>{{ user.login|capitalize }}</strong></h1>
-                <p class="h3">
-                    <span>{{ user.civility == 'homme' ? '<i class="fa fa-mars"></i>' : '<i class="fa fa-venus"></i>' }}</span> 
-                    {{ user.id == app.session.get('id') ? user.firstName|capitalize ~' '~ user.lastName|capitalize ~' - '~ user.country : ' - '~ user.country }}
-                </p>
-                {% if user.id == app.session.get('id') %}
-                    <p class="h5"><i class="fa fa-envelope"></i> <em>{{ user.mail }}</em></p>
-                {% endif %}
-                <p class="h4"><i class="fa fa-book"></i> {{ user.description }}</p>
-            </div>
-        </div>
-    </section>
-    
-    {% if app.session.get('id') and app.session.get('id') == user.id %}
-        <hr>
-        {% for message in app.flashes('notice') %}
-            <div id="msg-profil" class="bg-success text-white text-center h3 my-2 p-2">
-                {{ message }}
-            </div>
-        {% endfor %}
-        <button id="btn-profil" type="button" class="btn btn-secondary btn-lg btn-block">Modifier mon profil</button>
-        <section id="modif-user" class="d-none">
-            <div class="p-3 shadow rounded bg-light">
-                {{ form_start(editForm) }}
-                    {{ include('user/paysResidence.html.twig') }}
-                    <div class="form-row">
-                        <div class="col-md-12">
-                            {{ form_row(editForm.civility, {'attr': {'class': 'form-check-inline'}}) }}
-                        </div>
-                        <div class="col-md-6">
-                            {{ form_row(editForm.first_name) }}
-                        </div>
-                        <div class="col-md-6">
-                            {{ form_row(editForm.last_name) }}
-                        </div>
-                        <div class="col-md-6">
-                            {{ form_row(editForm.mail) }}
-                        </div>
-                        <div class="col-md-6">
-                            {{ form_row(editForm.login) }}
-                        </div>
-                        <div class="col-md-6">
-                            {{ form_row(editForm.country) }}
-                        </div>
-                        <div class="col-md-6">
-                        {{ form_row(editForm.avatar) }}
-                        </div>
-                        <div class="col-md-12">
-                            {{ form_row(editForm.description) }}
-                        </div>
-                        <div class="col-md-12">
-                            {{ form_row(editForm.Enregistrer) }}
-                        </div>
-                    </div>
-                {{ form_end(editForm) }}
+    <div class="m-0 container-lg m-lg-auto">
+        <section id="profil-user" class="mt-4">
+            <div class="d-flex flex-column flex-md-row justify-content-md-between">
+                <div class="mx-auto ml-md-2">
+                    <img class="avatar-user rounded-circle p-2" src="{{ asset('images/avatars/'~ user.avatar) }}" alt="avatar de l'utilisateur">
+                </div>
+                <div class="pl-md-3 text-center text-md-left">
+                    <h1 class="h1">Profil de <strong>{{ user.login|capitalize }}</strong></h1>
+                    <p class="h3">
+                        <span>{{ user.civility == 'homme' ? '<i class="fa fa-mars"></i>' : '<i class="fa fa-venus"></i>' }}</span>
+                        {{ user.id == app.session.get('user').id ? user.firstName|capitalize ~' '~ user.lastName|capitalize ~' - '~ user.country : ' - '~ user.country }}
+                    </p>
+                    {% if user.id == app.session.get('user').id %}
+                        <p class="h5"><i class="fa fa-envelope"></i> <em>{{ user.mail }}</em></p>
+                    {% endif %}
+                    <p class="h4"><i class="fa fa-book"></i> {{ user.description }}</p>
+                </div>
             </div>
         </section>
-        <button id="btn-mdp" type="button" class="btn btn-secondary btn-lg btn-block mt-3">Changer le mot de passe</button>
-        <section id="modif-mdp" class="d-none">
-            <div class="p-3 shadow rounded bg-light">
-                {{ form_start(mdpForm) }}
-                    <div class="form-row">
-                        <div class="col-md-12 border-bottom">
-                        {{ form_row(mdpForm.oldPassword) }}
-                        </div>
-                        <div class="col-md-12 mt-2">
-                            {{ form_row(mdpForm.password) }}
-                        </div>
-                        <div class="col-md-12">
-                            {{ form_row(mdpForm.Enregistrer) }}
-                        </div>
-                    </div>
-                {{ form_end(mdpForm) }}
-            </div>
-        </section>
-    {% endif %}
 
-</div>
+        {% if app.session.get('user').id and app.session.get('user').id == user.id %}
+            <hr>
+            {% for message in app.flashes('notice') %}
+                <div id="msg-profil" class="bg-success text-white text-center h3 my-2 p-2">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            <button id="btn-profil" type="button" class="btn btn-secondary btn-lg btn-block">Modifier mon profil</button>
+            <section id="modif-user" class="d-none">
+                <div class="p-3 shadow rounded bg-light">
+                    {{ form_start(editForm) }}
+                        {{ include('user/paysResidence.html.twig') }}
+                        <div class="form-row">
+                            <div class="col-md-12">
+                                {{ form_row(editForm.civility, {'attr': {'class': 'form-check-inline'}}) }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_row(editForm.first_name) }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_row(editForm.last_name) }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_row(editForm.mail) }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_row(editForm.login) }}
+                            </div>
+                            <div class="col-md-6">
+                                {{ form_row(editForm.country) }}
+                            </div>
+                            <div class="col-md-6">
+                            {{ form_row(editForm.avatar) }}
+                            </div>
+                            <div class="col-md-12">
+                                {{ form_row(editForm.description) }}
+                            </div>
+                            <div class="col-md-12">
+                                {{ form_row(editForm.Enregistrer) }}
+                            </div>
+                        </div>
+                    {{ form_end(editForm) }}
+                </div>
+            </section>
+            <button id="btn-mdp" type="button" class="btn btn-secondary btn-lg btn-block mt-3">Changer le mot de passe</button>
+            <section id="modif-mdp" class="d-none">
+                <div class="p-3 shadow rounded bg-light">
+                    {{ form_start(mdpForm) }}
+                        <div class="form-row">
+                            <div class="col-md-12 border-bottom">
+                            {{ form_row(mdpForm.oldPassword) }}
+                            </div>
+                            <div class="col-md-12 mt-2">
+                                {{ form_row(mdpForm.password) }}
+                            </div>
+                            <div class="col-md-12">
+                                {{ form_row(mdpForm.Enregistrer) }}
+                            </div>
+                        </div>
+                    {{ form_end(mdpForm) }}
+                </div>
+            </section>
+        {% endif %}
+
+    </div>
 {% endblock %}

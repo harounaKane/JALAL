@@ -14,6 +14,10 @@ TRUCS A FAIRE --------------
 	- ajout commentaire : si user connecté, récupérer pseudo (+avtr)
 
 
+***( TO DO )***
+    pagination page d'accueil
+
+
 TRUCS A CORRIGER (AKA "j'y arrive pas") -------------
 	- le (else) du "aside" de la page article, dans le cas où il est seul dans sa catégorie, ne marche pas
 	- 
@@ -21,20 +25,15 @@ TRUCS A CORRIGER (AKA "j'y arrive pas") -------------
 
 ----- NOTES -----
 ***( Harouna )***
-On aurait pu prendre la méthode show pour la description d'un article.
-Quand on met en place un CRUD toutes les méthodes sont générées. Il ne reste plus qu'à modifier l'affichage au niveau template!
 
--- Maintenant on peut ajouter des commentaires. Il reste juste à les récuprer pour les afficher par apport à l'article clické !!!!
 
 
 
 ***( Mantcha )***
-- Il y avait un souci auniveau de la suppression des vidéos youtube, vu que ce ne sont pas des fichiers du coup 
-j'ai modifié la fonction de suppression à ce niveau 
-- J'ai ressorti les heading (h2) dans la page show parce que ça dérangeait la mise en page 
 
 
 
 ***( Ida )***
 	Base de données :
 		- utilisateurs : [login1 / motdepasse]  [login2 / motdepasse]
+

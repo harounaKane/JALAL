@@ -34,11 +34,12 @@
                 <section class="d-none d-md-block col-md-8">
                     <div class="row text-center text-uppercase">
                         {% for cat in categorie() %}
-                            <a href="" class="font-weight-bold text-white col-12 col-md-3"> {{ cat.designation }} </a>
+                            <a href="{{ path('byCategorie', {'id': cat.id}) }}" class="font-weight-bold text-white
+                            col-12 col-md-3"> {{ cat
+                                .designation }} </a>
                         {% endfor %}
                     </div>
                 </section>
-
                 <!-- burger nav -->
                 <div class="col-1">
                     <div class="topnav">

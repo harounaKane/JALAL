@@ -1,6 +1,6 @@
 "use strict";
 
-$(document).ready(function() {
+let ready = $(document).ready(function() {
 
     function resultat(data, op, id){
       $("#"+id).html(op + data)
@@ -58,7 +58,7 @@ $(document).ready(function() {
 
             champ.previousElementSibling.insertAdjacentHTML('beforeend', `
                 <div class="alert alert-danger col-12 m-0">${tabMessage[0]}</div>
-                <div class="alert alert-danger col-12 m-0">${tabMessage[1]}</div>`)
+                ${tabMessage[1] ? `<div class="alert alert-danger col-12 m-0">${tabMessage[1]}</div>` : ''}`)
             return false;
         }
     }

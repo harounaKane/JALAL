@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Categorie;
 use App\Form\CategorieType;
+use App\Repository\ArticleRepository;
 use App\Repository\CategorieRepository;
+use phpDocumentor\Reflection\Types\False_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Symfony\Component\HttpFoundation\Request;
@@ -106,5 +108,21 @@ class CategorieController extends AbstractController
         }
 
         return $this->redirectToRoute('categorie_index');
+    }
+
+    /**
+     * @Route("/article_par_categorie/{id}", name="byCategorie")
+     */
+    public function byCat($id, Categorie $categorie, ArticleRepository  $articleRepository){
+        $articleByCategorie = $articleRepository->articleByCategorie($categorie->getId());
+
+        $artByCat= $articleRepository->lastArticleByCategorie($categorie->getId());
+
+
+        return $this->render('article/articleByCategorie.html.twig', [
+            'articles' => $articleByCategorie,
+            'lastArticleByCategorie' => $artByCat ? $artByCat[0] : false,
+            'articlesRecents' => $articleRepository->findBy([], ['art_created_at' => 'DESC'], 10)
+        ]);
     }
 }

@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent()}} Accueil{% endblock %}
+
+{% block body %}
+    <div class="row m-0 container-lg m-lg-auto">
+        <main class=" col-12 col-md-9">
+            <section class="row p-2">
+                {% if articles and lastArticleByCategorie %}
+                    <p class="border-bottom border-dark col-12 p-0 mt-3 h3 text-danger">A la une</p>
+                    <div class="mainArticle col-12 mb-4">
+                        <article class="">
+                            <a href="{{ path('article_show', {'id': lastArticleByCategorie.id}) }}" class="text-decoration-none text-dark row">
+                                <img class="main-img img-fluid col-12 p-0" src="{{ asset('articles/main_img/'~ lastArticleByCategorie.mainImage) }}" alt="{{ lastArticleByCategorie.mainImage }}">
+                                <div class="col-12">
+                                    <div class="row my-0">
+                                        <div class="d-none d-sm-block col-4 p-2 h2 bg-danger text-white">{{ lastArticleByCategorie.categorie.designation }}</div>
+                                        <div class="col-12 col-sm-8 p-2 h2 bg-secondary text-center text-white">
+                                            {{ lastArticleByCategorie.title | length < 30 ? lastArticleByCategorie.title : lastArticleByCategorie.title | slice(0, 30) ~ "..." }}
+                                        </div>
+                                    </div>
+                                </div>
+                                {# <h2 class="col-12 p-0 h3 mt-0">{{ lastArticle.secondaryTitle }}</h2>#}
+                                <h3 class="p-0 h5 mt-1">Par {{ lastArticleByCategorie.user.firstName }} le {{ lastArticleByCategorie.ArtCreatedAt|date('d F Y') }}</h3>
+                            </a>
+                        </article>
+                    </div>
+
+                    {% for article in articles %}
+                        <div class="otherArticles col-6 mb-4 {{ article.id == lastArticleByCategorie.id ? 'd-none' }}">
+                            <hr>
+                            <article class="">
+                                <a href="{{ path('article_show', {'id': article.id}) }}" class="text-decoration-none text-dark row">
+                                    <img class="main-img col-12 p-0 mb-1" src="{{ asset('articles/main_img/'~ article.mainImage) }}" alt="{{ article.mainImage }}">
+                                    <h3 class="col-12 p-0 my-0 h2">
+                                        <span class="bg-danger text-white py-1 px-3">{{ article.categorie.designation }}</span>
+                                        {{ article.title }}
+                                    </h3>
+                                    <h4 class="h5 mt-0">{{ article.secondaryTitle }}</h4>
+                                </a>
+                            </article>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="alert alert-danger text-center p-5">PAS D'ARTICLE POUR CETTE CATEGORIE</div>
+                {% endif %}
+            </section>
+        </main>
+
+        <!-- ASIDE -->
+        {% if articles and lastArticleByCategorie %}
+            <aside class="col-3 p-2 border-left mt-4">
+
+
+                {#   Articles récents         #}
+                <p class="bg-dark text-center"><span class="bg-danger text-white h3">Récents</span></p>
+                {% if articlesRecents %}
+                    {% for articleRecent in articlesRecents %}
+                        {% if articleRecent.id != lastArticleByCategorie.id %}
+                            <div class="asideArticles mx-0 mt-4">
+                                <a href="" class="text-decoration-none text-dark d-flex flex-column justify-content-end mb-2"
+                                   style="background-image: url( {{ asset('articles/main_img/'~articleRecent.mainImage) }} )">
+                                    <span class="aside-title h5">{{ articleRecent.title | length < 25 ? articleRecent.title : articleRecent.title | slice(0, 25) ~ "..." }}</span>
+                                </a>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+
+
+                {#    les plus lus        #}
+                <p class="bg-dark text-center mt-5"><span class="bg-danger text-white h3">Best post</span></p>
+                <div class="asideArticles mx-0 mt-4">
+                    <a href="" class="text-decoration-none text-dark d-flex flex-column justify-content-end mb-2"
+                       style="background-image: url( {{ asset('images/Barro.jpg') }} )">
+                        <span class="aside-title h5">Titre de l'article</span>
+                    </a>
+                </div>
+                <div class="asideArticles mx-0 mt-4">
+                    <a href="" class="text-decoration-none text-dark d-flex flex-column justify-content-end mb-2"
+                       style="background-image: url( {{ asset('images/Barro.jpg') }} )">
+                        <span class="aside-title h5">Titre de l'article</span>
+                    </a>
+                </div>
+            </aside>
+        {% endif %}
+    </div>
+
+
+{% endblock %}

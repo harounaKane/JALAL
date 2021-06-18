@@ -80,13 +80,16 @@ class ArticleController extends AbstractController
             try {
                 $this->manager->persist($article);
                 $this->manager->flush();
+
+                $this->addFlash('success'
+                    ,'Votre article a bien été ajouté !');
+
+                return $this->redirectToRoute('media_redirect', ['id' => $article->getId()]);
+
             }catch (UniqueConstraintViolationException $e){
+                $this->addFlash('warning'
+                    ,'Votre article n\'a pas pu être ajouté !');
             }
-
-            $this->addFlash('success'
-                ,'Votre article a bien été ajouté !');
-
-            return $this->redirectToRoute('media_redirect', ['id' => $article->getId()]);
         }
         return $this->render('article/new.html.twig', [
             'article' => $article,
@@ -105,8 +108,9 @@ class ArticleController extends AbstractController
 
         //TRAITEMENT DES COMMENTAIRES
         $form->handleRequest($request);
+        //Si REQUETE AJAX
         if( $request->isXmlHttpRequest() ){
-
+            //RECUP ALL DATA DU COMMENTAIRE
             $commentaire->setUser( $request->get("data")['prenom'] . " " . $request->get('data')['nom'] );
             $commentaire->setComment( $request->get("data")['commentaire'] );
             $commentaire->setCommentAt(new \DateTime());
@@ -117,6 +121,7 @@ class ArticleController extends AbstractController
             $this->manager->persist($commentaire);
             $this->manager->flush();
 
+            //RECUP LAST COMMENTAIRE POUR AJOUTER DOM
             $comment = $commentaireRepository->find($commentaire->getId());
             $commentData = [
                 $comment->getId(),
@@ -177,7 +182,7 @@ class ArticleController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            //TEST SI NEW IMAGE, ON GARDE LE MÊME NOM
+            //TEST SI PAS DE NEW IMAGE, ON GARDE LE NOM DE L'ANCIENNE
             if( $article->getMainImage() == "update"  ){
                 $article->setMainImage($request->get('imagePrincipale'));
             }
@@ -196,15 +201,17 @@ class ArticleController extends AbstractController
             }
 
             try {
-              //  $this->manager->persist($article);
                 $this->manager->flush();
 
                 $this->addFlash("success",
                 "Article modifié avec succès");
 
+                return $this->redirectToRoute('article_show', ['id' => $article->getid()]);
+
             }catch (UniqueConstraintViolationException $e){
+                $this->addFlash("success",
+                    "L'article n'a pas pu être modifié ");
             }
-            return $this->redirectToRoute('article_show', ['id' => $article->getid()]);
         }
         return $this->render('article/edit.html.twig', [
             'article' => $article,

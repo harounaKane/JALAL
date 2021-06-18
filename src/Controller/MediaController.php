@@ -83,6 +83,7 @@ class MediaController extends AbstractController
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($medium);
                 $entityManager->flush();
+
                 $this->addFlash('success'
                                 ,'Votre image a bien été ajoutée');
                 return $this->redirectToRoute('media_new_image', ['id' => $article->getId()]);
@@ -95,7 +96,6 @@ class MediaController extends AbstractController
             }
         }
         // L'ordre ne peut pas être donné avant car le media ne possède pas d'id avant la soumission
-        // 
         if(isset($_POST['reorganisation'])){
             $all_med_img = $mediaRepository->imageByArticle($article->getId());                       
             $nb_img = count($all_med_img);
@@ -319,8 +319,10 @@ class MediaController extends AbstractController
                     }
                    
                     $this->getDoctrine()->getManager()->flush();
+
                     $this->addFlash('success'
                                     ,'Les informations de cette vidéos ont bien été modifiées');
+
                     return $this->redirectToRoute('media_new_video', ['id' => $article->getId()]);
                 }
             }

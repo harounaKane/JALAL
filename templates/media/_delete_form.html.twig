@@ -4,28 +4,28 @@
         <form method="post" action="{{ path('media_delete', {'id': medium.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
             <input type="hidden" name="_method" value="DELETE">
             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ medium.id) }}">
-            <button class="btn btn-danger">Delete Image</button>
+            <button class="btn btn-danger">Spprimer Image</button>
         </form>
     {% elseif medium.type == 'audio' %}
         <form method="post" action="{{ path('media_delete', {'id': medium.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
             <input type="hidden" name="_method" value="DELETE">
             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ medium.id) }}">
-            <button class="btn btn-danger">Delete Audio</button>
+            <button class="btn btn-danger">Spprimer Audio</button>
         </form>
-    {% elseif medium.type == 'video' %}
+    {% elseif medium.type == 'video' or medium.type == 'url' %}
         <form method="post" action="{{ path('media_delete', {'id': medium.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
             <input type="hidden" name="_method" value="DELETE">
             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ medium.id) }}">
-            <button class="btn btn-danger">Delete Video</button>
+            <button class="btn btn-danger">Spprimer Video</button>
         </form>       
     {% endif %}
-<div class="suppression">       
-    {% if medium.type == 'image' %}
-        <a href="{{ path('media_edit', {'id': medium.id}) }}">edit image</a>
-    {% elseif medium.type == 'video' %}
-        <a href="{{ path('media_edit', {'id': medium.id}) }}">edit video</a>
-    {% elseif medium.type == 'audio' %}
-            <a href="{{ path('media_edit', {'id': medium.id}) }}">edit audio</a>
-    {% endif %}
-</div>   
+    <div class="suppression">
+        {% if medium.type == 'image' %}
+            <a href="{{ path('media_edit', {'id': medium.id}) }}">Modifier image</a>
+        {% elseif medium.type == 'video' %}
+            <a href="{{ path('media_edit', {'id': medium.id}) }}">Modifier video</a>
+        {% elseif medium.type == 'audio' %}
+                <a href="{{ path('media_edit', {'id': medium.id}) }}">Modifier audio</a>
+        {% endif %}
+    </div>
 </div>

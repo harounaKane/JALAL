@@ -63,18 +63,13 @@ class ArticleController extends AbstractController
         $formMedia = $this->createForm(MediaType::class, $media);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+
             $article->setArtCreatedAt(new \DateTime());
+
             $article->setUser($repo->idUser($request->getSession()->get('user')->getId()) );
             
             $image = $form->get('main_image')->getData();
-            
-            try {
-                $this->manager->persist($article);
-                $this->manager->flush();
 
-
-            }catch (UniqueConstraintViolationException $e){
-            }
             $articleId = $articleRepository->findOneBy([], ['art_created_at' => 'DESC']);
             $file_name =  $articleId->getId().'main_img' . md5(uniqid()) . '.' . $image->guessExtension();
             $image->move(
@@ -88,6 +83,9 @@ class ArticleController extends AbstractController
             }catch (UniqueConstraintViolationException $e){
             }
 
+            $this->addFlash('success'
+                ,'Votre article a bien été ajouté !');
+
             return $this->redirectToRoute('media_redirect', ['id' => $article->getId()]);
         }
         return $this->render('article/new.html.twig', [
@@ -96,6 +94,7 @@ class ArticleController extends AbstractController
             'formMedia' => $formMedia->createView()
         ]);
     }
+
     /**
      * @Route("/article/{id}", name="article_show", methods={"GET", "POST"})
      */
@@ -156,23 +155,6 @@ class ArticleController extends AbstractController
             'last' => $repo->findBy([], ['art_created_at' => 'DESC'], 10)
         ]);
     }
-
-    public function getIp(){
-        if(!empty($_SERVER['HTTP_CLIENT_IP'])){
-            $ip = $_SERVER['HTTP_CLIENT_IP'];
-        }elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
-            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-        }else{
-            $ip = $_SERVER['REMOTE_ADDR'];
-        }
-        return $ip;
-    }
-
-    /*
-    AJAX commentaires :
-        faire une function add_comment($form, $id_article) pour l'appeler dans le fichier JS ?
-        si oui, fonction "add_comment dans "CommentaireController", à appeler dans l'ArticleController ?
-    */
     
     /**
      * @Route("/article/{id}/articles_user", name="articles_user", methods={"GET","POST"})
@@ -184,6 +166,7 @@ class ArticleController extends AbstractController
             'medias' => $mediaRepository->findAll(),
         ]);
     }
+
     /**
      * @Route("/article/{id}/edit", name="article_edit", methods={"GET","POST"})
      */
@@ -191,31 +174,80 @@ class ArticleController extends AbstractController
     {
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
+
+            //TEST SI NEW IMAGE, ON GARDE LE MÊME NOM
+            if( $article->getMainImage() == "update"  ){
+                $article->setMainImage($request->get('imagePrincipale'));
+            }
+            //SINON, ON DELETE L'ANCIENNE IMAGE ET RECUP LA NOUVELLE
+            else{
+                if( file_exists($this->getParameter('main_img_directory').'/'.$request->get('imagePrincipale')) )
+                    unlink(($this->getParameter("main_img_directory").'/'.$request->get('imagePrincipale')));
+
+                $image = $form->get('main_image')->getData();
+                $file_name =  $article->getId().'main_img' . md5(uniqid()) . '.' . $image->guessExtension();
+                $image->move(
+                    $this->getParameter('main_img_directory'),
+                    $file_name
+                );
+                $article->setMainImage($file_name);
+            }
+
             try {
-                $this->manager->persist($article);
+              //  $this->manager->persist($article);
                 $this->manager->flush();
+
+                $this->addFlash("success",
+                "Article modifié avec succès");
+
             }catch (UniqueConstraintViolationException $e){
             }
-            return $this->redirectToRoute('article_index');
+            return $this->redirectToRoute('article_show', ['id' => $article->getid()]);
         }
         return $this->render('article/edit.html.twig', [
             'article' => $article,
             'form' => $form->createView(),
         ]);
     }
+
     /**
-     * @Route("/article/{id}", name="article_delete", methods={"DELETE"})
+     * @Route("/article/{id}/toDelete", name="article_delete", methods={"DELETE"})
      */
-    public function delete(Request $request, Article $article)
+    public function delete(Request $request, Article $article, MediaRepository $mediaRepository)
     {
         if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
+
+            //SUPPRESSION IMAGE
+            if( file_exists($this->getParameter('main_img_directory').'/'.$article->getMainImage()) )
+                unlink(($this->getParameter("main_img_directory").'/'.$article->getMainImage()));
+
+            //RECUP DES MEDIAS POUR SUPPRESSION DE SES FICHIERS
+            $medias = $mediaRepository->mediaByArticle($article->getId());
+
+            foreach ($medias as $media){
+                $type = $media->getType();
+                if( $type == "image" ){
+                    $directory = 'images_directory';
+                }elseif( $type == "audio" ){
+                    $directory = 'audios_directory';
+                }elseif( $type == "video" ){
+                    $directory = 'videos_directory';
+                }
+
+                if( file_exists($this->getParameter($directory).'/'.$media->getNom()) )
+                    unlink(($this->getParameter($directory).'/'.$media->getNom()));
+            }
+
+            $this->addFlash('success',
+            "Article supprimé avec succès ! ");
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($article);
             $entityManager->flush();
         }
-        return $this->redirectToRoute('article_index');
+        return $this->redirectToRoute('article_admin');
     }
-    
 
 }

@@ -51,7 +51,6 @@
       <change afterPath="$PROJECT_DIR$/../Nouveau dossier/Doc2.docx" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Nouveau dossier/JALAL_TV" afterDir="false" />
       <change afterPath="$PROJECT_DIR$" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/article/articleByCategorie.html.twig" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../TUTO/grafick/.idea/grafick.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../TUTO/linkedin_2/.idea/linkedin_2.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../TUTO/linkedin_3/.idea/linkedin_3.iml" afterDir="false" />
@@ -72,10 +71,203 @@
       <change afterPath="$PROJECT_DIR$/../../linkedin/templates/pages/articleOne.html.twig" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../pint/.idea/pint.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/audios/56aud622d34bdb28681a042bb2dd7b5ad522f.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/audios/56auda1394625d4d684f20657a29eb46bcc7e.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/audios/58aud64737d3ab4e36b207ccba3715bd52747.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/audios/59aud82b3d5fb602c0d57f57094629d4bc210.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/audios/62aude60093b7f4ef0f054f592964c714c080.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/audios/63aud63f526d32882af429036a7fb48305321.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/audios/64aud16bff5f144bdb6d0dca7d7b2ccb5e431.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/audios/64aud5fe1875dc2e3808183ceb9a6d577a071.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/audios/64audad22e841f65476406778a5b5966d924d.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/audios/65audd83bdf61a9da99d49fdcbe02a13bb13e.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/10img2523c1ed7f12428b7c387fc63cebf20e.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/10img2cbf26053319053d39c85c9123ff0d36.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/10img3856193fc3d45b817e66e020c204a10b.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/10img49073498d5224145e9a10dcd7547a93d.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/10img65db533e0d8e393bc98c1cd1c30cb20a.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/10imgaf747d035cfdc600e344f63a0b038bac.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/11imgf29e3fee4a8fa90a3a4f71d1b5441fc8.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/13img199081305619eac2ef5e5bc314e70351.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/13imga62c797e30cbb55ee588a87ff5216238.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/13imgc357a90562de20a833afb0e8e91d7631.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/47img08c8e1a12caf70fbd976dcd47800f609.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/47img0c4a35d41e57cf68280175e55e1c1745.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/47img103d3a78062070ff543a752c9a03fb31.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/47img1d51bb277fe60d96d1a72ef997e3dd8e.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/47img81224230b8d3a60831b7cfa541e5a252.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/47imgae0062184474cf56f8cc42ee2999d7d8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/47imgb74e8c2daa116f74b59bcf3763029ce0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/47imgcd131e40d753be6c3601c2fa217dc79f.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/47imge1d52e6257c3e07a5e1aea6de2746004.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/47imgfb1a82c4dbdb19e1af669d8608d1cd20.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/48img40f265a2469cd28871c44bcb00fb99ed.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/48img935a55c1f296407ebd82318f48fa7d32.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/48imga2c8b53dc36f9f7116bfd409b5ad572a.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/48imga3c3fff178c138bd8eca4a96fc701dfe.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/48imga5a91d171e6da5cd9ef60ae9d684c2a9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/48imga695b98f0f9faa6ad97ef3549e901d7d.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/48imga89eda65e56cb31e2e068001209c62f3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/48imgb3a8bf96dc8f2d64f427f87a808e20a1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/48imgba131626195f8b6635e14f9d2132261b.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/48imgf3aad0097cdaf27a5347320edf3e52ab.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/48imgf5b42891d06b304168eb8c0f3949e211.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/50img07f8a30995b923e709eb2e1a5b368dd9.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/50img085527f51ee23de283b9abe7355021f0.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/50img262e60a6dd1f8bc7c05bb9eb4df5b742.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/52img383c44f510a86dd0a90fb24b62dab29d.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/53img139a5e475d86397c3fa92e0885632cbf.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/53img39332f2e080fb901a8514e7624b6df96.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/53img931d8b2ce993d807919b0cd5745356b6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/54imga027473a95f55a5c12ea103e49c90f46.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/55img29db6e178dc3902e8b82f6aeb40d38ea.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/55img9f1bb0e581cffbebca3a8b97d58be6be.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/55imgf8e329b15d266c9c9d45873d83450a50.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/56img2cd115af19864d31ffe53cda82d7cb45.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/58img65a9281e161aaa8fec002f9e644b6336.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/58imgd095cebb0d7f4fa7ae49bce3b471a536.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60img00a08b08ee59e0d921a3dc1bc4c55bc3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60img048e6a5f52276e39b752de099ac0bb34.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60img0546d22e67e020f55e4625e4c00f2f06.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60img094fe06c0ca579b99e3bafef74a904e7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60img0c1b3ef24694aac96a3c1f4b5a1b69d5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60img1d33209a1483f134390d36a84bd581f3.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60img293bf227b9c6a91dc0ba7b0dd15e5600.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60img2a27a3c15a0850169033ad54fd77baf8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60img2a608618789ea9e910044a7a5ac19f54.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60img2ba856c299c27bc18da6239193ef92db.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60img34ebe2abea4de99a2a24d5a589d55570.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60img3a40a2ea833fe2512c83a88ac3e42e28.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60img5585d49273b4381d9017562a65d0c223.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60img55e8c214413c79a3d128b61d58de9f55.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60img5f78b9fd87869a5064fcc82936c275ad.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60img5f8ccd59b947b044aea33afd672fb658.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60img6bf14543046629bf3bc95efe479bdee7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60img6d248309670941dc8a930b1ad75ca2bf.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60img70cfafb7a9e1ccc9d22ac8c4cf94c1aa.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60img7338b8ce58ebcfdfaa04929a0e96c3e4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60img879285183adb282ec83298c287931e4d.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60img8afd4ad953537495934f2381f4a3e399.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60img8fe993a36d7226099e6d746754839156.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60img93e1d920aa9968f852c55e7efdb7d508.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60img93fa32e419e02ce7abe72a90339d4a57.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60img96ae15b5ce83725f0285c7ebec929819.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60img9ebc835c091aeeda031984f4b457e441.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60imga0482e85d8107d25e6c09677e1830c9f.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60imga05f0b823ab06070e3fd6ce71f76da83.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60imga18e2367b4bc576131875a39b4731125.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60imga959ed26169cb77d1c76eebd937683cb.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60imgaa23f6723fbbaf73a1e13dd4efaaf23d.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60imgab2890ef36a1c66c08a9e796113d426a.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60imgaf707697e6f73ab2738410f6de9ffb18.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60imgb6ac644392b69900cc4699a4b0a38093.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60imgbb0cf2fd00b8f89bc1b6977329c8f55d.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60imgbd1c5a9f30019b820bcc9bf783e84cbd.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60imgcaef63943e4518d2ddb1a40ea9e24aa8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60imgd43dcad59470a3bab2236ee579653189.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60imgd967781ec58958751c5e87369a8956b2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60imge4a3e4267965332acde5ca36f98a8769.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60imge4f20c58241fa7fcbb84c35a799adfca.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60imgf0589a4d765b7c43a993d8f56ee6271f.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60imgf1c5b99d62479edb37d8c3e11d95f38a.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60imgf6e2b028eabc73c0e9b1a5215241e170.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/60imgfd941f18b4f6c4bb9166e996baa2ea49.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/61img7227ef47644a49f012b1159bc4919f2a.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/61imgb601e06ae95a6319209e85500a0b4b21.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/61imgf6ef80152e0f77e05300afc58005cded.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/62img63e6455097225b2119316b9db5d1f198.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/63img01aff0bcdc787b14a8c908cf2bc1ed9c.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/64img040ad1faea453f127d69ba4fbc47b00c.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/64img058e9103c4526f37a1a53ba616715382.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/64img1a762487e4380217308545d762cd0ddd.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/64img1c629a01e194f1e98c04bbd3f5341f8d.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/64img27bf6b2f110ac119b99857c3357168b7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/64img2ed592cd2be397a4ede07f3b84e84565.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/64img51b0153a24c5fa224cbfb5bde6bbd399.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/64img7d00ae98caa65de1457effefb1a96f36.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/64img982c95daf63802a0c13ca8927091486a.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/64imgdb65ccfb9c805a90a41f204045184615.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/64imgf5875fdba87b8d5699c96bb384d2b3ed.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/64imgf6890c1d2599324a6e9a459515c53233.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/64imgfac2cc0f9b0fe99842abdf98886de6fc.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/64imgfd42c73edffe9715f06ed87541caf3a8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/65img478111c2d6d5cae4905374dd0fa96657.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/65img8c0cbe676c2a0a6e67133fcca13209e1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/65imgb23f28a3572e6f5fc05b2ba9932c1bc0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/65imgef1ac2ab95b169c49e43cba51ad407d7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/9img32a779eaee706186863b416323a9949a.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/9img46dbca019f054cb06fe3f2a237e5bd56.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/images/9imgfa8c5d4972fc369ae0cc29d63d766841.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/videos/52vid5bb6837b4be5051f46bb681436d68d5e.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/videos/53vid39af982b81211cafe7673e5ae031cf71.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/videos/53vidbab05ec966d0c6c5c7c528138b4f427d.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/videos/55vid77d2e78c84dd43adf16f14c831734c81.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/videos/58vid818c15d507bf6565e3455011e277a653.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/videos/59vid48d871673d21bb42f368ac7feb05ee3c.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/videos/62vid1170fd2b1e4a62a0bb2f8383d633261e.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/videos/63vidfab22d46cde8d5e1f3e669b6d64a6cdd.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/videos/64vid058dd11a0cfbebaebc5b649044f7f51c.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/videos/64vid2037d74a204b42d168705a8b1b4da161.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/videos/64vid3a055e2ba0606f2cddd3234d29fd363f.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/videos/64vid544fbb59a73dfb62c9d58b2bc8e6a38e.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/videos/64vid5860920b8068170c3e58bf8534d5688c.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/videos/64vid68b276e0d046627a24cc116c4a353773.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/videos/64viddf690df2c35c32d0014421478cfe4b88.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/videos/65vid2f87bbf82c120470c7897dfdbceec7c6.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/galeries/videos/65vid5f4521681b0870ae5ed6f40202fb812e.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/10main_img5a09c496ab1ed221ffef8e9dee18c401.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/10main_imgc921e96d18a994c4f9a24c30b1f91180.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/11main_img310993a66e786b6cf04f2d280f82804f.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/11main_img77989a40807f513eebd0067ad8175814.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/11main_img89c1a8f4a714e097e90975e389dd7978.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/11main_imgeb60e2a8b47a5d3e0fc3c9cc7a19bff4.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/13main_img1ae691a130aa7290502d6f684c9245ab.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/14main_img52b28efc253358f5551a8476b67d1740.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/16main_img1b3510d99c7f28d768900e61c9ac5b98.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/1main_img1ea550b55821d8f4f631ed4461d53f41.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/2main_img6f706db3b0998cc9880a2e02c2e236ed.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/47main_img3d2a3786d1bf5073c2fd699e545eb0ec.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/48main_img61c15fbe7d42eed9df9d712f7dcc7429.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/49main_imgea2531e900d566bddc79d4c89f7ea595.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/4main_img8a3422c57d362db03c4fd691327a4d11.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/50main_img87138bec192bd5ffce40796944cbe9ef.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/51main_img865aaf904f41f8d4480dc60227139b8d.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/52main_img98611dd7f2eee81cb999a5444230fa82.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/53main_img3bc94c3bf66ab582876690f3aab547f3.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/54main_img21a629ab48c7718454ce7384f02b5443.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/55main_img8db060b98d0eda54f6b423da77375eaa.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/56main_imgd8e6a5249e1bc6ed6694692f78f1aa76.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/57main_img67a02bc2e12247c84b2d9573ad200613.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/58main_img34b677420e30ee46d1a4cf1c8dd2be36.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/59main_img893c9724a59826311f547e023abbea06.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/60main_imgd9371417837c593e8c6687f4f3f260ce.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/61main_imgdf73dadd0a12cd3bf3fc9d413500749d.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/62main_imga564aa9703708966832b3ecba7071547.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/63main_imgc92f74e7cc7a61bfc0ba8575a604b025.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/64main_img52a9093155ad8153ca5ee27eb341a950.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/65main_imgba6898a11c4e4e1dace3bfca3dc94f0a.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/article.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/article.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/avatars/Barro.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/avatars/berger.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/avatars/hampate.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/avatars/login2_avatarc8ab754ebf819272f9aa8290241663ef.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/satoru.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/commentaire.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/commentaire.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/CategorieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CategorieController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ArticleRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ArticleRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ArticleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/MediaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MediaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/ArticleType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ArticleType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/MediaType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/MediaType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/MediaRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/MediaRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/article/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/_delete_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/article/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/article/article_admin.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/article_admin.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/article/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/article/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/show.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/media/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/media/_delete_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/media/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/media/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/media/new_video.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/media/new_video.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/media/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/media/show.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -271,7 +463,8 @@
       <workItem from="1621504877728" duration="1792000" />
       <workItem from="1622918070073" duration="4092000" />
       <workItem from="1623069263165" duration="75584000" />
-      <workItem from="1623507164629" duration="24168000" />
+      <workItem from="1623507164629" duration="47933000" />
+      <workItem from="1623780984267" duration="37277000" />
     </task>
     <servers />
   </component>

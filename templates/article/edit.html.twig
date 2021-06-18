@@ -3,13 +3,15 @@
 {% block title %}Edit Article{% endblock %}
 
 {% block body %}
-    <h1>Edit Article</h1>
+    <main class="container-fluid">
+        <h1 class="text-center">Modifier l'article</h1>
 
-    {{ include('article/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ include('article/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('article_show', {'id': article.id}) }}">back to list</a>
+{#        <a href="{{ path('article_show', {'id': article.id}) }}">back to list</a>#}
 
-    <!-- if statut == admin -->
-    {{ include('article/_delete_form.html.twig') }}
-    <!-- endif -->
+        <!-- if statut == admin -->
+{#        {{ include('article/_delete_form.html.twig') }}#}
+        <!-- endif -->
+    </main>
 {% endblock %}

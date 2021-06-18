@@ -1,6 +1,37 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    <div class="form-row">
+        <div class="col-md-12 col-lg-10 mx-lg-auto">
+            {{ form_row(form.categorie, {'attr': {'class': 'form-check-inline'}}) }}
+        </div>
+        <div class="col-md-12 col-lg-10 mx-lg-auto">
+            {{ form_row(form.title, {'attr': {'class': 'form-check-inline'}}) }}
+        </div>
+        <div class="col-md-12 col-lg-10 mx-lg-auto">
+            {{ form_row(form.secondary_title, {'attr': {'class': 'form-check-inline'}}) }}
+        </div>
+        <div class="col-md-12 col-lg-10 mx-lg-auto">
+            {{ form_row(form.content, {'attr': {'class': 'form-check-inline'}}) }}
+        </div>
+        <div class="col-md-12 col-lg-10 mx-lg-auto">
+            {{ form_row(form.main_image,{ 'value': article.mainImage },  {'attr': {'class': 'form-check-inline'}}) }}
+            {% if article.mainImage %}
+                <input type="hidden" value="{{ article.mainImage }}" name="imagePrincipale">
+                <div>
+                    <span>Image actuelle : </span>
+                    <img src="{{ asset('articles/main_img/'~article.mainImage) }}" alt="image" class="m-4 w-25">
+                </div>
+
+            {% endif %}
+        </div>
+        <!-- MASQUAGE FORM MEDIAS -->
+        <div class="d-none">
+            <div class="col-md-12 col-lg-10 mx-lg-auto">
+                {{ form_row(form.media, {'attr': {'class': 'form-check-inline'}}) }}
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary ml-5">{{ button_label|default('Ajouter') }}</button>
+
+    {{ form_end(form) }}
+
     <hr class="">
-		
-    <button class="btn btn-primary">{{ button_label|default('Ajouter') }}</button>		
-{{ form_end(form) }}

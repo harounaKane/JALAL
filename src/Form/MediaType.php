@@ -24,6 +24,7 @@ class MediaType extends AbstractType
                     "placeholder" => "Collez votre URL ici",
                 ],
                 'required' => false,
+                "empty_data" => 'default'
             ])
             ->add('nom', FileType::class, [
                 "label" => "Fichier",

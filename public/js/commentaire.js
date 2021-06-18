@@ -23,6 +23,7 @@ let ready = $(document).ready(function() {
 
     //UNLIKE
     $('.unlike').click(function () {
+
         var id = $(this).attr('value');
         $.ajax({
             url: "/commentaireUnLike/" + id,

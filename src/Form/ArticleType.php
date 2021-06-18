@@ -56,14 +56,15 @@ class ArticleType extends AbstractType
             ->add('main_image', FileType::class, [
                 "label" => "Image principale",
                 "data_class" => null,
-                "required" => false
+                "required" => false,
+                "empty_data" => "update"
             ])
             ->add('media', CollectionType::class, [
                 "label" => "Liste des medias",
                 'entry_type' => MediaType::class,
-                // 'data_class' => null,
+                'data_class' => null,
                 'required' => false,
-                'allow_add' => true,
+                'allow_add' => true
             ])
           //  ->add("Ajouter", SubmitType::class)
         ;

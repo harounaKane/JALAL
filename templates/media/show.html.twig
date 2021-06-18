@@ -4,39 +4,39 @@
 
 {% block body %}
 
-    <div>
-        <div  class="ui stackable five column suppression">
-            <div class="column">
-            <h1>Media</h1>
-                    <p class="">Id du media : {{ medium.id }}</p>
-                    <p class="">Légende du media : {{ medium.legende }}</p>
-                    <p class="">Texte du media : {{ medium.texte }}</p>
-                    <p class="">Type du media : {{ medium.type }}</p>
-                    <p class="">Date de création du media : {{ medium.createdAt ? medium.createdAt|date('Y-m-d H:i:s') : '' }}</p>
-                    <p class="">Aperçu du media : {{ medium.type }}</p>
-                    {% if medium.type == 'image' %}
-                        <div class="ui fluid card">
-                            <div class="content">
-                                <img src="{{ asset('articles/galeries/images/' ~ medium.nom) }}" class=" ui image" height="100px" width="(50px">
-                            </div>
+    <div class="container-fluid mb-5">
+        <div  class="ui stackable five column suppression mb-5">
+            <div class="column mb-5">
+                <h1>Media</h1>
+                <p class=""><strong>Id du media :</strong> {{ medium.id }}</p>
+                <p class=""><strong>Légende du media :</strong> {{ medium.legende }}</p>
+                <p class=""><strong>Texte du media :</strong> {{ medium.texte }}</p>
+                <p class=""><strong>Type du media :</strong> {{ medium.type }}</p>
+                <p class=""><strong>Date de création du media :</strong> {{ medium.createdAt ? medium.createdAt|date
+                        ('Y-m-d H:i:s') : '' }}</p>
+                <p class=""><strong>Aperçu du media :</strong> {{ medium.type }}</p>
+                {% if medium.type == 'image' %}
+                    <div class="ui fluid card">
+                        <div class="content">
+                            <img src="{{ asset('articles/galeries/images/' ~ medium.nom) }}" class=" ui image" height="100px" width="(50px" alt="media">
                         </div>
-                    {% elseif medium.type == 'audio' %}
-                        <audio controls>
-                            <source src="{{ asset('articles/galeries/audios/' ~ medium.nom) }}" type="audio/mpeg">
-                            <source src="{{ asset('articles/galeries/audios/' ~ medium.nom) }}" type="audio/ogg">
-                            Your browser does not support the audio element.
-                        </audio> 
-                    {% elseif medium.type == 'video' %}
-                        {% if medium.nom == 'url' %}
-                            <iframe width="500" height="300" src="https://www.youtube.com/embed/{{medium.url}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-                            </iframe>
-                        {% elseif medium.url == 'fichier' %}
-                            <video controls width="500" height="300">
-                                <source src="{{ asset('articles/galeries/videos/' ~ medium.nom) }}" type="video/webm">
-                                <source src="{{ asset('articles/galeries/videos/' ~ medium.nom) }}" type="video/mp4">
-                            </video> 
-                        {% endif %}
-                    {% endif %}
+                    </div>
+                {% elseif medium.type == 'audio' %}
+                    <audio controls>
+                        <source src="{{ asset('articles/galeries/audios/' ~ medium.nom) }}" type="audio/mpeg">
+                        <source src="{{ asset('articles/galeries/audios/' ~ medium.nom) }}" type="audio/ogg">
+                        Your browser does not support the audio element.
+                    </audio>
+                {% elseif medium.type == 'url' %}
+                    <iframe width="200" height="100" src="https://www.youtube.com/embed/{{medium.url}}"
+                            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                    </iframe>
+                {% elseif medium.type == 'video' %}
+                    <video controls width="250" height="150">
+                        <source src="{{ asset('articles/galeries/videos/' ~ medium.nom) }}" type="video/webm">
+                        <source src="{{ asset('articles/galeries/videos/' ~ medium.nom) }}" type="video/mp4">
+                    </video>
+                {% endif %}
             </div>
         </div>
     </div>

@@ -3,9 +3,13 @@
 {% block title %}New Categorie{% endblock %}
 
 {% block body %}
-    <h1>Create new Categorie</h1>
+    <main class="container-fluid">
+        <h1 class="text-center">Créer une nouvelle catégorie</h1>
 
-    {{ include('categorie/_form.html.twig') }}
+        {{ include('categorie/_form.html.twig') }}
 
-    <a href="{{ path('categorie_index') }}">back to list</a>
+        <a href="{{ path('categorie_index') }}" class="btn btn-secondary">
+            <i class="fa fa-hand-o-left"></i> &nbsp; retouner à la liste
+        </a>
+    </main>
 {% endblock %}

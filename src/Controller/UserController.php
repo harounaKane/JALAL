@@ -71,13 +71,14 @@ class UserController extends AbstractController
 
                 $this->addFlash("success", "Incription réussie. Vous êtes connectés");
 
-            }catch (UniqueConstraintViolationException $e){
+                return $this->redirectToRoute("accueil");
 
+            }catch (UniqueConstraintViolationException $e){
+                $this->addFlash("warning", "Incription incorrecte. Ressayer en changeant de login !");
             }
-            return $this->redirectToRoute("accueil");
         }
 
-        return $this->render('user/inscription.html.twig', ['form' => $form->createView()]);
+        return $this->render('user/inscription.html.twig', ['form' => $form->createView(), "isModification" => false]);
     }
 
     /**
@@ -93,11 +94,10 @@ class UserController extends AbstractController
         if( $form->isSubmitted() && $form->isValid() ){
             $login = $user->getLogin();
             $mdp = $user->getPassword();
+            $userInfo = $userRepository->connexionUser($login);
 
-            $userInfo = $userRepository->connexionUser($login, $mdp);
-            if($userInfo){
+            if( $userInfo && password_verify($mdp, $userInfo->getPassword()) ){
                 $session = $request->getSession();
-
                 $session->set("user", $userInfo);
 
                 $this->addFlash("success", "Bienvenue " . $userInfo->getFirstName() . " " . $userInfo->getLastName() );
@@ -121,7 +121,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/user_profil/{id}", name="profil", methods={"GET", "POST"})
+     * @Route("/user_profil/{id}", name="profil_user", methods={"GET", "POST"})
      */
     public function profilUser(Request $request, User $user, UserRepository $userRepository)
     {
@@ -135,17 +135,19 @@ class UserController extends AbstractController
 
         if ($mdpForm->isSubmitted() && $mdpForm->isValid()) {
             $oldMdp = $mdpForm->get('oldPassword')->getData();
-            $userInfo = $userRepository->connexionUser($user_login, $oldMdp);
-            if($userInfo){
+            $userInfo = $userRepository->connexionUser($user_login);
+
+            if( $userInfo && password_verify($oldMdp, $userInfo->getPassword()) ){
                 $user->setPassword(password_hash($mdpForm->get('password')->getData(), PASSWORD_DEFAULT));
-                $this->addFlash(
-                    'notice',
-                    'Le mot de passe a été changé'
-                );
+
+                $this->addFlash('success', 'Le mot de passe a été changé');
+
                 return $this->redirectToRoute('profil', [
-                        'id' => $user->getId(),
-                    ]);
+                    'id' => $user->getId(),
+                ]);
             }
+            //oldMdp incorrect
+            $this->addFlash("warning", "Mot de passe saisi incorrect ! ");
         }
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -165,33 +167,129 @@ class UserController extends AbstractController
                 $user->setAvatar($avatar);
             }
             try {
-                $this->manager->persist($user);
                 $this->manager->flush();
-                $this->addFlash(
-                    'notice',
-                    'Le profil a été mis à jour'
-                );
-            }catch (UniqueConstraintViolationException $e){
-            }
-            
-            return $this->redirectToRoute('profil', [
+                $this->addFlash('success', 'Le profil a été mis à jour');
+
+                return $this->redirectToRoute('profil', [
                     'id'=> $user->getId(),
                 ]);
+
+            }catch (UniqueConstraintViolationException $e){
+                $this->addFlash('warning','Le profil n\'a pas pu être mis à jour');
+            }
         }
 
         return $this->render('user/profil.html.twig', [
             'user' => $user,
-            'editForm' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'mdpForm' => $mdpForm->createView(),
+            "isModification" => true
         ]);
     }
-    
-        //paramètre request
-        //appel du isSubmitted dans la fonction updatePassword
-        //MaJ ROUTE
-        /*
-         * @Route("/user_profil/{id}", name="profil", methods={"POST"})
-         */
+
+    /**
+     * @Route("/user_edit/{id}", name="profil_edit", methods={"GET", "POST"})
+     */
+    public function edit(Request $request, User $user, UserRepository $userRepository)
+    {
+        $avatar = $user->getAvatar();
+        $editForm = $this->createForm(UserType::class, $user, [ 'usePassword' => false ]);
+        $editForm->handleRequest($request);
+
+        $mdpForm = $this->updatePassword();
+        $mdpForm->handleRequest($request);
+
+        if ($mdpForm->isSubmitted() && $mdpForm->isValid()) {
+            $oldMdp = $mdpForm->get('oldPassword')->getData();
+            $userInfo = $userRepository->connexionUser($user->getLogin());
+
+            if( $userInfo && password_verify($oldMdp, $userInfo->getPassword()) ){
+                $user->setPassword(password_hash($mdpForm->get('password')->getData(), PASSWORD_DEFAULT));
+
+                $this->manager->flush();
+                $this->addFlash('success', 'Le mot de passe a été changé' );
+
+                return $this->redirectToRoute('profil_edit', [
+                    'id' => $user->getId(),
+                ]);
+            }
+
+            //oldMdp incorrect
+            $this->addFlash("warning", "Mot de passe saisi incorrect ! ");
+        }
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $user->setStatus( $request->get('status') );
+
+            if( $editForm->get('avatar')->getData() != null ){
+                if( file_exists($this->getParameter('avatar_directory').'/'.$avatar) ){
+                    unlink( $this->getParameter('avatar_directory').'/'.$avatar );
+                }
+                $image = $editForm->get('avatar')->getData();
+                $file_name =  $user->getLogin().'_avatar'.'.'.$image->guessExtension();
+
+                $image->move(
+                    $this->getParameter('avatar_directory'),
+                    $file_name
+                );
+                $user->setAvatar($file_name);
+            }
+            else {
+                $user->setAvatar($avatar);
+            }
+            try {
+                $this->manager->flush();
+
+                $this->addFlash('success', 'Le profil a été mis à jour');
+
+                return $this->redirectToRoute('profil', [
+                    'id'=> $user->getId(),
+                ]);
+
+            }catch (UniqueConstraintViolationException $e){
+                $this->addFlash('warning', 'Le profil n\'a pas été mis à jour');
+            }
+        }
+
+        return $this->render('user/edit.html.twig', [
+            'user' => $user,
+            'form' => $editForm->createView(),
+            'mdpForm' => $mdpForm->createView(),
+            "isModification" => true
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="user_delete", methods={"DELETE"})
+     */
+    public function delete(Request $request, User $user)
+    {
+        $user_status = $request->getSession()->get('user')->getStatus();
+
+        if ( file_exists($this->getParameter('avatar_directory') . '/' . $user->getAvatar()) ) {
+            unlink(($this->getParameter('avatar_directory') . '/' . $user->getAvatar()));
+        }
+
+        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($user);
+            $entityManager->flush();
+        }
+
+        $this->addFlash("success", "Le compte est supprimé !");
+
+        //SI NOT ADMIN, DECONNEXION
+        if( $user_status == "utilisateur" ){
+            return $this->redirectToRoute('deconnexion');
+        }
+
+        return $this->redirectToRoute('user_index');
+    }
+
+    /**
+     * @Route("/user_profil/{id}", name="profil", methods={"POST"})
+     */
     public function updatePassword()
     {
         $form = $this->createFormBuilder()
@@ -213,7 +311,6 @@ class UserController extends AbstractController
             ->add("Enregistrer", SubmitType::class)
             ->getForm();
 
-        
             return $form;
     }
 

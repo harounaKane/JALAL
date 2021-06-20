@@ -51,6 +51,8 @@
       <change afterPath="$PROJECT_DIR$/../Nouveau dossier/Doc2.docx" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../Nouveau dossier/JALAL_TV" afterDir="false" />
       <change afterPath="$PROJECT_DIR$" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/user/_delete_form.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/user/_form.html.twig" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../TUTO/grafick/.idea/grafick.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../TUTO/linkedin_2/.idea/linkedin_2.iml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../TUTO/linkedin_3/.idea/linkedin_3.iml" afterDir="false" />
@@ -71,10 +73,30 @@
       <change afterPath="$PROJECT_DIR$/../../linkedin/templates/pages/articleOne.html.twig" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../../pint/.idea/pint.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ArticleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/MediaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MediaController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/article/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/media/redirect_med.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/media/redirect_med.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/articles/main_img/4main_imgd5dffa322e04caec83f80bc2a897a599.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/article.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/article.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/avatars/avatar2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/avatars/faty_avatar.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/CategorieController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/CategorieController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Categorie.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Categorie.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/UserType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/UserType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UserRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/article/article_admin.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/article_admin.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/article/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/categorie/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/categorie/_delete_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/categorie/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/categorie/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/categorie/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/categorie/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/categorie/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/categorie/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/categorie/new.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/categorie/new.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/categorie/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/categorie/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/media/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/media/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/inscription.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/inscription.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/profil.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/profil.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,13 +233,14 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/article" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/user" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.editor.code.editing" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\PROJETS\jalal\templates\user" />
       <recent name="C:\wamp64\www\PROJETS\jalal\templates\article" />
       <recent name="C:\wamp64\www\PROJETS\jalal\public\css" />
       <recent name="C:\wamp64\www\PROJETS\jalal\public" />
@@ -271,7 +294,7 @@
       <workItem from="1622918070073" duration="4092000" />
       <workItem from="1623069263165" duration="75584000" />
       <workItem from="1623507164629" duration="47933000" />
-      <workItem from="1623780984267" duration="39759000" />
+      <workItem from="1623780984267" duration="74915000" />
     </task>
     <servers />
   </component>

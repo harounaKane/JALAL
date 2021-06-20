@@ -1,0 +1,66 @@
+
+{{ form_start(form) }}
+    {{ include('user/paysResidence.html.twig') }}
+    <div class="form-row">
+        <div class="offset-md-4 col-md-4 offset-md-4">
+            {{ form_row(form.civility, {'attr': {'class': 'form-check-inline'}}) }}
+        </div>
+
+        <!-- BLOC STATUT POUR EN CAS DE MODIFIER SI ADMIN OU LE MEME USER -->
+        <div class="offset-md-4 col-md-4 offset-md-4 my-2">
+            {% if isModification %}
+                    <!-- CHANGEMENT STATUS -->
+                    <div class="d-inline mx-5">Statut : </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" name="status" id="admin" value="admin" {{
+                        user.status == 'admin' ? 'checked' : '' }}>
+                        <label class="form-check-label" for="admin">Admin</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" name="status" id="utilisateur"
+                               value="utilisateur" {{ user.status == 'utilisateur' ? 'checked' : '' }} >
+                        <label class="form-check-label" for="utilisateur">Utilisateur</label>
+                    </div>
+            {% endif %}
+        </div>
+
+        <div class="col-md-6 col-lg-5 ml-lg-auto">
+            {{ form_row(form.first_name) }}
+        </div>
+        <div class="col-md-6 col-lg-5 mr-lg-auto">
+            {{ form_row(form.last_name) }}
+        </div>
+        <div class="col-md-6 col-lg-5 col-lg-5 ml-lg-auto">
+            {{ form_row(form.mail) }}
+        </div>
+        <div class="col-md-6 col-lg-5 mr-lg-auto">
+            {{ form_row(form.login) }}
+        </div>
+        <div class="col-md-6 col-lg-5 col-lg-5 ml-lg-auto">
+            {{ form_row(form.country) }}
+        </div>
+        <div class="col-md-6 col-lg-5 mr-lg-auto">
+            {{ form_row(form.avatar) }}
+        </div>
+
+        <!-- AFFICHE IMAGE EN CAS D'EDITION SI ADMIN OU LE MEME USER -->
+        {% if isModification %}
+            <div class="offset-4 col-8 offset-md-8 col-md-4">
+                <img class="w-25" src="{{ asset('images/avatars/'~user.avatar) }}" alt="avatar de {{
+                user.firstName }}">
+            </div>
+        {% endif %}
+
+        <div class="col-md-12 col-lg-10 mx-lg-auto">
+            {{ form_row(form.description) }}
+        </div>
+        {% if not isModification %}
+            <div class="col-md-12 mt-2 col-lg-10 mx-lg-auto">
+                {{ form_row(form.password) }}
+            </div>
+        {% endif %}
+        <div class="col-md-12">
+            {{ form_row(form.Enregistrer) }}
+        </div>
+    </div>
+{{ form_end(form) }}

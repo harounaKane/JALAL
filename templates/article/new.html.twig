@@ -8,6 +8,8 @@
 
     {{ include('article/_form.html.twig') }}
 
-    <a href="{{ path('accueil') }}">back to list</a>
+    <a href="{{ path('article_admin') }}" class="btn btn-secondary">
+        <i class="fa fa-eye mx-1"></i> Voir liste des articles
+    </a>
 </main>
 {% endblock %}

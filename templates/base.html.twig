@@ -21,7 +21,7 @@
 
         {% block stylesheets %}{% endblock %}
     </head>
-    <!-- le flex ne fonctionne pas quand j'entoure le contenu du body dans une <div>, donc le footer ne colle pas au pied de page -->
+
     <body class="d-flex flex-column">
         <header class="container-fluid">
             <div class="d-flex justify-content-between align-items-center p-3 row">
@@ -30,12 +30,12 @@
                     <a href="{{ path('accueil') }}"><img class="logo" src="{{ asset('images/logo/logo2.png') }}" alt=""></a>
                 </div>
 
-                <!-- BANDEAU CATEGORIES cat-ribbon d-flex flex-wrap justify-content-around py-2-->
+                <!-- BANDEAU CATEGORIES -->
                 <section class="d-none d-md-block col-md-8">
                     <div class="row text-center text-uppercase">
                         {% for cat in categorie() %}
                             <a href="{{ path('byCategorie', {'id': cat.id}) }}" class="font-weight-bold text-white
-                            col-12 col-md-3"> {{ cat
+                            col-md-3"> {{ cat
                                 .designation }} </a>
                         {% endfor %}
                     </div>
@@ -52,31 +52,33 @@
                 </div>
             </div>
 
-            <div id="myLinks" class="pb-2 text-right">
+            <div id="myLinks" class="pb-2 text-right pr-3">
                 <div class="search-input border rounded mx-2 mx-md-4 my-2 row">
                     <input type="search" placeholder="Rechercher sur le site" class="col-10 py-1">
                     <button class="col-1 text-right"><i class="fa fa-search"></i></button>
                 </div>
                 <section class="menu-all border-bottom border-secondary pb-2">
                     <div><a href="{{ path('accueil') }}">Accueil</a></div>
-                    <div><a href="#">Voir les Catégories</a></div>
+{#                    <div><a href="#">Voir les Catégories</a></div>#}
                     <div><a href="#">Agenda</a></div>
-                    <div><a href="#contact">Contact</a></div>
-                    <div><a href="#about">About</a></div>
+                    <div><a href="#">Contact</a></div>
+                    <div><a href="#">About</a></div>
                 </section>
                 <!-- MENU ADMIN -->
-                <section class="menu-admin border-bottom border-secondary pb-2">
-                    <p class="mb-0"><i class="fa fa-cog"></i> Espace Administrateur</p>
-                    <div><a href="{{ path("user_index") }}">Utilisateurs</a></div>
-                    <div><a href="{{ path("article_admin") }}">Articles</a></div>
-                    <div><a href="{{ path("media_index") }}">Medias</a></div>
-                    <div><a href="{{ path("categorie_index") }}">Catégories</a></div>
-                </section>
-                <section class="menu-author border-bottom border-secondary pb-2">
-                    <p class="mb-0"><i class="fa fa-pencil"></i> Espace Auteur</p>
-                    <div><a href="{{ path("article_new") }}">Créer un Article</a></div>
-                    {# <div><a href="{{ path('articles_user', {'id': app.session.get('id')}) }}">Voir mes Articles</a></div> #}
-                </section>
+                {% if app.session.get("user") and app.session.get("user").status == "admin" %}
+                    <section class="menu-admin border-bottom border-secondary pb-2">
+                        <p class="mb-0"><i class="fa fa-cog"></i> Espace Administrateur</p>
+                        <div><a href="{{ path("user_index") }}">Utilisateurs</a></div>
+                        <div><a href="{{ path("article_admin") }}">Articles</a></div>
+                        <div><a href="{{ path("media_index") }}">Medias</a></div>
+                        <div><a href="{{ path("categorie_index") }}">Catégories</a></div>
+                    </section>
+                    <section class="menu-author border-bottom border-secondary pb-2">
+                        <p class="mb-0"><i class="fa fa-pencil"></i> Espace Auteur</p>
+                        <div><a href="{{ path("article_new") }}">Créer un Article</a></div>
+                        {# <div><a href="{{ path('articles_user', {'id': app.session.get('id')}) }}">Voir mes Articles</a></div> #}
+                    </section>
+                {% endif %}
                 <section class="menu-log pt-2">
                     {% if app.session.get("user") %}
                         <div>
@@ -184,13 +186,9 @@
                             span.onclick = function() {
                             modal.style.display = "none";
                             }
-
-                             
                         }
                         
                     });
-
-
                 }
             </script>       
             <script>

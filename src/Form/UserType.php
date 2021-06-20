@@ -72,8 +72,7 @@ class UserType extends AbstractType
                 "label" => "Pays",
                 "help" => '',
                 'attr'      => [
-                    'list'  => 'pays',
-                    'value' => "Sénégal"
+                    'list'  => 'pays'
                     ]
             ])
 //            ->add('country', CountryType::class, [

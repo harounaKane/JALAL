@@ -4,10 +4,10 @@
 
 {% block body %}
 
-    <main class="container-lg m-0">
-        <h1>Index Utilisateurs</h1>
+    <main class="container-fluid m-0 table-responsive">
+        <h1 class="text-center">Liste des utilisateurs</h1>
 
-        <table class="table table-striped table-hover table-responsive table-bordered">
+        <table class="table table-striped table-hover table-bordered">
             <thead>
             <tr class="thead-dark">
                 <th>Avatar</th>
@@ -17,7 +17,6 @@
                 <th>Nom</th>
                 <th>Civilité</th>
                 <th>Pays</th>
-                {#                <th>Description</th>#}
                 <th>Date d'inscription</th>
                 <th>Status</th>
                 <th>Etat</th>
@@ -38,13 +37,16 @@
                     <td>{{ user.lastName }}</td>
                     <td>{{ user.civility }}</td>
                     <td>{{ user.country }}</td>
-                    {#                <td>{{ user.description }}</td>#}
                     <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                     <td>{{ user.status }}</td>
                     <td>{{ user.state }}</td>
                     <td>
-                        <a href="{{ path('user_index', {'id': user.id}) }}">show</a>
-                        <a href="{{ path('user_index', {'id': user.id}) }}">edit</a>
+                        <a href="{{ path('profil_user', {'id': user.id}) }}">
+                            <i class="fa fa-eye mx-1"></i>
+                        </a>
+                        <a href="{{ path('profil_edit', {'id': user.id}) }}">
+                            &nbsp; <i class="fa fa-edit mx-1"></i>
+                        </a>
                     </td>
                 </tr>
             {% else %}

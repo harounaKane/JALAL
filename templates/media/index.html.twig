@@ -3,10 +3,11 @@
 {% block title %}Media index{% endblock %}
 
 {% block body %}
-    <h1>Media index</h1>
+    <main class="container-fluid">
+        <h1 class="text-center">Media index</h1>
 
-    <table class="table">
-        <thead>
+        <table class="table table-striped table-hover table-bordered">
+            <thead class="thead-dark">
             <tr>
                 <th>Id</th>
                 <th>Nom</th>
@@ -14,31 +15,32 @@
                 <th>Texte</th>
                 <th>Ordre</th>
                 <th>Type</th>
-                <th>Created_at</th>
+                <th>Date</th>
                 <th>actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for medium in media %}
-            <tr>
-                <td>{{ medium.id }}</td>
-                <td>{{ medium.nom }}</td>
-                <td>{{ medium.legende }}</td>
-                <td>{{ medium.texte }}</td>
-                <td>{{ medium.ordre }}</td>
-                <td>{{ medium.type }}</td>
-                <td>{{ medium.createdAt ? medium.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('media_show', {'id': medium.id}) }}">show</a>
-                    <a href="{{ path('media_edit_image', {'id': medium.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for medium in media %}
+                <tr>
+                    <td>{{ medium.id }}</td>
+                    <td>{{ medium.nom }}</td>
+                    <td>{{ medium.legende }}</td>
+                    <td>{{ medium.texte }}</td>
+                    <td>{{ medium.ordre }}</td>
+                    <td>{{ medium.type }}</td>
+                    <td>{{ medium.createdAt ? medium.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td>
+                        <a href="{{ path('media_show', {'id': medium.id}) }}"><i class="fa fa-eye mx-1"></i></a>
+                        <a href="{{ path('media_edit', {'id': medium.id}) }}"><i class="fa fa-edit mx-1"></i></a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </main>
 
 {% endblock %}

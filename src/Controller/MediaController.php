@@ -235,8 +235,9 @@ class MediaController extends AbstractController
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($medium);
                 $entityManager->flush();
-                $this->addFlash('success'
-                                ,'Votre audio a bien été ajoutée');
+
+                $this->addFlash('success','Votre audio a bien été ajoutée');
+
                 return $this->redirectToRoute('media_new_audio', ['id' => $article->getId()]);
             }
             if($nb_aud>= $i){
@@ -275,6 +276,7 @@ class MediaController extends AbstractController
             if($medium->getType() == 'image'){
                 if(file_exists($this->getParameter('images_directory').'/'.$medium->getNom())){
                     unlink(($this->getParameter('images_directory').'/'.$medium->getNom()));
+
                     // On récupère les images transmises
                     $images = $form->get('nom')->getData();
                     foreach($images as $image){
@@ -295,6 +297,7 @@ class MediaController extends AbstractController
             if($medium->getType() == 'video'){
                 if(file_exists($this->getParameter('videos_directory').'/'.$medium->getNom())){
                     unlink(($this->getParameter('videos_directory').'/'.$medium->getNom()));
+
                     if($medium->getNom() == 'url'){
                         $medium->setNom('url');
                         $video = $form->get('url')->getData();
@@ -327,8 +330,10 @@ class MediaController extends AbstractController
                 }
             }
             if($medium->getType() == 'audio'){
+
                 if(file_exists($this->getParameter('audios_directory').'/'.$medium->getNom())){
                     unlink(($this->getParameter('audios_directory').'/'.$medium->getNom()));
+
                     $audios = $form->get('nom')->getData();
                     foreach($audios as $audio){
                         $file_name =  $medium->getArticle()->getId().'aud' . md5(uniqid()) . '.' . $audio->guessExtension();
@@ -345,8 +350,6 @@ class MediaController extends AbstractController
                     return $this->redirectToRoute('media_new_audio', ['id' => $article->getId()]);
                 }
             }
-            
-            
         }
 
         return $this->render('media/edit.html.twig', [
@@ -385,8 +388,7 @@ class MediaController extends AbstractController
             $entityManager->flush();
         }
 
-        $this->addFlash("success",
-            "Le média " . $medium->getType() . " est supprimé !");
+        $this->addFlash("success","Le média " . $medium->getType() . " est supprimé !");
 
         return $this->redirectToRoute('article_show', ['id' => $article->getId()]);
     }

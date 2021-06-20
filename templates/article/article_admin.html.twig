@@ -3,45 +3,50 @@
 {% block title %}Interface admin articles{% endblock %}
 
 {% block body %}
-    <h1>Administration Articles</h1>
+    <main class="container-fluid table-responsive">
+        <h1 class="text-center">Administration Articles</h1>
 
-    <table class="table table-striped table-bordered table-responsive">
-        <thead class="thead-dark">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
             <tr>
                 <th>Id</th>
+                <th>Image</th>
                 <th>Titre Principal</th>
-                <th>Titre secondaire</th>
                 <th>Auteur</th>
                 <th>Catégorie</th>
                 <th>Date de création</th>
                 <th>actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for article in articles %}
-            <tr>
-                <td>{{ article.id }}</td>
-                <td>{{ article.title }}</td>
-                <td>{{ article.secondaryTitle }}</td>
-                <td>{{ article.user.firstName ~ ' ' ~  article.user.lastName }}</td>
-                <td>{{ article.categorie.designation }}</td>
-                <td>{{ article.artCreatedAt ? article.artCreatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td class="d-flex align-items-center">
-                    <a href="{{ path('article_show', {'id': article.id}) }}" class="p-1"><i class="las la-eye"></i></a>
-                    <a href="{{ path('article_edit', {'id': article.id}) }}" class="p-1"><i class="las la-edit"></i></a>
-                    <form method="post" action="{{ path('article_delete', {'id': article.id}) }}" onsubmit="return confirm('Êtes-vous sur de supprimer cet article ?');">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
-                        <button type="submit" style="border: none; color: red"><i class="las la-times"></i></button>
-                    </form>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            {% for article in articles %}
+                <tr>
+                    <td>{{ article.id }}</td>
+                    <td style="width: 50px">
+                        <img class="rounded-circle w-100" src="{{ asset('articles/main_img/'~ article.mainImage ) }}"
+                             alt="Image principale">
+                    </td>
+                    <td>{{ article.title }}</td>
+                    <td>{{ article.user.firstName ~ ' ' ~  article.user.lastName }}</td>
+                    <td>{{ article.categorie.designation }}</td>
+                    <td>{{ article.artCreatedAt ? article.artCreatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                    <td class="d-flex align-items-center">
+                        <a href="{{ path('article_show', {'id': article.id}) }}" class="p-1"><i class="las la-eye"></i></a>
+                        <a href="{{ path('article_edit', {'id': article.id}) }}" class="p-1"><i class="las la-edit"></i></a>
+                        <form method="post" action="{{ path('article_delete', {'id': article.id}) }}" onsubmit="return confirm('Êtes-vous sur de supprimer cet article ?');">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
+                            <button type="submit" style="border: none; color: red"><i class="las la-times"></i></button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </main>
 
 {% endblock %}

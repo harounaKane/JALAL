@@ -1,0 +1,39 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent()}} - Editer{% endblock %}
+
+{% block body %}
+    <main class="container-fluid">
+        {% if app.session.get('user') and app.session.get('user').status == "admin" %}
+            <hr>
+            <button id="btn-profil" type="button" class="btn btn-secondary btn-lg btn-block">Modifier mon profil</button>
+            <section id="modif-user" class="d-none">
+                <div class="p-3 shadow rounded bg-light">
+                    {{ include('user/_form.html.twig') }}
+                </div>
+            </section>
+            <button id="btn-mdp" type="button" class="btn btn-secondary btn-lg btn-block mt-3">Changer le mot de passe</button>
+            <section id="modif-mdp" class="d-none">
+                <div class="p-3 shadow rounded bg-light">
+                    {{ form_start(mdpForm) }}
+                    <div class="form-row">
+                        <div class="col-md-12 border-bottom">
+                            {{ form_row(mdpForm.oldPassword) }}
+                        </div>
+                        <div class="col-md-12 mt-2">
+                            {{ form_row(mdpForm.password) }}
+                        </div>
+                        <div class="col-md-12">
+                            {{ form_row(mdpForm.Enregistrer) }}
+                        </div>
+                    </div>
+                    {{ form_end(mdpForm) }}
+                </div>
+            </section>
+            <div class="mt-3">
+                {{ include('user/_delete_form.html.twig') }}
+            </div>
+        {% endif %}
+    </main>
+{% endblock %}

@@ -6,9 +6,12 @@ use App\Entity\Categorie;
 use App\Form\CategorieType;
 use App\Repository\ArticleRepository;
 use App\Repository\CategorieRepository;
+use Doctrine\DBAL\Exception\ForeignKeyConstraintViolationException;
 use phpDocumentor\Reflection\Types\False_;
+use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -48,11 +51,16 @@ class CategorieController extends AbstractController
             try {
                 $this->manager->persist($categorie);
                 $this->manager->flush();
+
+                $this->addFlash("success",
+                "Catégorie '" . $categorie->getDesignation() . "' ajouté avec succès !");
+
+                return $this->redirectToRoute('categorie_index');
+
             }catch (UniqueConstraintViolationException $e){
-
+                $this->addFlash("warning",
+                    "Catégorie '" . $categorie->getDesignation() . "' n'a pas pu être ajouté ! Existe déjà");
             }
-
-            return $this->redirectToRoute('categorie_index');
         }
 
         return $this->render('categorie/new.html.twig', [
@@ -81,13 +89,18 @@ class CategorieController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                $this->manager->persist($categorie);
                 $this->manager->flush();
-            }catch (UniqueConstraintViolationException $e){
 
+                $this->addFlash("success",
+                    "Catégorie " . $categorie->getDesignation() . " modifié avec succès !");
+
+                return $this->redirectToRoute('categorie_index');
+
+            }catch (UniqueConstraintViolationException $e){
+                $this->addFlash("warning",
+                    "Catégorie '" . $categorie->getDesignation() . "' n'a pas pu être modifié !");
             }
 
-            return $this->redirectToRoute('categorie_index');
         }
 
         return $this->render('categorie/edit.html.twig', [
@@ -103,11 +116,22 @@ class CategorieController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete'.$categorie->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($categorie);
-            $entityManager->flush();
+            try {
+                $entityManager->remove($categorie);
+                $entityManager->flush();
+
+                $this->addFlash("success",
+                "Catégorie '" . $categorie->getDesignation() . "' supprimée ");
+
+                return $this->redirectToRoute('categorie_index');
+
+            }catch (ForeignKeyConstraintViolationException  $e){
+                $this->addFlash("warning",
+                    "Catégorie '" . $categorie->getDesignation() . "' ne peut être supprimée. Il y a des articles liés à cette catégorie ");
+            }
         }
 
-        return $this->redirectToRoute('categorie_index');
+        return $this->redirectToRoute('categorie_show', ['id' => $categorie->getId()]);
     }
 
     /**
@@ -117,7 +141,6 @@ class CategorieController extends AbstractController
         $articleByCategorie = $articleRepository->articleByCategorie($categorie->getId());
 
         $artByCat= $articleRepository->lastArticleByCategorie($categorie->getId());
-
 
         return $this->render('article/articleByCategorie.html.twig', [
             'articles' => $articleByCategorie,

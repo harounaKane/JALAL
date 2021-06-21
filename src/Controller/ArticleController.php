@@ -1,5 +1,6 @@
 <?php
 namespace App\Controller;
+
 use App\Entity\Article;
 use App\Entity\Commentaire;
 use App\Entity\Media;
@@ -43,8 +44,6 @@ class ArticleController extends AbstractController
      */
     public function index(ArticleRepository $articleRepository, Request $request)
     {
-        $response = new Response();
-
         return $this->render('article/index.html.twig', [
             'articles' => $articleRepository->findBy([], ['art_created_at' => 'DESC']),
             'lastArticle' => $articleRepository->findOneBy([], ['art_created_at' => 'DESC']),
@@ -62,10 +61,10 @@ class ArticleController extends AbstractController
         $form = $this->createForm(ArticleType::class, $article);
         $formMedia = $this->createForm(MediaType::class, $media);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
 
             $article->setArtCreatedAt(new \DateTime());
-
             $article->setUser($repo->idUser($request->getSession()->get('user')->getId()) );
             
             $image = $form->get('main_image')->getData();
@@ -81,14 +80,12 @@ class ArticleController extends AbstractController
                 $this->manager->persist($article);
                 $this->manager->flush();
 
-                $this->addFlash('success'
-                    ,'Votre article a bien été ajouté !');
+                $this->addFlash('success', 'Votre article a bien été ajouté !');
 
                 return $this->redirectToRoute('media_redirect', ['id' => $article->getId()]);
 
             }catch (UniqueConstraintViolationException $e){
-                $this->addFlash('warning'
-                    ,'Votre article n\'a pas pu être ajouté !');
+                $this->addFlash('warning', 'Votre article n\'a pas pu être ajouté !');
             }
         }
         return $this->render('article/new.html.twig', [
@@ -203,14 +200,12 @@ class ArticleController extends AbstractController
             try {
                 $this->manager->flush();
 
-                $this->addFlash("success",
-                "Article modifié avec succès");
+                $this->addFlash("success", "Article modifié avec succès");
 
                 return $this->redirectToRoute('article_show', ['id' => $article->getid()]);
 
             }catch (UniqueConstraintViolationException $e){
-                $this->addFlash("success",
-                    "L'article n'a pas pu être modifié ");
+                $this->addFlash("success", "L'article n'a pas pu être modifié ");
             }
         }
         return $this->render('article/edit.html.twig', [

@@ -6,9 +6,9 @@
             {{ form_row(form.civility, {'attr': {'class': 'form-check-inline'}}) }}
         </div>
 
-        <!-- BLOC STATUT POUR EN CAS DE MODIFIER SI ADMIN OU LE MEME USER -->
+        <!-- BLOC STATUT POUR EN CAS DE MODIFIER SI ADMIN -->
         <div class="offset-md-4 col-md-4 offset-md-4 my-2">
-            {% if isModification %}
+            {% if isModification and app.session.get('user').status == "admin" %}
                     <!-- CHANGEMENT STATUS -->
                     <div class="d-inline mx-5">Statut : </div>
                     <div class="form-check form-check-inline">

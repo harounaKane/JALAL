@@ -126,7 +126,6 @@ class UserController extends AbstractController
     public function profilUser(Request $request, User $user, UserRepository $userRepository)
     {
         $avatar = $user->getAvatar();
-        $user_login = $request->getSession()->get('login');
         $editForm = $this->createForm(UserType::class, $user, [ 'usePassword' => false ]);
         $editForm->handleRequest($request);
 
@@ -135,10 +134,13 @@ class UserController extends AbstractController
 
         if ($mdpForm->isSubmitted() && $mdpForm->isValid()) {
             $oldMdp = $mdpForm->get('oldPassword')->getData();
-            $userInfo = $userRepository->connexionUser($user_login);
+            $userInfo = $userRepository->connexionUser($user->getLogin());
 
             if( $userInfo && password_verify($oldMdp, $userInfo->getPassword()) ){
+
                 $user->setPassword(password_hash($mdpForm->get('password')->getData(), PASSWORD_DEFAULT));
+
+                $this->manager->flush();
 
                 $this->addFlash('success', 'Le mot de passe a été changé');
 
@@ -156,7 +158,7 @@ class UserController extends AbstractController
                     unlink( $this->getParameter('avatar_directory').'/'.$avatar );
                 }
                 $image = $editForm->get('avatar')->getData();
-                $file_name =  $user_login.'_avatar'.'.'.$image->guessExtension();
+                $file_name =  $user->getLogin().'_avatar'.'.'.$image->guessExtension();
                 $image->move(
                     $this->getParameter('avatar_directory'),
                     $file_name
@@ -219,6 +221,7 @@ class UserController extends AbstractController
         }
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
             $user->setStatus( $request->get('status') );
 
             if( $editForm->get('avatar')->getData() != null ){
@@ -264,10 +267,13 @@ class UserController extends AbstractController
      */
     public function delete(Request $request, User $user)
     {
-        $user_status = $request->getSession()->get('user')->getStatus();
+        $user_log_status = $request->getSession()->get('user')->getStatus();
+        $user_log_id = $request->getSession()->get('user')->getId();
+        $userCurrentId = $user->getId();
 
-        if ( file_exists($this->getParameter('avatar_directory') . '/' . $user->getAvatar()) ) {
-            unlink(($this->getParameter('avatar_directory') . '/' . $user->getAvatar()));
+        if( $user->getAvatar() != null ){
+            if ( file_exists($this->getParameter('avatar_directory') . '/' . $user->getAvatar()) )
+                unlink(($this->getParameter('avatar_directory') . '/' . $user->getAvatar()));
         }
 
         if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
@@ -279,8 +285,8 @@ class UserController extends AbstractController
 
         $this->addFlash("success", "Le compte est supprimé !");
 
-        //SI NOT ADMIN, DECONNEXION
-        if( $user_status == "utilisateur" ){
+        //SI NOT ADMIN, DECONNEXION. OU SI ADMIN QUI SUPPRIME SON COMPTE
+        if( $user_log_status == "utilisateur" || ($user_log_status == "admin" && $user_log_id == $userCurrentId) ){
             return $this->redirectToRoute('deconnexion');
         }
 

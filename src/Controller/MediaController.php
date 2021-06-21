@@ -77,7 +77,7 @@ class MediaController extends AbstractController
                     );
                     // On stocke l'image dans la base de données (son nom)
                     $medium->setNom($file_name);
-                    $article->addMedium($medium);                   
+                    $article->addMedium($medium);
                 }
 
                 $entityManager = $this->getDoctrine()->getManager();
@@ -89,7 +89,7 @@ class MediaController extends AbstractController
                 return $this->redirectToRoute('media_new_image', ['id' => $article->getId()]);
             }
             if($nb_img >= $i){
-                
+
                 $this->addFlash('warning'
                                 ,'Vous ne pouvez pas ajouter plus de dix images !');
                 return $this->redirectToRoute('media_new_image', ['id' => $article->getId()]);
@@ -97,7 +97,7 @@ class MediaController extends AbstractController
         }
         // L'ordre ne peut pas être donné avant car le media ne possède pas d'id avant la soumission
         if(isset($_POST['reorganisation'])){
-            $all_med_img = $mediaRepository->imageByArticle($article->getId());                       
+            $all_med_img = $mediaRepository->imageByArticle($article->getId());
             $nb_img = count($all_med_img);
             for( $i = 0; $i < $nb_img; $i++){
                 $id = $_POST['image_id'][$i];
@@ -106,18 +106,18 @@ class MediaController extends AbstractController
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->flush();
             }
-            
+
         }
-        
+
         return $this->render('media/new_image.html.twig', [
             'medium' => $medium,
             'article' => $article,
             'images' => $images,
             'form' => $form->createView(),
         ]);
-        
+
     }
-    
+
     /**
      * @Route("/new_video/{id}", name="media_new_video", methods={"GET","POST"})
      */
@@ -163,14 +163,13 @@ class MediaController extends AbstractController
 
                     $medium->setNom('url');
                     $medium->setType('url');
-                    
+
                     $file_name =  $form->get('url')->getData();
 
                     $medium->setUrl($file_name);
                     $article->addMedium($medium);
 
-                    $this->addFlash('success'
-                            ,'L\'URL de la vidéo a bien été ajouté');
+                    $this->addFlash('success','L\'URL de la vidéo a bien été ajouté');
 
                 }
 
@@ -182,9 +181,9 @@ class MediaController extends AbstractController
 
             }
             if($nb_vid >= $i){
-                
-                $this->addFlash('warning'
-                                ,'Vous ne pouvez pas ajouter plus de deux vidéos !');
+
+                $this->addFlash('warning','Vous ne pouvez pas ajouter plus de deux vidéos !');
+
                 return $this->redirectToRoute('media_new_video', ['id' => $article->getId()]);
             }
         }
@@ -197,8 +196,8 @@ class MediaController extends AbstractController
             'videos_fichier' => $videos_fichier,
             'form' => $form->createView(),
         ]);
-    }  
-    
+    }
+
     /**
      * @Route("/new_audio/{id}", name="media_new_audio", methods={"GET","POST"})
      */
@@ -218,9 +217,9 @@ class MediaController extends AbstractController
                 $medium->setArticle($article);
                 $medium->setOrdre('0');
                 $medium->setUrl("");
-                
+
                 $audios = $form->get('nom')->getData();
-                
+
                 foreach($audios as $audio){
                     $file_name =  $article->getId().'aud' . md5(uniqid()) . '.' . $audio->guessExtension();
 
@@ -241,9 +240,9 @@ class MediaController extends AbstractController
                 return $this->redirectToRoute('media_new_audio', ['id' => $article->getId()]);
             }
             if($nb_aud>= $i){
-                
-                $this->addFlash('warning'
-                                ,'Vous ne pouvez pas ajouter plus de deux audios !');
+
+                $this->addFlash('warning','Vous ne pouvez pas ajouter plus de deux audios !');
+
                 return $this->redirectToRoute('media_new_video', ['id' => $article->getId()]);
             }
         }
@@ -254,7 +253,7 @@ class MediaController extends AbstractController
             'audios' => $audios,
             'form' => $form->createView(),
         ]);
-    }   
+    }
 
 //----------------MODIFICATIONS----------------    
     /**
@@ -265,101 +264,101 @@ class MediaController extends AbstractController
         $form = $this->createForm(MediaType::class, $medium);
         $form->handleRequest($request);
         $article = $medium->getArticle();
-        $images = $mediaRepository->imageByArticle($article->getId());
-        $audios = $mediaRepository->audioByArticle($article->getId());
-        $videos = $mediaRepository->videoByArticle($article->getId());
-        $videos_url = $mediaRepository->videoUrlByArticle($article->getId());
-        $videos_fichier = $mediaRepository->videoFichierByArticle($article->getId());
-        
+        $nomMedia = $medium->getNom();
+
         if ($form->isSubmitted() && $form->isValid()) {
-            
+
             if($medium->getType() == 'image'){
-                if(file_exists($this->getParameter('images_directory').'/'.$medium->getNom())){
-                    unlink(($this->getParameter('images_directory').'/'.$medium->getNom()));
 
-                    // On récupère les images transmises
-                    $images = $form->get('nom')->getData();
-                    foreach($images as $image){
-                        $file_name =  $medium->getArticle()->getId().'img' . md5(uniqid()) . '.' . $image->guessExtension();
-                        $image->move(
-                            $this->getParameter('images_directory'),
-                            $file_name
-                        );
-                        $medium->setNom($file_name);
-                        $article->addMedium($medium);
-                    }
-                    $this->getDoctrine()->getManager()->flush();
-                    $this->addFlash('success'
-                                    ,'Les informations de cette image ont bien été modifiées');
-                    return $this->redirectToRoute('media_new_image', ['id' => $article->getId()]);
-                }
-            }
-            if($medium->getType() == 'video'){
-                if(file_exists($this->getParameter('videos_directory').'/'.$medium->getNom())){
-                    unlink(($this->getParameter('videos_directory').'/'.$medium->getNom()));
+                if( $form->get('nom')->getData() != null ) {
+                    if (file_exists($this->getParameter('images_directory') . '/' . $medium->getNom())) {
+                        unlink(($this->getParameter('images_directory') . '/' . $medium->getNom()));
 
-                    if($medium->getNom() == 'url'){
-                        $medium->setNom('url');
-                        $video = $form->get('url')->getData();
-                        
-                        $file_name =  substr($form->get('url')->getData(), 32 );
-                        
-                        $medium->setUrl($file_name);
-                        $article->addMedium($medium);
-                    }
-                    elseif($medium->getUrl() == 'fichier'){
-                        $videos = $form->get('nom')->getData();
-                        foreach($videos as $video){
-                            $file_name =  $article->getId().'vid' . md5(uniqid()) . '.' . $video->guessExtension();
-    
-                            $video->move(
-                                $this->getParameter('videos_directory'),
-                                $file_name
-                            );
+                        // On récupère l'image transmise
+                        $images = $form->get('nom')->getData();
+
+                        foreach ($images as $image) {
+                            $file_name = $medium->getArticle()->getId() . 'img' . md5(uniqid()) . '.' . $image->guessExtension();
+                            $image->move($this->getParameter('images_directory'), $file_name);
+
                             $medium->setNom($file_name);
                             $article->addMedium($medium);
                         }
                     }
-                   
-                    $this->getDoctrine()->getManager()->flush();
-
-                    $this->addFlash('success'
-                                    ,'Les informations de cette vidéos ont bien été modifiées');
-
-                    return $this->redirectToRoute('media_new_video', ['id' => $article->getId()]);
+                }else{//On garde le nom de la même image
+                    $medium->setNom($nomMedia);
                 }
+
+                $this->addFlash('success', 'Les informations de cette image ont bien été modifiées');
+
+                $this->getDoctrine()->getManager()->flush();
+                return $this->redirectToRoute('media_new_image', ['id' => $article->getId()]);
             }
+
+            if($medium->getType() == 'video'){
+
+                if( $form->get('nom')->getData() != null ) {
+                    if(file_exists($this->getParameter('videos_directory').'/'.$medium->getNom())) {
+                        unlink(($this->getParameter('videos_directory') . '/' . $medium->getNom()));
+
+                        $videos = $form->get('nom')->getData();
+                        foreach ($videos as $video) {
+                            $file_name = $article->getId() . 'vid' . md5(uniqid()) . '.' . $video->guessExtension();
+
+                            $video->move($this->getParameter('videos_directory'), $file_name);
+
+                            $medium->setNom($file_name);
+                            $article->addMedium($medium);
+                        }
+                    }
+                }else{
+                    $medium->setNom($nomMedia);
+                }
+
+                $this->addFlash('success','Les informations de cette vidéos ont bien été modifiées');
+
+                $this->getDoctrine()->getManager()->flush();
+                return $this->redirectToRoute('media_new_video', ['id' => $article->getId()]);
+            }
+
+            if($medium->getType() == 'url'){
+                $article->addMedium($medium);
+
+                $this->addFlash('success','Les informations de cette vidéos ont bien été modifiées');
+
+                $this->getDoctrine()->getManager()->flush();
+                return $this->redirectToRoute('media_new_video', ['id' => $article->getId()]);
+            }
+
             if($medium->getType() == 'audio'){
 
-                if(file_exists($this->getParameter('audios_directory').'/'.$medium->getNom())){
-                    unlink(($this->getParameter('audios_directory').'/'.$medium->getNom()));
+                if( $form->get('nom')->getData() != null ) {
+                    if (file_exists($this->getParameter('audios_directory') . '/' . $medium->getNom())) {
+                        unlink(($this->getParameter('audios_directory') . '/' . $medium->getNom()));
 
-                    $audios = $form->get('nom')->getData();
-                    foreach($audios as $audio){
-                        $file_name =  $medium->getArticle()->getId().'aud' . md5(uniqid()) . '.' . $audio->guessExtension();
-                        $audio->move(
-                            $this->getParameter('audios_directory'),
-                            $file_name
-                        );
-                        $medium->setNom($file_name);
-                        $article->addMedium($medium);
+                        $audios = $form->get('nom')->getData();
+                        foreach ($audios as $audio) {
+                            $file_name = $medium->getArticle()->getId() . 'aud' . md5(uniqid()) . '.' . $audio->guessExtension();
+                            $audio->move($this->getParameter('audios_directory'), $file_name);
+
+                            $medium->setNom($file_name);
+                            $article->addMedium($medium);
+                        }
                     }
-                    $this->getDoctrine()->getManager()->flush();
-                    $this->addFlash('success'
-                                    ,'Les informations de cette audio ont bien été modifiées');
-                    return $this->redirectToRoute('media_new_audio', ['id' => $article->getId()]);
+                }else{
+                    $medium->setNom($nomMedia);
                 }
+
+                $this->addFlash('success','Les informations de cette audio ont bien été modifiées');
+
+                $this->getDoctrine()->getManager()->flush();
+                return $this->redirectToRoute('media_new_audio', ['id' => $article->getId()]);
             }
+
         }
 
         return $this->render('media/edit.html.twig', [
             'medium' => $medium,
-            'article' => $article,
-            'images' => $images,
-            'audios' => $audios,
-            'videos' => $videos,
-            'videos_url' => $videos_url,
-            'videos_fichier' => $videos_fichier,
             'form' => $form->createView(),
         ]);
     }

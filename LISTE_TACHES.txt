@@ -25,7 +25,7 @@ TRUCS A CORRIGER (AKA "j'y arrive pas") -------------
 
 ----- NOTES -----
 ***( Harouna )***
-
+    - controleur edit & profil : identique
 
 
 

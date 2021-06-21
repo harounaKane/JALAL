@@ -13,7 +13,7 @@
             {{ form_row(form.content, {'attr': {'class': 'form-check-inline'}}) }}
         </div>
         <div class="col-md-12 col-lg-10 mx-lg-auto">
-            {{ form_row(form.main_image,{ 'value': article.mainImage },  {'attr': {'class': 'form-check-inline'}}) }}
+            {{ form_row(form.main_image,  {'attr': {'class': 'form-check-inline'}}) }}
             {% if article.mainImage %}
                 <input type="hidden" value="{{ article.mainImage }}" name="imagePrincipale">
                 <div>
